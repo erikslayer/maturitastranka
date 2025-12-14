@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Historie operačních systémů, architektura jádra.">
+    <title>21. Historie a architektura OS - OS | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../os.html">Operační systémy</a><span class="separator">›</span>
+                <span class="current">Historie a architektura</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🏛️ Historie a architektura operačních systémů</h1>
+                <p class="author">Téma 21 - Operační systémy</p>
+                <div class="meta">
+                    <span class="meta-item">⚙️ Operační systémy</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je operační systém?</h2>
+                <p>Operační systém (OS) je <strong>základní software počítače</strong>, který zprostředkovává komunikaci
+                    mezi uživatelem, aplikacemi a hardwarem. Je to „správce" počítače.</p>
+
+                <p><strong>Hlavní funkce OS:</strong></p>
+                <ul>
+                    <li><strong>Správa procesů:</strong> Spouštění programů, přidělování CPU</li>
+                    <li><strong>Správa paměti:</strong> Přidělování RAM aplikacím</li>
+                    <li><strong>Správa souborů:</strong> Organizace dat na discích</li>
+                    <li><strong>Správa zařízení:</strong> Komunikace s hardwarem (ovladače)</li>
+                    <li><strong>Uživatelské rozhraní:</strong> GUI nebo příkazová řádka</li>
+                    <li><strong>Bezpečnost:</strong> Oprávnění, uživatelé, ochrana</li>
+                </ul>
+
+                <h2>Historie operačních systémů</h2>
+
+                <h3>1. generace (1945-1955) – Bez OS</h3>
+                <ul>
+                    <li>Počítače programovány přímo v strojovém kódu</li>
+                    <li>Programy zadávány přepínáním přepínačů nebo děrnými štítky</li>
+                    <li>Obsluha jedním programátorem najednou</li>
+                    <li><strong>Příklady:</strong> ENIAC, UNIVAC</li>
+                </ul>
+
+                <h3>2. generace (1955-1965) – Dávkové zpracování</h3>
+                <ul>
+                    <li>První jednoduché OS pro automatizaci úloh</li>
+                    <li><strong>Dávkové zpracování (batch):</strong> Programy se shromáždily a spouštěly postupně bez
+                        zásahu obsluhy</li>
+                    <li>Tranzistory nahradily elektronky</li>
+                    <li>Děrné štítky a pásky jako vstup</li>
+                </ul>
+
+                <h3>3. generace (1965-1980) – Multiprogramování</h3>
+                <ul>
+                    <li><strong>Multiprogramování:</strong> V paměti více programů najednou, CPU přepíná mezi nimi</li>
+                    <li><strong>Timesharing:</strong> Více uživatelů sdílí počítač (terminály)</li>
+                    <li>Integrované obvody</li>
+                    <li><strong>Klíčové OS:</strong>
+                        <ul>
+                            <li><strong>MULTICS:</strong> Průkopník, inspiroval Unix</li>
+                            <li><strong>UNIX (1969):</strong> Ken Thompson + Dennis Ritchie (Bell Labs), psaný v C,
+                                ovlivnil vše</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>4. generace (1980-současnost) – Osobní počítače</h3>
+                <ul>
+                    <li>Mikroprocesory, počítače pro jednotlivce</li>
+                    <li><strong>MS-DOS (1981):</strong> Microsoft pro IBM PC, příkazový řádek</li>
+                    <li><strong>Mac OS (1984):</strong> Apple, grafické rozhraní</li>
+                    <li><strong>Windows 3.0/95:</strong> Grafická nadstavba → plnohodnotný OS</li>
+                    <li><strong>Linux (1991):</strong> Linus Torvalds, open-source, unixový</li>
+                    <li><strong>Současnost:</strong> Windows 11, macOS, Linux distribuce, Android, iOS</li>
+                </ul>
+
+                <h3>Časová osa klíčových OS</h3>
+                <div
+                    style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0; overflow-x: auto;">
+                    <pre style="font-family: monospace; font-size: 0.9rem;">
+1969 ─── UNIX ───────────────────────────────────────────────────────────────►
+1981 ─── MS-DOS ──────────────────────────────────────────────────────────────►
+1984 ─────────── Mac OS ─────────────────────────────────────────── macOS ───►
+1985 ─────────────── Windows 1.0 ─ 3.0 ─ 95 ─ XP ─ 7 ─ 10 ─ 11 ──────────────►
+1991 ────────────────────── Linux ───────────────────────────────────────────►
+2007 ───────────────────────────────────────────── iOS ──────────────────────►
+2008 ────────────────────────────────────────────── Android ─────────────────►</pre>
+                </div>
+
+                <h2>Architektura OS – Typy jádra</h2>
+                <p>Jádro (kernel) je <strong>centrální část OS</strong>, která běží v privilegovaném režimu a má přímý
+                    přístup k hardwaru.</p>
+
+                <h3>Monolitické jádro</h3>
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <pre style="font-family: monospace; font-size: 0.9rem;">
+┌─────────────────────────────────────┐
+│           UŽIVATELSKÝ PROSTOR       │
+│  (aplikace, programy uživatele)     │
+├─────────────────────────────────────┤
+│     ┌───────────────────────────┐   │
+│     │    MONOLITICKÉ JÁDRO      │   │
+│     │  • Správa procesů         │   │
+│     │  • Správa paměti          │   │
+│     │  • Souborové systémy      │   │
+│     │  • Síťové služby          │   │
+│     │  • Ovladače zařízení      │   │
+│     └───────────────────────────┘   │
+│              KERNEL SPACE           │
+└─────────────────────────────────────┘
+│               HARDWARE              │</pre>
+                </div>
+                <ul>
+                    <li>Vše běží v jednom velkém bloku v režimu jádra</li>
+                    <li><strong>Výhody:</strong> Rychlé (přímá komunikace mezi komponenty)</li>
+                    <li><strong>Nevýhody:</strong> Chyba v jedné části může shodit celý systém, obtížná údržba</li>
+                    <li><strong>Příklady:</strong> Linux, tradiční UNIX</li>
+                </ul>
+
+                <h3>Mikrojádro (Microkernel)</h3>
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <pre style="font-family: monospace; font-size: 0.9rem;">
+┌─────────────────────────────────────┐
+│           UŽIVATELSKÝ PROSTOR       │
+│ ┌─────────┐ ┌─────────┐ ┌─────────┐ │
+│ │ Ovladače│ │Souborový│ │ Síťové  │ │
+│ │ zařízení│ │ systém  │ │ služby  │ │
+│ └─────────┘ └─────────┘ └─────────┘ │
+├─────────────────────────────────────┤
+│     ┌───────────────────────────┐   │
+│     │       MIKROJÁDRO          │   │
+│     │  • Základní IPC           │   │
+│     │  • Správa paměti (min)    │   │
+│     │  • Plánování procesů      │   │
+│     └───────────────────────────┘   │
+│              KERNEL SPACE           │
+└─────────────────────────────────────┘</pre>
+                </div>
+                <ul>
+                    <li>V jádře jen naprosté minimum, zbytek v uživatelském prostoru</li>
+                    <li><strong>Výhody:</strong> Stabilita (pád ovladače nezávadí systém), modularita</li>
+                    <li><strong>Nevýhody:</strong> Pomalejší (komunikace přes zprávy)</li>
+                    <li><strong>Příklady:</strong> MINIX, QNX, seL4</li>
+                </ul>
+
+                <h3>Hybridní jádro</h3>
+                <ul>
+                    <li>Kombinace obou přístupů – mikrojádro s některými službami v kernel space</li>
+                    <li>Kompromis mezi výkonem a modularitou</li>
+                    <li><strong>Příklady:</strong> Windows NT/10/11, macOS (XNU), BeOS</li>
+                </ul>
+
+                <h2>Klasifikace operačních systémů</h2>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem; text-align: left;">Kritérium</th>
+                        <th style="padding: 0.5rem; text-align: left;">Typy</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Podle počtu uživatelů</strong></td>
+                        <td style="padding: 0.5rem;">Jednouživatelský (DOS) × Víceuživatelský (Linux, Windows Server)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Podle počtu úloh</strong></td>
+                        <td style="padding: 0.5rem;">Jednoúlohový (DOS) × Víceúlohový/Multitasking (Windows, Linux)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Podle rozhraní</strong></td>
+                        <td style="padding: 0.5rem;">CLI (příkazová řádka) × GUI (grafické)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Podle platformy</strong></td>
+                        <td style="padding: 0.5rem;">Desktop × Server × Mobilní × Embedded × Real-time</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Podle licence</strong></td>
+                        <td style="padding: 0.5rem;">Proprietární (Windows) × Open-source (Linux)</td>
+                    </tr>
+                </table>
+
+                <h2>Moderní operační systémy</h2>
+
+                <h3>Windows</h3>
+                <ul>
+                    <li>Nejrozšířenější desktopový OS (~70% trhu)</li>
+                    <li>Hybridní jádro (NT kernel od Windows NT/2000)</li>
+                    <li>Proprietární (placený), GUI orientovaný</li>
+                </ul>
+
+                <h3>Linux</h3>
+                <ul>
+                    <li>Open-source, monolitické jádro</li>
+                    <li>Distribuce: Ubuntu, Fedora, Debian, Arch, CentOS...</li>
+                    <li>Dominantní na serverech, superpočítačích, embedded, Android</li>
+                </ul>
+
+                <h3>macOS</h3>
+                <ul>
+                    <li>Apple, založen na Darwin (BSD + XNU kernel)</li>
+                    <li>Hybridní jádro, uzavřený ekosystém</li>
+                </ul>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>OS</strong> = správce počítače (procesy, paměť, soubory, zařízení)</li>
+                        <li><strong>Generace:</strong> Bez OS → Dávkové → Multiprogramování → PC</li>
+                        <li><strong>UNIX (1969):</strong> Základ pro Linux a macOS</li>
+                        <li><strong>Monolitické jádro:</strong> Vše v jednom, rychlé (Linux)</li>
+                        <li><strong>Mikrojádro:</strong> Minimum v jádře, stabilnější (QNX)</li>
+                        <li><strong>Hybridní:</strong> Kompromis (Windows, macOS)</li>
+                        <li><strong>Multitasking:</strong> Více úloh současně</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

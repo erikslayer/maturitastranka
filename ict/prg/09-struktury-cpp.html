@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Struktury v C++ - definice, členské proměnné.">
+    <title>9. Struktury C++ - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Struktury C++</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🏗️ Struktury C++</h1>
+                <p class="author">Téma 9 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je struktura a proč ji používáme?</h2>
+                <p>Struktura (<code>struct</code>) je <strong>uživatelsky definovaný datový typ</strong>, který umožňuje
+                    seskupit <strong>související data různých typů</strong> do jednoho celku.</p>
+
+                <p><strong>💡 Představ si to takto:</strong> Chceš evidovat informace o osobě – jméno, věk a výšku. Bez
+                    struktury bys potřeboval tři samostatné proměnné. Se strukturou vytvoříš jeden „balíček", který tyto
+                    údaje spojuje dohromady.</p>
+
+                <h3>Proč používat struktury?</h3>
+                <ul>
+                    <li><strong>Organizace dat:</strong> Související data jsou pohromadě</li>
+                    <li><strong>Čitelnost kódu:</strong> Je jasné, že <code>student.jmeno</code> patří ke studentovi
+                    </li>
+                    <li><strong>Snadnější předávání:</strong> Místo 5 parametrů předáš jednu strukturu</li>
+                    <li><strong>Základ pro OOP:</strong> Struktury jsou předchůdcem tříd</li>
+                </ul>
+
+                <h3>Praktické příklady použití</h3>
+                <ul>
+                    <li><strong>Evidence záznamů:</strong> Student, Zaměstnanec, Produkt</li>
+                    <li><strong>Geometrie:</strong> Bod (x, y), Obdélník (x, y, šířka, výška)</li>
+                    <li><strong>Herní vývoj:</strong> Pozice hráče, statistiky postavy</li>
+                    <li><strong>Data z formulářů:</strong> Registrační údaje, objednávka</li>
+                </ul>
+
+                <h2>Definice struktury</h2>
+                <p>Strukturu definujeme pomocí klíčového slova <code>struct</code>, následovaného názvem a členskými
+                    proměnnými ve složených závorkách:</p>
+
+                <pre class="language-css"><code>// Definice struktury - popisuje "šablonu"
+struct Osoba {
+    string jmeno;    // členská proměnná pro jméno
+    int vek;         // členská proměnná pro věk
+    double vyska;    // členská proměnná pro výšku v cm
+};  // ⚠️ Nezapomeň na středník za závorkou!</code></pre>
+
+                <p><strong>⚠️ Častá chyba:</strong> Zapomenutí středníku za uzavírací závorkou <code>};</code> způsobí
+                    matoucí chybové hlášky kompilátoru!</p>
+
+                <h2>Vytvoření instance (proměnné typu struktura)</h2>
+                <p>Definice struktury je jen „šablona". Pro uložení dat musíme vytvořit <strong>instanci</strong>:</p>
+
+                <pre class="language-css"><code>// Vytvoření instance a postupné přiřazení hodnot
+Osoba jan;              // Vytvoříme proměnnou typu Osoba
+jan.jmeno = "Jan Novák";
+jan.vek = 25;
+jan.vyska = 180.5;
+
+// Inicializace při vytvoření (kratší způsob)
+Osoba eva = {"Eva Svobodová", 30, 165.0};
+
+// C++11: Pojmenovaná inicializace (přehlednější)
+Osoba petr = {
+    .jmeno = "Petr Černý",
+    .vek = 28,
+    .vyska = 175.0
+};</code></pre>
+
+                <h2>Přístup k členům</h2>
+                <p>K jednotlivým položkám struktury přistupujeme pomocí <strong>tečkové notace</strong>:</p>
+
+                <pre class="language-cpp"><code>Osoba jan = {"Jan Novák", 25, 180.5};
+
+// Čtení hodnot
+cout << "Jméno: " << jan.jmeno << endl;      // Jan Novák
+cout << "Věk: " << jan.vek << " let" << endl; // 25 let
+
+// Změna hodnot
+jan.vek++;       // Jan měl narozeniny
+jan.vyska = 181.0;
+
+// Výpočty s členy
+if (jan.vek >= 18) {
+    cout << jan.jmeno << " je plnoletý." << endl;
+}</code></pre>
+
+                <h2>Pole struktur</h2>
+                <p>Struktury se často používají v polích pro uložení více záznamů stejného typu:</p>
+
+                <pre class="language-cpp"><code>// Pole 3 osob
+Osoba lide[3];
+
+// Naplnění dat
+lide[0] = {"Jan", 25, 180.0};
+lide[1] = {"Eva", 30, 165.0};
+lide[2] = {"Petr", 35, 175.0};
+
+// Procházení pole struktur
+for (int i = 0; i < 3; i++) {
+    cout << lide[i].jmeno << " (" << lide[i].vek << " let)" << endl;
+}
+
+// Výstup:
+// Jan (25 let)
+// Eva (30 let)
+// Petr (35 let)</code></pre>
+
+                <h2>Struktury a funkce</h2>
+                <p>Struktury můžeme předávat funkcím jako parametry a vracet z nich:</p>
+
+                <h3>Předání struktury do funkce</h3>
+                <pre class="language-cpp"><code>// Předání hodnotou (vytvoří se kopie)
+void vypisOsobu(Osoba o) {
+    cout << o.jmeno << ", " << o.vek << " let" << endl;
+}
+
+// Předání referencí (efektivnější, nemění originál)
+void vypisOsobuRef(const Osoba& o) {
+    cout << o.jmeno << ", " << o.vek << " let" << endl;
+}
+
+// Předání referencí s možností změny
+void oslavNarozeniny(Osoba& o) {
+    o.vek++;
+    cout << o.jmeno << " má nyní " << o.vek << " let!" << endl;
+}</code></pre>
+
+                <h3>Vrácení struktury z funkce</h3>
+                <pre class="language-css"><code>Osoba vytvorOsobu(string jmeno, int vek, double vyska) {
+    Osoba nova;
+    nova.jmeno = jmeno;
+    nova.vek = vek;
+    nova.vyska = vyska;
+    return nova;
+}
+
+// Použití
+Osoba student = vytvorOsobu("Milan", 20, 178.0);
+vypisOsobu(student);  // Milan, 20 let</code></pre>
+
+                <h2>Vnořené struktury</h2>
+                <p>Struktura může obsahovat jinou strukturu jako svého člena:</p>
+
+                <pre class="language-cpp"><code>struct Adresa {
+    string ulice;
+    string mesto;
+    int psc;
+};
+
+struct Zamestnanec {
+    string jmeno;
+    double plat;
+    Adresa bydliste;   // vnořená struktura
+};
+
+// Použití
+Zamestnanec karel;
+karel.jmeno = "Karel Dvořák";
+karel.plat = 45000;
+karel.bydliste.ulice = "Hlavní 123";
+karel.bydliste.mesto = "Praha";
+karel.bydliste.psc = 11000;
+
+cout << karel.jmeno << " bydlí v městě " << karel.bydliste.mesto;</code></pre>
+
+                <h2>Rozdíl mezi struct a class</h2>
+                <p>V C++ jsou struct a class téměř identické. Jediný rozdíl je ve <strong>výchozí viditelnosti</strong>
+                    členů:</p>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Vlastnost</th>
+                        <th style="padding: 0.5rem;"><code>struct</code></th>
+                        <th style="padding: 0.5rem;"><code>class</code></th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Výchozí přístup</td>
+                        <td style="padding: 0.5rem;"><strong>public</strong></td>
+                        <td style="padding: 0.5rem;"><strong>private</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Může mít metody</td>
+                        <td style="padding: 0.5rem;">Ano</td>
+                        <td style="padding: 0.5rem;">Ano</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Může dědit</td>
+                        <td style="padding: 0.5rem;">Ano</td>
+                        <td style="padding: 0.5rem;">Ano</td>
+                    </tr>
+                </table>
+
+                <p><strong>💡 Konvence:</strong></p>
+                <ul>
+                    <li><strong>struct:</strong> Pro jednoduché datové typy bez složité logiky (POD – Plain Old Data)
+                    </li>
+                    <li><strong>class:</strong> Pro složitější objekty s metodami, konstruktory a zapouzdřením</li>
+                </ul>
+
+                <h2>Struktura s metodami (C++)</h2>
+                <p>V C++ může mít struktura i metody, podobně jako třída:</p>
+
+                <pre class="language-cpp"><code>struct Obdelnik {
+    double sirka;
+    double vyska;
+    
+    // Metoda pro výpočet obsahu
+    double obsah() {
+        return sirka * vyska;
+    }
+    
+    // Metoda pro výpočet obvodu
+    double obvod() {
+        return 2 * (sirka + vyska);
+    }
+};
+
+// Použití
+Obdelnik o = {5.0, 3.0};
+cout << "Obsah: " << o.obsah() << endl;    // 15
+cout << "Obvod: " << o.obvod() << endl;    // 16</code></pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Struktura</strong> = uživatelský datový typ seskupující různé datové typy</li>
+                        <li>Definice: <code>struct Nazev { členy };</code> – pozor na <strong>středník na
+                                konci!</strong></li>
+                        <li>Přístup k členům pomocí <strong>tečky</strong>: <code>osoba.jmeno</code></li>
+                        <li>Lze vytvářet <strong>pole struktur</strong> pro více záznamů</li>
+                        <li><strong>struct</strong> vs <strong>class</strong>: Výchozí viditelnost (public vs private)
+                        </li>
+                        <li>Konvence: struct pro data, class pro objekty s logikou</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

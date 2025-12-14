@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Seznam literárních děl pro maturitní zkoušku z českého jazyka. Rozbory, charakteristiky postav a literární kontext.">
+    <title>Literatura - Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Domů</a></li>
+                    <li><a href="index.html" class="active">Literatura</a></li>
+                    <li><a href="../ict/index.html">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <a href="../index.html" class="back-link">← Zpět na hlavní stránku</a>
+
+            <section class="section-header animate-fade-in">
+                <h1><span class="text-gradient-literatura">Literatura</span></h1>
+                <p class="subtitle">
+                    Kompletní rozbory literárních děl pro ústní maturitní zkoušku z českého jazyka
+                </p>
+            </section>
+
+            <div class="cards-grid" id="books-grid">
+                <!-- Books will be loaded dynamically -->
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="../../privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // Book data embedded directly to avoid CORS issues with file:// protocol
+        const books = [
+            {
+                "filename": "saturnin.html",
+                "title": "Saturnin",
+                "author": "Zdeněk Jirotka",
+                "icon": "📖",
+                "description": "Humoristický román o sluhovi Saturninovi, který svému pánovi obrátí život naruby. Klasika české literatury plná anglického humoru.",
+                "tag": "Humoristický román"
+            },
+            {
+                "filename": "rur.html",
+                "title": "R.U.R.",
+                "author": "Karel Čapek",
+                "icon": "🤖",
+                "description": "Vědecko-fantastické drama o umělých lidech – robotech. Dílo, které dalo světu slovo \"robot\".",
+                "tag": "Sci-fi drama"
+            },
+            {
+                "filename": "bila-nemoc.html",
+                "title": "Bílá nemoc",
+                "author": "Karel Čapek",
+                "icon": "😷",
+                "description": "Protiválečné drama varující před fanatismem a totalitou. Doktor Galén léčí smrtelnou nemoc jen výměnou za mír.",
+                "tag": "Drama"
+            },
+            {
+                "filename": "451-fahrenheita.html",
+                "title": "451° Fahrenheita",
+                "author": "Ray Bradbury",
+                "icon": "🔥",
+                "description": "Dystopický román o budoucnosti, kde se pálí knihy. Varování před konzumní společností a cenzurou.",
+                "tag": "Sci-fi román"
+            },
+            {
+                "filename": "alchymista.html",
+                "title": "Alchymista",
+                "author": "Paulo Coelho",
+                "icon": "🏜️",
+                "description": "Filozofický příběh o pastýři, který jde za svým snem až k egyptským pyramidám. Klasika motivační literatury.",
+                "tag": "Filozofický román"
+            },
+            {
+                "filename": "alenka-v-risi-divu.html",
+                "title": "Alenka v říši divů",
+                "author": "Lewis Carroll",
+                "icon": "🐇",
+                "description": "Nonsensová pohádka plná fantazie, logických hříček a podivných postav. Cesta do světa fantazie.",
+                "tag": "Pohádka"
+            },
+            {
+                "filename": "borovsky-tyrolske-elegie.html",
+                "title": "Tyrolské elegie",
+                "author": "Karel Havlíček Borovský",
+                "icon": "🏔️",
+                "description": "Satirická báseň o nuceném odjezdu do Brixenu. Výsměch rakouské policii a vládě.",
+                "tag": "Satira"
+            },
+            {
+                "filename": "arthur-hailey-let-do-nebezpeci.html",
+                "title": "Let do nebezpečí",
+                "author": "Arthur Hailey",
+                "icon": "✈️",
+                "description": "Napínavý profesní román o letu, kde se otráví piloti a řízení musí převzít pasažér.",
+                "tag": "Profesní román"
+            },
+            {
+                "filename": "bez-peri.html",
+                "title": "Bez peří",
+                "author": "Woody Allen",
+                "icon": "🎭",
+                "description": "Sbírka humorných povídek a esejí plná intelektuálního humoru a parodie.",
+                "tag": "Povídky"
+            },
+            {
+                "filename": "biliar-o-pul-desate.html",
+                "title": "Biliár o půl desáté",
+                "author": "Heinrich Böll",
+                "icon": "🎱",
+                "description": "Román o třech generacích rodiny Fähmelů a jejich postojích k válce a nacismu.",
+                "tag": "Román"
+            },
+            {
+                "filename": "cekani-na-godota.html",
+                "title": "Čekání na Godota",
+                "author": "Samuel Beckett",
+                "icon": "🌳",
+                "description": "Absurdní drama o nekonečném čekání na někoho, kdo nikdy nepřijde.",
+                "tag": "Absurdní drama"
+            },
+            {
+                "filename": "cizinec.html",
+                "title": "Cizinec",
+                "author": "Albert Camus",
+                "icon": "☀️",
+                "description": "Příběh člověka, který je cizincem ve společnosti, protože odmítá lhát o svých pocitech.",
+                "tag": "Existenciální román"
+            },
+            {
+                "filename": "cervantes-dumyslny-rytir-don-quijote.html",
+                "title": "Don Quijote",
+                "author": "Miguel de Cervantes",
+                "icon": "🤺",
+                "description": "Slavný příběh o důmyslném rytíři, který bojuje s větrnými mlýny.",
+                "tag": "Román"
+            },
+            {
+                "filename": "cechov-visnovy-sad.html",
+                "title": "Višňový sad",
+                "author": "Anton Pavlovič Čechov",
+                "icon": "🍒",
+                "description": "Lyrická komedie o zániku starých časů a neschopnosti přizpůsobit se změně.",
+                "tag": "Drama"
+            },
+            {
+                "filename": "ceske-nebe.html",
+                "title": "České nebe",
+                "author": "Jára Cimrman",
+                "icon": "☁️",
+                "description": "Cimrmanovská hra o tom, jak nebeská komise rozhoduje o osudech Čechů.",
+                "tag": "Komedie"
+            },
+            {
+                "filename": "gatsby.html",
+                "title": "Velký Gatsby",
+                "author": "Francis Scott Fitzgerald",
+                "icon": "🥂",
+                "description": "Příběh záhadného milionáře Gatsbyho a jeho nenaplněné lásky. Kritika amerického snu 20. let.",
+                "tag": "Román"
+            },
+            {
+                "filename": "lakomec.html",
+                "title": "Lakomec",
+                "author": "Molière",
+                "icon": "💰",
+                "description": "Klasická komedie o Harpagonovi, jehož láska k penězům převyšuje vše ostatní včetně vlastních dětí.",
+                "tag": "Komedie"
+            },
+            {
+                "filename": "na-zapadni-fronte-klid.html",
+                "title": "Na západní frontě klid",
+                "author": "Erich Maria Remarque",
+                "icon": "⚔️",
+                "description": "Strhující protiválečný román zachycující hrůzy první světové války očima mladého německého vojáka.",
+                "tag": "Válečný román"
+            },
+            {
+                "filename": "o-mysich-a-lidech.html",
+                "title": "O myších a lidech",
+                "author": "John Steinbeck",
+                "icon": "🐭",
+                "description": "Tragický příběh dvou přátel – George a Lennieho – hledajících práci v době Velké hospodářské krize.",
+                "tag": "Novela"
+            },
+            {
+                "filename": "maly-princ.html",
+                "title": "Malý princ",
+                "author": "Antoine de Saint-Exupéry",
+                "icon": "🌹",
+                "description": "Filozofická pohádka o malém princi z asteroidu B-612 a jeho cestě po vesmíru i lidských srdcích.",
+                "tag": "Filozofická pohádka"
+            },
+            {
+                "filename": "kral-lavra.html",
+                "title": "Král Lávra",
+                "author": "Karel Havlíček Borovský",
+                "icon": "👑",
+                "description": "Satirická báseň o králi, který má oslí uši a svého holiče posílá na popraviště. Kritika panocnické zvůle.",
+                "tag": "Satira"
+            },
+            {
+                "filename": "vrazda-v-orient-expresu.html",
+                "title": "Vražda v Orient-expresu",
+                "author": "Agatha Christie",
+                "icon": "🚂",
+                "description": "Slavný detektivní román, ve kterém Hercule Poirot vyšetřuje vraždu v luxusním vlaku uvízlém ve sněhu.",
+                "tag": "Detektivka"
+            },
+            {
+                "filename": "krest-svateho-vladimira.html",
+                "title": "Křest svatého Vladimíra",
+                "author": "Karel Havlíček Borovský",
+                "icon": "⚡",
+                "description": "Satirická skladba kritizující absolutismus a církev na příběhu cara, který nechal utopit boha Peruna.",
+                "tag": "Satira"
+            },
+            {
+                "filename": "oliver-twist.html",
+                "title": "Oliver Twist",
+                "author": "Charles Dickens",
+                "icon": "🥣",
+                "description": "Sociální román o osudech sirotka Olivera v londýnském podsvětí. Kritika dětské práce a chudoby.",
+                "tag": "Sociální román"
+            },
+            {
+                "filename": "romeo-a-julie.html",
+                "title": "Romeo a Julie",
+                "author": "William Shakespeare",
+                "icon": "💔",
+                "description": "Nesmrtelná tragédie o dvou milencích z nepřátelských rodů, jejichž láska končí smrtí, ale vede k usmíření.",
+                "tag": "Tragédie"
+            },
+            {
+                "filename": "povidky-edgar-allan-poe.html",
+                "title": "Povídky",
+                "author": "Edgar Allan Poe",
+                "icon": "🐈‍⬛",
+                "description": "Sbírka hororových povídek (Černý kocour, Jáma a kyvadlo, Předčasný pohřeb). Mistr atmosféry hrůzy a strachu.",
+                "tag": "Hororové povídky"
+            },
+            {
+                "filename": "starec-a-more.html",
+                "title": "Stařec a moře",
+                "author": "Ernest Hemingway",
+                "icon": "🎣",
+                "description": "Příběh starého rybáře Santiaga, jeho souboje s obří rybou a důstojnosti v porážce. \"Člověka můžeš zničit, ale ne porazit.\"",
+                "tag": "Novela"
+            },
+            {
+                "filename": "petr-a-lucie.html",
+                "title": "Petr a Lucie",
+                "author": "Romain Rolland",
+                "icon": "💐",
+                "description": "Tragický příběh dvou mladých milenců v Paříži za 1. světové války. Protest proti válce ničící lásku a naději.",
+                "tag": "Protiválečná novela"
+            },
+            {
+                "filename": "farma-zvirat.html",
+                "title": "Farma zvířat",
+                "author": "George Orwell",
+                "icon": "🐷",
+                "description": "Alegorický román o revoluci zvířat, která se zvrhne v diktaturu. Satira na stalinský režim.",
+                "tag": "Antiutopie"
+            },
+            {
+                "filename": "nema-barikada.html",
+                "title": "Němá barikáda",
+                "author": "Jan Drda",
+                "icon": "🏚️",
+                "description": "Sbírka válečných povídek o hrdinství a utrpení běžných lidí za okupace. Obsahuje slavnou povídku Vyšší princip.",
+                "tag": "Válečné povídky"
+            },
+            {
+                "filename": "smrt-krasnych-srncu.html",
+                "title": "Smrt krásných srnců",
+                "author": "Ota Pavel",
+                "icon": "🦌",
+                "description": "Autobiografické povídky o dětství, milovaném tatínkovi a lásce k přírodě. Humorné i dojemné vzpomínky.",
+                "tag": "Povídky"
+            },
+            {
+                "filename": "ostre-sledovane-vlaky.html",
+                "title": "Ostře sledované vlaky",
+                "author": "Bohumil Hrabal",
+                "icon": "🚂",
+                "description": "Tragikomická novela o mladém výpravčím, který řeší osobní problémy uprostřed válečného odboje. Oscar za film.",
+                "tag": "Novela"
+            },
+            {
+                "filename": "bylo-nas-pet.html",
+                "title": "Bylo nás pět",
+                "author": "Karel Poláček",
+                "icon": "👦",
+                "description": "Humoristický román o dobrodružstvích party kluků v malém městě. Klasika české literatury plná dětské fantazie.",
+                "tag": "Humoristický román"
+            }
+        ];
+
+        // Render books dynamically
+        function renderBooks() {
+            const grid = document.getElementById('books-grid');
+
+            // Sort books alphabetically by title (Czech locale)
+            books.sort((a, b) => a.title.localeCompare(b.title, 'cs'));
+
+            // Create card for each book
+            books.forEach((book, index) => {
+                const card = document.createElement('a');
+                card.href = book.filename;
+                card.className = 'card literatura animate-fade-in';
+                card.style.animationDelay = `${index * 0.05}s`;
+
+                card.innerHTML = `
+                    <div class="card-icon">${book.icon}</div>
+                    <h3>${book.title}</h3>
+                    <p class="author">${book.author}</p>
+                    <p class="description">${book.description}</p>
+                    <span class="tag">${book.tag}</span>
+                `;
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Load books when page is ready
+        document.addEventListener('DOMContentLoaded', renderBooks);
+    </script>
+</body>
+
+</html>

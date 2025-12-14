@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Základní desky PC - čipset, sockety, sloty, konektory a všechny komponenty.">
+    <title>2. Základní desky - HW | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a>
+                <span class="separator">›</span>
+                <a href="../index.html">ICT</a>
+                <span class="separator">›</span>
+                <a href="../hw.html">Hardware</a>
+                <span class="separator">›</span>
+                <span class="current">Základní desky</span>
+            </nav>
+
+            <div class="book-header animate-fade-in">
+                <h1>🔧 Základní desky (Motherboard)</h1>
+                <p class="author">Téma 2 - Hardware</p>
+                <div class="meta">
+                    <span class="meta-item">🖥️ Hardware</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+
+            <div class="glass-panel animate-fade-in book-content">
+                <p>Základní deska je <strong>hlavní tištěný spoj (PCB)</strong>, který propojuje všechny komponenty
+                    počítače a umožňuje jejich vzájemnou komunikaci.</p>
+
+                <h2>1. Formátové faktory</h2>
+                <p>Určují rozměry a rozmístění komponent na desce:</p>
+                <ul>
+                    <li><strong>ATX (305 × 244 mm):</strong> Standardní velikost, 7 rozšiřujících slotů</li>
+                    <li><strong>Micro-ATX (244 × 244 mm):</strong> Menší, 4 sloty, kompatibilní s ATX skříněmi</li>
+                    <li><strong>Mini-ITX (170 × 170 mm):</strong> Kompaktní, 1 slot, pro HTPC a malé sestavy</li>
+                    <li><strong>E-ATX (305 × 330 mm):</strong> Rozšířený ATX pro workstation a servery</li>
+                </ul>
+
+                <h2>2. Čipset (Chipset)</h2>
+                <p>Čipset je <strong>sada integrovaných obvodů</strong>, která řídí komunikaci mezi CPU, pamětí a
+                    periferiemi.</p>
+
+                <h3>Moderní architektura</h3>
+                <ul>
+                    <li><strong>Integrováno v CPU:</strong> Paměťový řadič, PCIe linky pro GPU</li>
+                    <li><strong>PCH (Platform Controller Hub):</strong> Řídí SATA, USB, síťový řadič, audio</li>
+                </ul>
+
+                <h3>Příklady čipsetů</h3>
+                <ul>
+                    <li><strong>Intel:</strong> Z790, B760, H770 (pro 12.-14. generaci)</li>
+                    <li><strong>AMD:</strong> X670, B650, A620 (pro Ryzen 7000)</li>
+                </ul>
+
+                <h3>Rozdíly mezi čipsety</h3>
+                <ul>
+                    <li><strong>Prémiové (Z, X):</strong> Podpora přetaktování, více PCIe linek, více USB portů</li>
+                    <li><strong>Střední (B):</strong> Dobrý poměr cena/výkon, omezené přetaktování</li>
+                    <li><strong>Základní (H, A):</strong> Nejlevnější, bez přetaktování</li>
+                </ul>
+
+                <h2>3. Socket (patice procesoru)</h2>
+                <p>Mechanické a elektrické rozhraní pro připojení CPU k základní desce.</p>
+
+                <h3>Typy socketů</h3>
+                <ul>
+                    <li><strong>LGA (Land Grid Array):</strong> Piny jsou na desce (Intel, nově AMD)</li>
+                    <li><strong>PGA (Pin Grid Array):</strong> Piny jsou na procesoru (starší AMD)</li>
+                    <li><strong>BGA (Ball Grid Array):</strong> Procesor napájený na desku (notebooky)</li>
+                </ul>
+
+                <h3>Aktuální sockety</h3>
+                <ul>
+                    <li><strong>Intel LGA 1700:</strong> Pro 12.-14. generaci (Alder Lake, Raptor Lake)</li>
+                    <li><strong>AMD AM5:</strong> Pro Ryzen 7000+ (LGA, DDR5, PCIe 5.0)</li>
+                    <li><strong>AMD AM4:</strong> Pro Ryzen 1000-5000 (PGA, DDR4)</li>
+                </ul>
+
+                <h2>4. Paměťové sloty (DIMM)</h2>
+                <p>Sloty pro instalaci modulů operační paměti RAM.</p>
+                <ul>
+                    <li><strong>Počet slotů:</strong> Typicky 2-4 (Mini-ITX má 2, ATX má 4)</li>
+                    <li><strong>Dual Channel:</strong> 2 moduly pro dvojnásobnou propustnost</li>
+                    <li><strong>DDR4 vs DDR5:</strong> Různé sloty, nejsou kompatibilní</li>
+                    <li><strong>Maximální kapacita:</strong> Závisí na čipsetu a CPU (např. 128 GB)</li>
+                </ul>
+
+                <h2>5. Rozšiřující sloty</h2>
+
+                <h3>PCIe (PCI Express)</h3>
+                <ul>
+                    <li><strong>PCIe x16:</strong> Hlavní slot pro grafickou kartu</li>
+                    <li><strong>PCIe x4:</strong> Pro NVMe SSD, rozšiřující karty</li>
+                    <li><strong>PCIe x1:</strong> Pro zvukové karty, síťové karty</li>
+                </ul>
+
+                <h3>Verze PCIe</h3>
+                <ul>
+                    <li><strong>PCIe 3.0:</strong> 1 GB/s na linku</li>
+                    <li><strong>PCIe 4.0:</strong> 2 GB/s na linku (dvojnásobek)</li>
+                    <li><strong>PCIe 5.0:</strong> 4 GB/s na linku (nejnovější)</li>
+                </ul>
+
+                <h3>M.2 Sloty</h3>
+                <ul>
+                    <li>Kompaktní slot pro NVMe SSD a WiFi moduly</li>
+                    <li><strong>Klíčování:</strong> M key (NVMe), B+M key (SATA), E key (WiFi)</li>
+                    <li>Délky: 2242, 2260, 2280 (nejběžnější), 22110</li>
+                </ul>
+
+                <h2>6. Úložné konektory</h2>
+                <ul>
+                    <li><strong>SATA III:</strong> 6 Gb/s pro HDD a SATA SSD</li>
+                    <li><strong>M.2 NVMe:</strong> Přes PCIe, až 7000+ MB/s (PCIe 4.0)</li>
+                    <li><strong>U.2:</strong> Serverový konektor pro NVMe disky</li>
+                </ul>
+
+                <h2>7. Zadní I/O panel</h2>
+                <p>Konektory pro připojení externích periferií:</p>
+                <ul>
+                    <li><strong>USB porty:</strong> USB 2.0, 3.0 (modrý), 3.2 Gen 2, USB-C</li>
+                    <li><strong>Video výstupy:</strong> HDMI, DisplayPort (pro integrovanou grafiku)</li>
+                    <li><strong>Audio:</strong> 3.5mm jacky (line-in, line-out, mic), S/PDIF</li>
+                    <li><strong>Síť:</strong> RJ-45 (Ethernet), někdy 2.5G nebo 10G</li>
+                    <li><strong>Bezdrátové:</strong> Antény pro WiFi/Bluetooth</li>
+                    <li><strong>PS/2:</strong> Starší konektor pro klávesnici/myš</li>
+                    <li><strong>BIOS Flashback:</strong> Tlačítko pro aktualizaci BIOS bez CPU</li>
+                </ul>
+
+                <h2>8. Interní konektory</h2>
+                <ul>
+                    <li><strong>24-pin ATX:</strong> Hlavní napájení desky</li>
+                    <li><strong>8-pin/4-pin EPS:</strong> Napájení CPU</li>
+                    <li><strong>Front Panel:</strong> Tlačítka power, reset, LED diody</li>
+                    <li><strong>USB headers:</strong> Pro přední USB porty</li>
+                    <li><strong>Audio header:</strong> Pro přední audio jack</li>
+                    <li><strong>Fan headers:</strong> PWM konektory pro ventilátory</li>
+                    <li><strong>RGB headers:</strong> 4-pin RGB nebo 3-pin ARGB</li>
+                </ul>
+
+                <h2>9. VRM (Voltage Regulator Module)</h2>
+                <p>Stabilizuje napětí pro CPU a zajišťuje čistý proud:</p>
+                <ul>
+                    <li><strong>Fáze:</strong> Více fází = stabilnější napájení (např. 12+2 fází)</li>
+                    <li><strong>Chladiče VRM:</strong> Důležité pro přetaktování</li>
+                    <li><strong>Kvalita:</strong> Prémiové desky mají lepší VRM pro stabilní OC</li>
+                </ul>
+
+                <h2>10. BIOS/UEFI</h2>
+                <ul>
+                    <li><strong>BIOS (Basic Input/Output System):</strong> Starší firmware</li>
+                    <li><strong>UEFI:</strong> Moderní náhrada s grafickým rozhraním</li>
+                    <li><strong>Funkce:</strong> POST, nastavení hardware, bootování OS</li>
+                    <li><strong>CMOS baterie:</strong> Udržuje nastavení BIOS při vypnutí</li>
+                </ul>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Formáty:</strong> ATX > Micro-ATX > Mini-ITX (velikost a sloty)</li>
+                        <li><strong>Čipset</strong> řídí komunikaci mezi komponenty (Z/X = prémiové)</li>
+                        <li><strong>Socket</strong> musí odpovídat procesoru (LGA 1700, AM5)</li>
+                        <li><strong>DIMM sloty</strong> pro RAM, Dual Channel pro vyšší výkon</li>
+                        <li><strong>PCIe sloty:</strong> x16 pro GPU, x4/x1 pro rozšíření</li>
+                        <li><strong>M.2 NVMe</strong> pro rychlé SSD (až 7000 MB/s)</li>
+                        <li><strong>VRM</strong> stabilizuje napětí pro CPU</li>
+                        <li><strong>UEFI</strong> je moderní náhrada BIOS</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../../script.js"></script>
+</body>
+
+</html>

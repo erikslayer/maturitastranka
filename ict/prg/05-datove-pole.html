@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Datové pole v C++ a C# - deklarace, vícerozměrná pole.">
+    <title>5. Datové pole C++ a C# - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Datové pole</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>📦 Datové pole C++ a C#</h1>
+                <p class="author">Téma 5 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je pole (Array)?</h2>
+                <p>Pole je <strong>datová struktura</strong> obsahující kolekci prvků <strong>stejného typu</strong>,
+                    uložených v <strong>souvislé paměti</strong>. K prvkům přistupujeme pomocí <strong>indexu</strong>.
+                </p>
+
+                <p><strong>💡 Představ si to jako řadu krabiček:</strong></p>
+                <pre class="language-plaintext"><code>Index:    [0]   [1]   [2]   [3]   [4]
+Hodnoty:   10    20    30    40    50</code></pre>
+
+                <p><strong>Klíčové vlastnosti pole:</strong></p>
+                <ul>
+                    <li><strong>Indexování od 0:</strong> První prvek má index 0, ne 1!</li>
+                    <li><strong>Pevná velikost:</strong> Po vytvoření nelze měnit počet prvků (v klasickém poli)</li>
+                    <li><strong>Rychlý přístup:</strong> K libovolnému prvku se dostaneme okamžitě pomocí indexu</li>
+                    <li><strong>Homogenní:</strong> Všechny prvky musí být stejného typu</li>
+                </ul>
+
+                <h2>Pole v C++</h2>
+
+                <h3>Deklarace a inicializace</h3>
+                <pre class="language-cpp"><code>// Deklarace bez inicializace - POZOR: obsahuje náhodná data!
+int cisla[5];
+
+// Inicializace při deklaraci
+int cisla[5] = {10, 20, 30, 40, 50};
+
+// Automatické určení velikosti podle počtu hodnot
+int cisla[] = {10, 20, 30, 40, 50};  // velikost = 5
+
+// Částečná inicializace (zbytek bude 0)
+int cisla[5] = {10, 20};  // = {10, 20, 0, 0, 0}
+
+// Inicializace na samé nuly
+int cisla[5] = {0};       // = {0, 0, 0, 0, 0}
+int cisla[5] = {};        // totéž v C++11</code></pre>
+
+                <h3>Přístup k prvkům</h3>
+                <pre class="language-cpp"><code>int cisla[5] = {10, 20, 30, 40, 50};
+
+// Čtení hodnoty
+int prvni = cisla[0];    // = 10
+int posledni = cisla[4]; // = 50
+
+// Zápis hodnoty
+cisla[0] = 100;          // pole je nyní {100, 20, 30, 40, 50}
+
+// ⚠️ Častá chyba: přístup mimo meze!
+int spatne = cisla[5];   // CHYBA! Index 5 neexistuje (max je 4)
+// C++ to NEZASTAVÍ - přečteš náhodnou paměť nebo program spadne</code></pre>
+
+                <p><strong>⚠️ Index out of bounds:</strong> C++ nekontroluje přístup mimo meze pole. Špatný index může
+                    způsobit pád programu, poškození dat nebo bezpečnostní díry!</p>
+
+                <h3>Procházení pole</h3>
+                <pre class="language-cpp"><code>int cisla[5] = {10, 20, 30, 40, 50};
+
+// Klasický for cyklus (nejčastější způsob)
+for (int i = 0; i < 5; i++) {
+    cout << cisla[i] << " ";
+}
+// Výstup: 10 20 30 40 50
+
+// Range-based for (C++11) - jednodušší, bezpečnější
+for (int cislo : cisla) {
+    cout << cislo << " ";
+}
+// Výstup: 10 20 30 40 50
+
+// S možností modifikace (reference)
+for (int& cislo : cisla) {
+    cislo *= 2;  // zdvojnásobí každý prvek
+}</code></pre>
+
+                <h3>Zjištění velikosti pole v C++</h3>
+                <pre class="language-cpp"><code>int cisla[] = {10, 20, 30, 40, 50};
+
+// Starý způsob (sizeof)
+int velikost = sizeof(cisla) / sizeof(cisla[0]);  // = 5
+
+// Moderní způsob (C++17)
+#include <array>
+std::array<int, 5> arr = {10, 20, 30, 40, 50};
+int vel = arr.size();  // = 5</code></pre>
+
+                <h2>Pole v C#</h2>
+
+                <h3>Deklarace a inicializace</h3>
+                <pre class="language-csharp"><code>// Deklarace a vytvoření (všechny prvky = 0)
+int[] cisla = new int[5];
+
+// Inicializace s hodnotami
+int[] cisla = {10, 20, 30, 40, 50};
+
+// Explicitní forma
+int[] cisla = new int[] {10, 20, 30, 40, 50};
+
+// Prázdné pole pozdější inicializace
+int[] cisla;
+cisla = new int[5];</code></pre>
+
+                <h3>Vlastnost Length</h3>
+                <pre class="language-csharp"><code>int[] cisla = {10, 20, 30, 40, 50};
+
+int delka = cisla.Length;  // = 5
+int posledni = cisla[cisla.Length - 1];  // = 50
+
+// C# kontroluje meze pole - vyhodí výjimku při špatném indexu
+int spatne = cisla[10];  // IndexOutOfRangeException!</code></pre>
+
+                <h3>Procházení pole</h3>
+                <pre class="language-csharp"><code>int[] cisla = {10, 20, 30, 40, 50};
+
+// Klasický for
+for (int i = 0; i < cisla.Length; i++) {
+    Console.WriteLine(cisla[i]);
+}
+
+// Foreach - čitelnější, preferovaný způsob
+foreach (int cislo in cisla) {
+    Console.WriteLine(cislo);
+}</code></pre>
+
+                <h2>Vícerozměrná pole</h2>
+                <p>Pro data v tabulkové nebo maticové struktuře (řádky a sloupce).</p>
+
+                <h3>2D pole v C++</h3>
+                <pre class="language-cpp"><code>// 3 řádky, 3 sloupce
+int matice[3][3] = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+// Přístup k prvkům: [řádek][sloupec]
+int hodnota = matice[1][2];  // = 6 (2. řádek, 3. sloupec)
+
+// Procházení 2D pole
+for (int i = 0; i < 3; i++) {         // řádky
+    for (int j = 0; j < 3; j++) {     // sloupce
+        cout << matice[i][j] << " ";
+    }
+    cout << endl;
+}
+// Výstup:
+// 1 2 3
+// 4 5 6
+// 7 8 9</code></pre>
+
+                <h3>2D pole v C#</h3>
+                <pre class="language-csharp"><code>// Obdélníkové pole (všechny řádky stejně dlouhé)
+int[,] matice = new int[3, 3];
+int[,] matice = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+int hodnota = matice[1, 2];  // = 6 (pozor: čárka, ne dva indexy)
+int radky = matice.GetLength(0);    // = 3
+int sloupce = matice.GetLength(1);  // = 3
+
+// Jagged array (pole polí) - různě dlouhé řádky
+int[][] jagged = new int[3][];
+jagged[0] = new int[] {1, 2};
+jagged[1] = new int[] {3, 4, 5, 6};
+jagged[2] = new int[] {7};
+
+int hodnota = jagged[1][2];  // = 5 (dva indexy)</code></pre>
+
+                <h2>Běžné operace s poli</h2>
+                <pre class="language-csharp"><code>// C# - vestavěné metody
+int[] cisla = {5, 2, 8, 1, 9};
+
+// Řazení
+Array.Sort(cisla);           // = {1, 2, 5, 8, 9}
+Array.Reverse(cisla);        // = {9, 8, 5, 2, 1}
+
+// Hledání
+int index = Array.IndexOf(cisla, 5);  // = 2 (nebo -1 pokud není)
+bool existuje = Array.Exists(cisla, x => x > 7);  // true
+
+// Kopírování
+int[] kopie = new int[5];
+Array.Copy(cisla, kopie, 5);
+
+// Změna velikosti (vytvoří nové pole!)
+Array.Resize(ref cisla, 10);  // nové prvky = 0</code></pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Pole</strong> = kolekce prvků stejného typu s indexovaným přístupem</li>
+                        <li><strong>Indexování od 0!</strong> První prvek je <code>pole[0]</code></li>
+                        <li><strong>C++:</strong> <code>int pole[5];</code> – nekontroluje meze!</li>
+                        <li><strong>C#:</strong> <code>int[] pole = new int[5];</code> – kontroluje meze</li>
+                        <li><strong>Délka:</strong> C++ = <code>sizeof</code> trik, C# = <code>pole.Length</code></li>
+                        <li><strong>2D pole:</strong> C++ = <code>[i][j]</code>, C# obdélníkové = <code>[i,j]</code>
+                        </li>
+                        <li>Pozor na <strong>index out of bounds</strong>!</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

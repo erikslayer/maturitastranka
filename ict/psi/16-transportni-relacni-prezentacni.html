@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transportní, relační a prezentační vrstva modelu ISO/OSI - TCP, UDP, TLS.">
+    <title>16. Transportní, relační a prezentační vrstva - PSI | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../psi.html">Počítačové sítě</a><span class="separator">›</span>
+                <span class="current">Transportní, relační a prezentační vrstva</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>📦 Transportní, relační a prezentační vrstva</h1>
+                <p class="author">Téma 16 - PSI</p>
+                <div class="meta">
+                    <span class="meta-item">📡 Počítačové sítě</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>Transportní vrstva (4. vrstva ISO/OSI)</h2>
+                <p>Zajišťuje spolehlivou komunikaci mezi aplikacemi na různých zařízeních.</p>
+                <h3>Pozice a funkce</h3>
+                <ul>
+                    <li>Mezi síťovou (3.) a relační (5.) vrstvou</li>
+                    <li><strong>Spolehlivost:</strong> Data doručena bez chyb, v pořadí, kompletní</li>
+                    <li><strong>Segmentace:</strong> Rozděluje data na segmenty</li>
+                    <li><strong>Řízení toku:</strong> Zabraňuje zahlcení</li>
+                    <li><strong>Detekce chyb:</strong> Opakovaný přenos při chybách</li>
+                </ul>
+                <h3>Bloky dat a jejich identifikace</h3>
+                <ul>
+                    <li>Data přenášená jako <strong>segmenty</strong></li>
+                    <li><strong>Čísla portů:</strong> Určují aplikaci (HTTP=80, HTTPS=443)</li>
+                    <li><strong>Sekvenční čísla:</strong> Zajišťují správné pořadí</li>
+                    <li><strong>Kontrolní součet:</strong> Detekce chyb</li>
+                </ul>
+                <h3>Protokoly</h3>
+                <ul>
+                    <li><strong>TCP:</strong> Spolehlivý, orientovaný na připojení, potvrzování, řízení toku</li>
+                    <li><strong>UDP:</strong> Nespojovaný, rychlý, bez potvrzování. Pro streaming, VoIP, hry.</li>
+                </ul>
+                <h3>Zabezpečení spolehlivé komunikace</h3>
+                <ul>
+                    <li><strong>Potvrzování (ACK):</strong> Odesílatel čeká na potvrzení</li>
+                    <li><strong>Opakovaný přenos:</strong> Při nedoručení</li>
+                    <li><strong>Kontrola toku:</strong> Příjemce reguluje množství dat</li>
+                </ul>
+                <h2>Relační vrstva (5. vrstva ISO/OSI)</h2>
+                <p>Řídí a udržuje relace mezi zařízeními nebo aplikacemi.</p>
+                <h3>Funkce</h3>
+                <ul>
+                    <li><strong>Správa relací:</strong> Zahájení, udržování, ukončení</li>
+                    <li><strong>Synchronizace:</strong> Synchronizační body pro pokračování po přerušení</li>
+                    <li><strong>Řízení komunikace:</strong> Určuje, která strana může vysílat</li>
+                </ul>
+                <h2>Prezentační vrstva (6. vrstva ISO/OSI)</h2>
+                <p>Formátování a kódování dat pro aplikace.</p>
+                <h3>Funkce</h3>
+                <ul>
+                    <li><strong>Kódování/dekódování:</strong> Převod mezi formáty (ASCII, Unicode)</li>
+                    <li><strong>Komprese dat:</strong> Snížení velikosti pro rychlejší přenos</li>
+                    <li><strong>Šifrování/dešifrování:</strong> Bezpečnost přenosu</li>
+                </ul>
+                <h3>Protokoly</h3>
+                <ul>
+                    <li><strong>TLS:</strong> Šifrování komunikace, ověření identity</li>
+                    <li><strong>SSL:</strong> Předchůdce TLS</li>
+                    <li><strong>JPEG, GIF, MP3:</strong> Standardy pro formátování dat</li>
+                </ul>
+                <h3>Tabulky znaků a bezpečnost</h3>
+                <ul>
+                    <li><strong>Tabulky znaků:</strong> ASCII, Unicode, EBCDIC</li>
+                    <li><strong>Šifrování:</strong> AES, RSA</li>
+                    <li><strong>MIME:</strong> Rozšíření pro posílání netextových formátů</li>
+                    <li><strong>Base64:</strong> Kódování binárních dat do textu</li>
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

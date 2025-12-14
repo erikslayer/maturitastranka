@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Linková vrstva modelu ISO/OSI - MAC adresy, rámcování, přístupové metody, protokoly.">
+    <title>13. Linková vrstva modelu ISO/OSI - PSI | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a>
+                <span class="separator">›</span>
+                <a href="../index.html">ICT</a>
+                <span class="separator">›</span>
+                <a href="../psi.html">Počítačové sítě</a>
+                <span class="separator">›</span>
+                <span class="current">Linková vrstva</span>
+            </nav>
+
+            <div class="book-header animate-fade-in">
+                <h1>🔗 Linková vrstva modelu ISO/OSI</h1>
+                <p class="author">Téma 13 - PSI</p>
+                <div class="meta">
+                    <span class="meta-item">📡 Počítačové sítě</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+
+            <div class="glass-panel animate-fade-in book-content">
+                <p>Linková vrstva (<strong>2. vrstva modelu ISO/OSI</strong>) hraje klíčovou roli v zajištění spolehlivé
+                    komunikace mezi zařízeními na lokální síti. Tato vrstva přebírá surová data z fyzické vrstvy,
+                    organizuje je do rámců (frames) a zajišťuje jejich přenos mezi sousedními zařízeními.</p>
+
+                <h2>1. Pozice vrstvy v modelech, funkce</h2>
+
+                <h3>Pozice</h3>
+                <ul>
+                    <li>Linková vrstva je druhá vrstva v modelu ISO/OSI</li>
+                    <li>Nachází se nad fyzickou vrstvou a pod síťovou vrstvou</li>
+                    <li>Přemosťuje rozdíly mezi fyzickými médii a vyššími vrstvami, což umožňuje bezproblémovou
+                        komunikaci</li>
+                </ul>
+
+                <h3>Funkce</h3>
+                <ul>
+                    <li><strong>Rámcování (Framing):</strong> Rozděluje surová data na bloky zvané rámce. Přidává
+                        hlavičku (header) a koncový kód (trailer) k přenášeným datům.</li>
+                    <li><strong>Řízení přístupu k médiu (Media Access Control, MAC):</strong> Zajišťuje, že zařízení
+                        mají přístup k přenosovému médiu bez konfliktů. Řeší problémy s kolizemi v sítích (např. pomocí
+                        metody CSMA/CD v Ethernetu).</li>
+                    <li><strong>Detekce chyb (Error Detection):</strong> Identifikuje chyby vzniklé při přenosu dat
+                        pomocí CRC (Cyclic Redundancy Check).</li>
+                    <li><strong>Řízení toku dat (Flow Control):</strong> Zabraňuje zahlcení zařízení rychlým přenosem
+                        dat.</li>
+                    <li><strong>Adresace:</strong> Používá fyzické adresy (MAC adresy) k identifikaci zařízení v síti.
+                    </li>
+                </ul>
+
+                <h2>2. Propojení síťových prvků, kabeláž, protokoly</h2>
+
+                <h3>Propojení síťových prvků</h3>
+                <ul>
+                    <li><strong>Switche:</strong> Přeposílají rámce mezi zařízeními na základě jejich MAC adres</li>
+                    <li><strong>Bridge (Mosty):</strong> Propojují dvě nebo více sítí na úrovni linkové vrstvy</li>
+                    <li><strong>Access Pointy (AP):</strong> Umožňují bezdrátové zařízení připojit k síti</li>
+                </ul>
+
+                <h3>Kabeláž</h3>
+                <ul>
+                    <li><strong>Kroucená dvojlinka (Twisted Pair):</strong> Nejčastěji používaná pro Ethernet</li>
+                    <li><strong>Koaxiální kabel:</strong> Používán v starších sítích</li>
+                    <li><strong>Optické vlákno (Fiber Optic):</strong> Pro vysokorychlostní přenosy a dlouhé vzdálenosti
+                    </li>
+                </ul>
+
+                <h3>Protokoly</h3>
+                <ul>
+                    <li><strong>Ethernet:</strong> Standardizuje přenosové technologie v LAN</li>
+                    <li><strong>PPP (Point-to-Point Protocol):</strong> Používá se pro přímé připojení mezi dvěma
+                        zařízeními</li>
+                    <li><strong>HDLC (High-Level Data Link Control):</strong> Protokol pro sériové linky</li>
+                    <li><strong>Wi-Fi (IEEE 802.11):</strong> Bezdrátové připojení</li>
+                </ul>
+
+                <h2>3. Podvrstvy, účel/funkce</h2>
+                <p>Linková vrstva se dělí na dvě podvrstvy:</p>
+
+                <h3>Podvrstva řízení přístupu k médiu (Media Access Control, MAC)</h3>
+                <h4>Účel:</h4>
+                <ul>
+                    <li>Spravuje přístup k fyzickému médiu</li>
+                    <li>Definuje, jak data vstupují na přenosové médium</li>
+                </ul>
+                <h4>Funkce:</h4>
+                <ul>
+                    <li><strong>Fyzická adresace:</strong> Používá MAC adresy (48bitové)</li>
+                    <li><strong>Řízení kolizí:</strong> V sítích jako Ethernet (např. metoda CSMA/CD)</li>
+                    <li>Přenos dat mezi zařízeními na stejné síti</li>
+                </ul>
+
+                <h3>Podvrstva řízení logického spoje (Logical Link Control, LLC)</h3>
+                <h4>Účel:</h4>
+                <ul>
+                    <li>Poskytuje rozhraní mezi linkovou vrstvou a vrstvami vyššími</li>
+                    <li>Řídí komunikaci a tok dat mezi zařízeními</li>
+                </ul>
+                <h4>Funkce:</h4>
+                <ul>
+                    <li><strong>Multiplexování:</strong> Umožňuje více protokolům sdílet stejný fyzický přenosový kanál
+                    </li>
+                    <li><strong>Detekce chyb:</strong> Používá kontrolní součty pro zajištění integrity dat</li>
+                </ul>
+
+                <h2>4. Adresy/adresace, přístupové metody</h2>
+
+                <h3>Adresy/adresace</h3>
+                <h4>MAC adresa (Media Access Control Address)</h4>
+                <ul>
+                    <li>Unikátní identifikátor síťového zařízení</li>
+                    <li>48bitová adresa rozdělená na 2 části: <strong>OUI</strong> (Organizationally Unique Identifier)
+                        a <strong>NIC</strong> (Network Interface Controller)</li>
+                    <li>Používá se pro směrování rámců v LAN</li>
+                </ul>
+
+                <h3>Přístupové metody</h3>
+                <ul>
+                    <li><strong>CSMA/CD (Carrier Sense Multiple Access with Collision Detection):</strong> Používá se v
+                        Ethernetu. Zařízení naslouchají na médiu, zda je volné, a v případě kolize přenos přeruší a
+                        opakují.</li>
+                    <li><strong>CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance):</strong> Používá se v
+                        Wi-Fi. Zabraňuje kolizím tím, že zařízení rezervuje přenosové médium před odesláním dat.</li>
+                    <li><strong>Token Passing:</strong> Používá se v sítích jako Token Ring. Token je speciální rámec,
+                        který zařízení potřebuje pro zahájení přenosu.</li>
+                </ul>
+
+                <h2>5. Síťové prvky a jejich funkce</h2>
+                <ul>
+                    <li><strong>Switch:</strong> Přeposílá rámce na základě MAC adres. Zlepšuje výkon sítě tím, že
+                        minimalizuje kolize.</li>
+                    <li><strong>Bridge (Most):</strong> Propojuje různé segmenty sítě. Filtruje data na základě MAC
+                        adres.</li>
+                    <li><strong>Access Point (Přístupový bod):</strong> Slouží k propojení bezdrátových zařízení s
+                        kabelovou sítí. Funguje na úrovni linkové vrstvy.</li>
+                    <li><strong>NIC (Síťová karta):</strong> Zprostředkovává komunikaci mezi počítačem a síťovou
+                        infrastrukturou. Obsahuje MAC adresu zařízení.</li>
+                </ul>
+
+                <h2>Shrnutí</h2>
+                <p>Linková vrstva zajišťuje přenos dat mezi zařízeními v rámci lokální sítě a správu přístupu k
+                    přenosovému médiu. Klíčovými koncepty této vrstvy jsou rámce, MAC adresy, přístupové metody a
+                    protokoly, jako je Ethernet nebo Wi-Fi. Dělení na podvrstvy (MAC a LLC) umožňuje jasnou správu
+                    fyzického přístupu i řízení komunikace. Tato vrstva je základem pro efektivní a spolehlivý přenos
+                    dat v síti.</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../../script.js"></script>
+</body>
+
+</html>

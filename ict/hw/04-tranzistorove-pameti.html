@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tranzistorové elektronické paměti - RAM, ROM, Flash, DRAM, SRAM.">
+    <title>4. Tranzistorové elektronické paměti - HW | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../hw.html">Hardware</a><span class="separator">›</span>
+                <span class="current">Tranzistorové paměti</span>
+            </nav>
+
+            <div class="book-header animate-fade-in">
+                <h1>💾 Tranzistorové elektronické paměti</h1>
+                <p class="author">Téma 4 - Hardware</p>
+                <div class="meta">
+                    <span class="meta-item">🖥️ Hardware</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+
+            <div class="glass-panel animate-fade-in book-content">
+                <p>Tranzistorové paměti využívají <strong>polovodičové tranzistory</strong> pro ukládání dat.</p>
+
+                <h2>1. Základní dělení pamětí</h2>
+                <ul>
+                    <li><strong>Volatilní:</strong> Data se ztratí při odpojení napájení (RAM)</li>
+                    <li><strong>Non-volatilní:</strong> Data zůstávají zachována (ROM, Flash)</li>
+                </ul>
+
+                <h2>2. RAM (Random Access Memory)</h2>
+                <h3>DRAM (Dynamic RAM)</h3>
+                <ul>
+                    <li>Jeden tranzistor + kondenzátor na bit</li>
+                    <li>Vyžaduje refresh (kondenzátor se vybíjí)</li>
+                    <li><strong>Použití:</strong> Hlavní operační paměť (DDR4, DDR5)</li>
+                </ul>
+
+                <h3>SRAM (Static RAM)</h3>
+                <ul>
+                    <li>6 tranzistorů na bit (flip-flop)</li>
+                    <li>Nepotřebuje refresh, velmi rychlá</li>
+                    <li><strong>Použití:</strong> Cache paměť procesoru</li>
+                </ul>
+
+                <h3>Typy DDR</h3>
+                <ul>
+                    <li><strong>DDR4:</strong> 2133-3200 MHz, 1.2V</li>
+                    <li><strong>DDR5:</strong> 4800-8400+ MHz, 1.1V, on-die ECC</li>
+                </ul>
+
+                <h2>3. ROM (Read-Only Memory)</h2>
+                <ul>
+                    <li><strong>Mask ROM:</strong> Data zapsána při výrobě</li>
+                    <li><strong>PROM:</strong> Jednorázově programovatelná</li>
+                    <li><strong>EPROM:</strong> Mazatelná UV světlem</li>
+                    <li><strong>EEPROM:</strong> Elektricky mazatelná</li>
+                </ul>
+
+                <h2>4. Flash paměť</h2>
+                <ul>
+                    <li><strong>NAND Flash:</strong> Vysoká kapacita (SSD, USB)</li>
+                    <li><strong>NOR Flash:</strong> Rychlé čtení (firmware)</li>
+                </ul>
+
+                <h3>Typy NAND buněk</h3>
+                <ul>
+                    <li><strong>SLC:</strong> 1 bit/buňka - nejrychlejší, nejvyšší výdrž</li>
+                    <li><strong>MLC:</strong> 2 bity/buňka</li>
+                    <li><strong>TLC:</strong> 3 bity/buňka - běžné v SSD</li>
+                    <li><strong>QLC:</strong> 4 bity/buňka - nejvyšší kapacita</li>
+                </ul>
+
+                <h2>5. Paměťová hierarchie</h2>
+                <ol>
+                    <li><strong>Registry CPU:</strong> ~1 ns</li>
+                    <li><strong>L1/L2/L3 Cache:</strong> 1-20 ns</li>
+                    <li><strong>RAM:</strong> ~50-100 ns</li>
+                    <li><strong>SSD:</strong> ~10-100 µs</li>
+                    <li><strong>HDD:</strong> ~5-10 ms</li>
+                </ol>
+
+                <h2>🎓 Shrnutí</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>DRAM:</strong> Potřebuje refresh, RAM moduly</li>
+                        <li><strong>SRAM:</strong> Rychlá, cache paměť</li>
+                        <li><strong>Flash:</strong> SLC > MLC > TLC > QLC</li>
+                        <li><strong>Hierarchie:</strong> Registry → Cache → RAM → SSD</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Správa uživatelů, procesů a služeb v operačních systémech.">
+    <title>22. Správa uživatelů, procesů a služeb - OS | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../os.html">Operační systémy</a><span class="separator">›</span>
+                <span class="current">Správa uživatelů, procesů a služeb</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>👥 Správa uživatelů, procesů a služeb</h1>
+                <p class="author">Téma 22 - Operační systémy</p>
+                <div class="meta">
+                    <span class="meta-item">⚙️ Operační systémy</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Správa uživatelů</h2>
+                <p>Moderní operační systémy jsou <strong>víceuživatelské</strong> – mohou s nimi pracovat různí lidé,
+                    každý se svým účtem, nastavením a oprávněními. Správa uživatelů zajišťuje bezpečnost a oddělení dat.
+                </p>
+
+                <h3>Typy uživatelských účtů</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem; text-align: left;">Typ účtu</th>
+                        <th style="padding: 0.5rem; text-align: left;">Popis</th>
+                        <th style="padding: 0.5rem; text-align: left;">Příklady</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Administrátor/root</strong></td>
+                        <td style="padding: 0.5rem;">Plná práva – může měnit systémová nastavení, instalovat software,
+                            spravovat ostatní uživatele</td>
+                        <td style="padding: 0.5rem;">Administrator (Win), root (Linux)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Standardní uživatel</strong></td>
+                        <td style="padding: 0.5rem;">Omezená práva – může spouštět programy, upravovat vlastní soubory,
+                            nemůže měnit systém</td>
+                        <td style="padding: 0.5rem;">Běžné uživatelské účty</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Host (Guest)</strong></td>
+                        <td style="padding: 0.5rem;">Dočasný přístup s minimálními právy, často bez možnosti ukládání
+                        </td>
+                        <td style="padding: 0.5rem;">Guest účet</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Systémový účet</strong></td>
+                        <td style="padding: 0.5rem;">Pro běh služeb a procesů, ne pro přímé přihlášení uživatele</td>
+                        <td style="padding: 0.5rem;">SYSTEM, LocalService, daemon</td>
+                    </tr>
+                </table>
+
+                <h3>Skupiny uživatelů</h3>
+                <p>Skupiny umožňují <strong>hromadné přidělování oprávnění</strong>. Místo nastavování práv každému
+                    uživateli zvlášť přidáme uživatele do skupiny a oprávnění má celá skupina.</p>
+                <ul>
+                    <li><strong>Windows:</strong> Administrators, Users, Power Users, Remote Desktop Users</li>
+                    <li><strong>Linux:</strong> root, sudo/wheel (administrátoři), users, www-data (webserver)</li>
+                </ul>
+
+                <h3>Autentizace a autorizace</h3>
+                <p>Dva důležité pojmy, které se často pletou:</p>
+                <ul>
+                    <li><strong>Autentizace (Authentication):</strong> „Kdo jsi?" – ověření identity uživatele
+                        <ul>
+                            <li>Heslo, PIN</li>
+                            <li>Biometrie (otisk prstu, rozpoznání obličeje)</li>
+                            <li>2FA (dvoufaktorová autentizace) – heslo + SMS kód</li>
+                        </ul>
+                    </li>
+                    <li><strong>Autorizace (Authorization):</strong> „Co smíš dělat?" – přidělení oprávnění po úspěšné
+                        autentizaci</li>
+                </ul>
+
+                <p><strong>💡 Příklad:</strong> Přihlásíš se heslem (autentizace). Systém ověří, zda máš právo číst daný
+                    soubor (autorizace).</p>
+
+                <h3>Příkazy pro správu uživatelů</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+# WINDOWS (CMD) - spuštěno jako správce
+net user                          # seznam uživatelů
+net user jan                      # info o uživateli 'jan'
+net user jan heslo123 /add        # vytvoří uživatele
+net user jan /delete              # smaže uživatele
+net localgroup administrators jan /add  # přidá do skupiny admin
+
+# LINUX (jako root nebo sudo)
+cat /etc/passwd                   # seznam uživatelů
+useradd jan                       # vytvoří uživatele
+useradd -m -s /bin/bash jan       # vytvoří s domovským adresářem
+passwd jan                        # nastaví heslo
+userdel jan                       # smaže uživatele
+usermod -aG sudo jan              # přidá do skupiny sudo
+groups jan                        # zobrazí skupiny uživatele</pre>
+
+                <h2>📊 Správa procesů</h2>
+
+                <h3>Co je proces?</h3>
+                <p>Proces je <strong>běžící instance programu</strong> v paměti. Když spustíš Chrome, vytvoří se proces.
+                    Každý proces má:</p>
+                <ul>
+                    <li><strong>PID (Process ID):</strong> Unikátní číslo procesu</li>
+                    <li><strong>Vlastní paměťový prostor:</strong> Procesy jsou od sebe izolované</li>
+                    <li><strong>Stav:</strong> Běžící, čekající, ukončený</li>
+                    <li><strong>Prioritu:</strong> Určuje, kolik času CPU dostane</li>
+                </ul>
+
+                <h3>Stavy procesu</h3>
+                <p>Proces během svého života prochází různými stavy:</p>
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <pre style="font-family: monospace; font-size: 0.9rem;">
+    [New] ──→ [Ready] ←──────→ [Running] ──→ [Terminated]
+                  ↑                 │
+                  │                 ↓
+                  └───── [Waiting/Blocked]</pre>
+                </div>
+                <ul>
+                    <li><strong>New (Nový):</strong> Proces je právě vytvářen</li>
+                    <li><strong>Ready (Připraven):</strong> Čeká ve frontě na přidělení CPU</li>
+                    <li><strong>Running (Běžící):</strong> CPU právě vykonává jeho instrukce</li>
+                    <li><strong>Waiting/Blocked (Čekající):</strong> Čeká na I/O operaci nebo událost (např. vstup z
+                        klávesnice)</li>
+                    <li><strong>Terminated (Ukončen):</strong> Dokončil vykonávání nebo byl násilně ukončen</li>
+                </ul>
+
+                <h3>Plánovač procesů (Scheduler)</h3>
+                <p>Součást OS, která rozhoduje, <strong>který proces dostane CPU</strong> a na jak dlouho. Existuje
+                    několik algoritmů:</p>
+                <ul>
+                    <li><strong>FCFS (First Come First Served):</strong> Kdo přijde první, je obsloužen první.
+                        Jednoduchý, ale může způsobit „convoy effect" – krátké procesy čekají za dlouhým.</li>
+                    <li><strong>SJF (Shortest Job First):</strong> Nejkratší úloha jde první. Optimální průměrná doba
+                        čekání, ale těžko předvídat délku.</li>
+                    <li><strong>Round Robin:</strong> Každý proces dostane časové kvantum (např. 100 ms), pak jde na
+                        konec fronty. Spravedlivé pro interaktivní systémy.</li>
+                    <li><strong>Priority Scheduling:</strong> Procesy mají priority, vyšší priorita = dříve obsloužen.
+                        Riziko „starvation" pro nízké priority.</li>
+                </ul>
+
+                <h3>Vlákna (Threads)</h3>
+                <p>Vlákno je <strong>lehčí jednotka provádění v rámci procesu</strong>. Jeden proces může mít více
+                    vláken, která:</p>
+                <ul>
+                    <li>Sdílejí paměťový prostor procesu (proměnné, data)</li>
+                    <li>Mají vlastní zásobník a registry</li>
+                    <li>Přepínání mezi vlákny je rychlejší než mezi procesy</li>
+                </ul>
+                <p><strong>💡 Příklad:</strong> Webový prohlížeč – jedno vlákno stahuje obrázky, druhé vykresluje
+                    stránku, třetí přehrává video.</p>
+
+                <h3>Příkazy pro správu procesů</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+# WINDOWS
+tasklist                    # seznam procesů
+tasklist | find "chrome"    # hledání procesu
+taskkill /PID 1234          # ukončení podle PID
+taskkill /IM chrome.exe /F  # ukončení podle jména (F = force)
+Ctrl+Shift+Esc              # Správce úloh (GUI)
+
+# LINUX
+ps aux                      # všechny procesy (detailně)
+ps aux | grep firefox       # hledání procesu
+top                         # živý přehled (stiskni q pro ukončení)
+htop                        # vylepšený top (interaktivní)
+kill 1234                   # ukončení (SIGTERM - žádost)
+kill -9 1234                # násilné ukončení (SIGKILL)
+killall firefox             # ukončí všechny procesy s daným jménem
+nice -n 10 ./program        # spuštění s nižší prioritou</pre>
+
+                <h2>⚙️ Správa služeb</h2>
+
+                <h3>Co je služba/démon?</h3>
+                <p>Služba (Windows) nebo démon (Linux) je <strong>proces běžící na pozadí</strong> bez uživatelského
+                    rozhraní. Poskytuje funkcionalitu pro systém nebo síť.</p>
+
+                <p><strong>💡 Příklady služeb:</strong></p>
+                <ul>
+                    <li>Webový server (Apache, Nginx, IIS)</li>
+                    <li>Databázový server (MySQL, PostgreSQL)</li>
+                    <li>DHCP, DNS klient</li>
+                    <li>Antivirový monitoring</li>
+                    <li>Tisk (Print Spooler)</li>
+                </ul>
+
+                <h3>Typy spouštění služeb</h3>
+                <ul>
+                    <li><strong>Automaticky:</strong> Spustí se při startu systému (např. antivirus)</li>
+                    <li><strong>Automaticky (zpožděně):</strong> Po startu systému s malým zpožděním</li>
+                    <li><strong>Manuálně:</strong> Spustí se jen na vyžádání (např. Bluetooth)</li>
+                    <li><strong>Zakázáno:</strong> Služba se nespustí, dokud nezměníš nastavení</li>
+                </ul>
+
+                <h3>Příkazy pro správu služeb</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+# WINDOWS
+services.msc                    # GUI správce služeb
+sc query                        # seznam služeb
+sc query "Windows Update"       # info o konkrétní službě
+sc start "Windows Update"       # spuštění služby
+sc stop "Windows Update"        # zastavení
+net start "Print Spooler"       # alternativa pro start
+net stop "Print Spooler"        # alternativa pro stop
+
+# LINUX (systemd - moderní distribuce)
+systemctl list-units --type=service     # seznam služeb
+systemctl status apache2                # stav služby
+systemctl start apache2                 # spuštění
+systemctl stop apache2                  # zastavení
+systemctl restart apache2               # restart
+systemctl enable apache2                # povolení autostartu
+systemctl disable apache2               # zakázání autostartu
+
+# Logy služby
+journalctl -u apache2                   # log konkrétní služby</pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Uživatelé:</strong> Admin má plná práva, standardní uživatel omezená</li>
+                        <li><strong>Autentizace</strong> = kdo jsi, <strong>autorizace</strong> = co můžeš</li>
+                        <li><strong>Proces</strong> = běžící program, má PID a vlastní paměť</li>
+                        <li><strong>Stavy procesu:</strong> New → Ready → Running → Waiting → Terminated</li>
+                        <li><strong>Vlákna</strong> sdílejí paměť procesu, rychlejší přepínání</li>
+                        <li><strong>Služba/démon</strong> = proces na pozadí bez UI</li>
+                        <li><strong>Windows:</strong> tasklist, taskkill, sc, services.msc</li>
+                        <li><strong>Linux:</strong> ps, top, kill, systemctl</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

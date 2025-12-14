@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Procesory CPU - architektura, jádra, vlákna, cache, instrukční cyklus a výrobci.">
+    <title>3. Procesory (CPU) - HW | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a>
+                <span class="separator">›</span>
+                <a href="../index.html">ICT</a>
+                <span class="separator">›</span>
+                <a href="../hw.html">Hardware</a>
+                <span class="separator">›</span>
+                <span class="current">Procesory (CPU)</span>
+            </nav>
+
+            <div class="book-header animate-fade-in">
+                <h1>⚡ Procesory (CPU)</h1>
+                <p class="author">Téma 3 - Hardware</p>
+                <div class="meta">
+                    <span class="meta-item">🖥️ Hardware</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+
+            <div class="glass-panel animate-fade-in book-content">
+                <p>Procesor (CPU - Central Processing Unit) je <strong>"mozek" počítače</strong>, který vykonává
+                    instrukce programů a zpracovává data.</p>
+
+                <h2>1. Základní architektura CPU</h2>
+
+                <h3>Von Neumannova architektura</h3>
+                <ul>
+                    <li>Program a data jsou uloženy ve <strong>společné paměti</strong></li>
+                    <li>Instrukce se zpracovávají <strong>sekvenčně</strong></li>
+                    <li>Komponenty: ALU, řadič, registry, sběrnice</li>
+                    <li><strong>Bottleneck:</strong> Von Neumannovo úzké hrdlo (sdílená sběrnice)</li>
+                </ul>
+
+                <h3>Harvardská architektura</h3>
+                <ul>
+                    <li>Oddělená paměť pro <strong>program a data</strong></li>
+                    <li>Možnost současného přístupu k oběma pamětem</li>
+                    <li>Používá se v DSP a mikrokontrolérech</li>
+                </ul>
+
+                <h2>2. Komponenty procesoru</h2>
+
+                <h3>ALU (Arithmetic Logic Unit)</h3>
+                <ul>
+                    <li>Provádí aritmetické operace (sčítání, násobení...)</li>
+                    <li>Provádí logické operace (AND, OR, XOR, NOT)</li>
+                    <li>Moderní CPU mají více ALU jednotek</li>
+                </ul>
+
+                <h3>Řadič (Control Unit)</h3>
+                <ul>
+                    <li>Dekóduje instrukce</li>
+                    <li>Řídí tok dat mezi komponenty</li>
+                    <li>Generuje řídící signály</li>
+                </ul>
+
+                <h3>Registry</h3>
+                <ul>
+                    <li>Nejrychlejší paměťové buňky přímo v CPU</li>
+                    <li><strong>Obecné registry:</strong> Pro dočasná data (EAX, EBX v x86)</li>
+                    <li><strong>Programový čítač (PC):</strong> Adresa další instrukce</li>
+                    <li><strong>Stavový registr:</strong> Příznaky (zero, carry, overflow)</li>
+                </ul>
+
+                <h2>3. Instrukční cyklus</h2>
+                <p>Základní cyklus zpracování instrukce (Fetch-Decode-Execute):</p>
+                <ol>
+                    <li><strong>Fetch:</strong> Načtení instrukce z paměti</li>
+                    <li><strong>Decode:</strong> Dekódování instrukce (co má dělat)</li>
+                    <li><strong>Execute:</strong> Provedení operace</li>
+                    <li><strong>Write-back:</strong> Zápis výsledku</li>
+                </ol>
+
+                <h3>Pipeline (zřetězení)</h3>
+                <ul>
+                    <li>Překrývání fází více instrukcí současně</li>
+                    <li>Zvyšuje propustnost (throughput)</li>
+                    <li><strong>Hazardy:</strong> Datové, řídící, strukturální konflikty</li>
+                    <li><strong>Branch prediction:</strong> Predikce větvení pro snížení penalizace</li>
+                </ul>
+
+                <h2>4. Jádra a vlákna</h2>
+
+                <h3>Jádra (Cores)</h3>
+                <ul>
+                    <li>Fyzické výpočetní jednotky v CPU</li>
+                    <li>Každé jádro může zpracovávat instrukce nezávisle</li>
+                    <li>Více jader = lepší multitasking a paralelní zpracování</li>
+                </ul>
+
+                <h3>Vlákna (Threads)</h3>
+                <ul>
+                    <li><strong>SMT (Simultaneous Multithreading):</strong> Intel = Hyper-Threading</li>
+                    <li>Jedno jádro může zpracovávat 2 vlákna současně</li>
+                    <li>Využívá nevyužité zdroje jádra</li>
+                    <li>Příklad: 8 jader / 16 vláken</li>
+                </ul>
+
+                <h3>Hybridní architektura (Intel 12+ gen)</h3>
+                <ul>
+                    <li><strong>P-jádra (Performance):</strong> Výkonná jádra pro náročné úlohy</li>
+                    <li><strong>E-jádra (Efficient):</strong> Úsporná jádra pro pozadí</li>
+                    <li>Lepší poměr výkon/spotřeba</li>
+                </ul>
+
+                <h2>5. Cache paměť</h2>
+                <p>Rychlá mezipaměť mezi CPU a RAM:</p>
+                <ul>
+                    <li><strong>L1 Cache:</strong> Nejrychlejší, nejmenší (32-64 KB na jádro), rozdělena na instrukce a
+                        data</li>
+                    <li><strong>L2 Cache:</strong> Větší, pomalejší (256 KB - 1 MB na jádro)</li>
+                    <li><strong>L3 Cache:</strong> Sdílená mezi jádry (8-64+ MB), nejpomalejší cache</li>
+                </ul>
+
+                <h3>Principy fungování cache</h3>
+                <ul>
+                    <li><strong>Cache hit:</strong> Data nalezena v cache (rychlé)</li>
+                    <li><strong>Cache miss:</strong> Data musí být načtena z RAM (pomalé)</li>
+                    <li><strong>Hit rate:</strong> Procento úspěšných přístupů</li>
+                </ul>
+
+                <h2>6. Taktovací frekvence</h2>
+                <ul>
+                    <li><strong>Base clock:</strong> Základní frekvence (např. 3.6 GHz)</li>
+                    <li><strong>Boost clock:</strong> Maximální frekvence při zátěži (např. 5.2 GHz)</li>
+                    <li><strong>Přetaktování (OC):</strong> Zvýšení frekvence nad specifikaci</li>
+                    <li>Vyšší frekvence = vyšší výkon, ale i spotřeba a teplota</li>
+                </ul>
+
+                <h2>7. Výrobní proces</h2>
+                <ul>
+                    <li>Měří se v nanometrech (nm)</li>
+                    <li><strong>Menší proces:</strong> Více tranzistorů, nižší spotřeba, nižší teplota</li>
+                    <li>Aktuální procesy: 7nm, 5nm, 4nm, 3nm</li>
+                    <li><strong>Výrobci:</strong> TSMC, Samsung, Intel Foundry</li>
+                </ul>
+
+                <h2>8. Instrukční sady</h2>
+
+                <h3>CISC (Complex Instruction Set Computer)</h3>
+                <ul>
+                    <li>Mnoho komplexních instrukcí</li>
+                    <li>Příklad: x86, x86-64 (Intel, AMD)</li>
+                    <li>Dominuje v desktopech a serverech</li>
+                </ul>
+
+                <h3>RISC (Reduced Instruction Set Computer)</h3>
+                <ul>
+                    <li>Jednoduché, optimalizované instrukce</li>
+                    <li>Příklad: ARM (mobily, Apple M-series), RISC-V</li>
+                    <li>Vyšší energetická efektivita</li>
+                </ul>
+
+                <h3>Rozšíření instrukční sady</h3>
+                <ul>
+                    <li><strong>SSE, AVX:</strong> Vektorové operace (SIMD)</li>
+                    <li><strong>AES-NI:</strong> Hardwarové šifrování</li>
+                    <li><strong>AVX-512:</strong> Pokročilé vektorové operace</li>
+                </ul>
+
+                <h2>9. Hlavní výrobci</h2>
+
+                <h3>Intel</h3>
+                <ul>
+                    <li>Core i3, i5, i7, i9 (desktop)</li>
+                    <li>Xeon (servery)</li>
+                    <li>Aktuální: 14. generace (Raptor Lake Refresh)</li>
+                </ul>
+
+                <h3>AMD</h3>
+                <ul>
+                    <li>Ryzen 3, 5, 7, 9 (desktop)</li>
+                    <li>EPYC (servery)</li>
+                    <li>Aktuální: Ryzen 9000 (Zen 5)</li>
+                </ul>
+
+                <h3>Apple</h3>
+                <ul>
+                    <li>M1, M2, M3, M4 (ARM-based)</li>
+                    <li>Vysoká efektivita, integrovaná GPU</li>
+                </ul>
+
+                <h2>10. TDP a spotřeba</h2>
+                <ul>
+                    <li><strong>TDP (Thermal Design Power):</strong> Tepelný výkon, který musí chladič odvést</li>
+                    <li>Typické hodnoty: 65W (běžné), 125W (výkonné), 200W+ (HEDT)</li>
+                    <li><strong>Skutečná spotřeba</strong> může být vyšší při boost</li>
+                </ul>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>CPU</strong> = mozek počítače, vykonává instrukce</li>
+                        <li><strong>Komponenty:</strong> ALU, řadič, registry, cache</li>
+                        <li><strong>Instrukční cyklus:</strong> Fetch → Decode → Execute → Write-back</li>
+                        <li><strong>Jádra</strong> = fyzické jednotky, <strong>vlákna</strong> = logické (HT/SMT)</li>
+                        <li><strong>Cache:</strong> L1 (nejrychlejší) > L2 > L3 (největší)</li>
+                        <li><strong>CISC</strong> (x86) vs <strong>RISC</strong> (ARM)</li>
+                        <li><strong>Frekvence:</strong> Base clock a Boost clock (GHz)</li>
+                        <li><strong>Výrobci:</strong> Intel (Core), AMD (Ryzen), Apple (M-series)</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../../script.js"></script>
+</body>
+
+</html>

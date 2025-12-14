@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Indexy a omezení v relačních databázích - PRIMARY, UNIQUE, FOREIGN KEY.">
+    <title>22. Indexy a omezení - DB | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../db.html">Databáze</a><span class="separator">›</span>
+                <span class="current">Indexy a omezení</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔐 Indexy a omezení v relačních databázích</h1>
+                <p class="author">Téma 22 - Databáze</p>
+                <div class="meta">
+                    <span class="meta-item">💾 Databáze</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Indexy – zrychlení vyhledávání</h2>
+                <p>Index je <strong>datová struktura</strong>, která urychluje vyhledávání v databázi. Funguje podobně
+                    jako <strong>rejstřík v knize</strong> – místo procházení celé knihy se podíváš do rejstříku a
+                    najdeš přesnou stránku.</p>
+
+                <p><strong>💡 Bez indexu:</strong> Databáze musí projít VŠECHNY řádky (full table scan) → pomalé při
+                    milionech záznamů.</p>
+                <p><strong>💡 S indexem:</strong> Databáze najde data přímo → mnohonásobně rychlejší.</p>
+
+                <h3>Jak index funguje?</h3>
+                <p>Index je typicky implementován jako <strong>B-tree</strong> (vyvážený strom), který umožňuje rychlé
+                    hledání v logaritmickém čase.</p>
+
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <pre style="font-family: monospace; font-size: 0.9rem;">
+Tabulka: 1 000 000 řádků
+─────────────────────────
+Bez indexu:  až 1 000 000 porovnání  → O(n)
+S indexem:   max 20 porovnání        → O(log n)</pre>
+                </div>
+
+                <h3>Typy indexů</h3>
+                <ul>
+                    <li><strong>PRIMARY KEY:</strong> Automaticky vytvořený unikátní index, nesmí být NULL</li>
+                    <li><strong>UNIQUE:</strong> Unikátní hodnoty, může obsahovat NULL (jen jednou)</li>
+                    <li><strong>INDEX:</strong> Běžný index pro rychlé vyhledávání (nemusí být unikátní)</li>
+                    <li><strong>FULLTEXT:</strong> Pro fulltextové vyhledávání v textu (prohledávání slov)</li>
+                    <li><strong>COMPOSITE:</strong> Index na více sloupcích najednou</li>
+                </ul>
+
+                <h3>Vytvoření indexů</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Při vytvoření tabulky
+CREATE TABLE uzivatele (
+    id INT PRIMARY KEY,              -- Automatický index
+    email VARCHAR(100) UNIQUE,       -- Automatický unikátní index
+    jmeno VARCHAR(50),
+    mesto VARCHAR(50),
+    INDEX idx_jmeno (jmeno),         -- Explicitní index
+    INDEX idx_mesto_jmeno (mesto, jmeno)  -- Složený index
+);
+
+-- Přidání indexu k existující tabulce
+CREATE INDEX idx_vek ON uzivatele(vek);
+CREATE UNIQUE INDEX idx_email ON uzivatele(email);
+
+-- Smazání indexu
+DROP INDEX idx_vek ON uzivatele;</pre>
+
+                <h3>Kdy používat indexy?</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">✓ Použij index</th>
+                        <th style="padding: 0.5rem;">✗ Nepoužívej index</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Sloupce ve WHERE</td>
+                        <td style="padding: 0.5rem;">Malé tabulky (stovky řádků)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Sloupce pro JOIN</td>
+                        <td style="padding: 0.5rem;">Sloupce s málo unikátními hodnotami (pohlaví)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Sloupce v ORDER BY</td>
+                        <td style="padding: 0.5rem;">Tabulky s častým INSERT/UPDATE</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Cizí klíče</td>
+                        <td style="padding: 0.5rem;">Sloupce, které se zřídka prohledávají</td>
+                    </tr>
+                </table>
+
+                <p><strong>⚠️ Nevýhody indexů:</strong></p>
+                <ul>
+                    <li>Zpomalují INSERT, UPDATE, DELETE (index se musí aktualizovat)</li>
+                    <li>Zabírají místo na disku</li>
+                    <li>Příliš mnoho indexů = degradace výkonu</li>
+                </ul>
+
+                <h2>📋 Omezení (Constraints)</h2>
+                <p>Omezení zajišťují <strong>integritu a konzistenci dat</strong>. Databáze automaticky kontroluje, zda
+                    data splňují pravidla.</p>
+
+                <h3>NOT NULL – hodnota je povinná</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+CREATE TABLE uzivatele (
+    jmeno VARCHAR(50) NOT NULL,      -- Povinné pole
+    email VARCHAR(100)               -- Volitelné (může být NULL)
+);
+
+INSERT INTO uzivatele (jmeno) VALUES ('Jan');        -- OK
+INSERT INTO uzivatele (email) VALUES ('a@b.cz');     -- CHYBA! jmeno je NOT NULL</pre>
+
+                <h3>DEFAULT – výchozí hodnota</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+CREATE TABLE produkty (
+    nazev VARCHAR(100) NOT NULL,
+    cena DECIMAL(10,2) DEFAULT 0.00,
+    aktivni BOOLEAN DEFAULT TRUE,
+    vytvoreno TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Pokud nezadáš hodnotu, použije se default
+INSERT INTO produkty (nazev) VALUES ('Tričko');
+-- → cena = 0.00, aktivni = TRUE, vytvoreno = aktuální čas</pre>
+
+                <h3>UNIQUE – unikátní hodnoty</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+CREATE TABLE uzivatele (
+    email VARCHAR(100) UNIQUE        -- Každý email jen jednou
+);
+
+INSERT INTO uzivatele (email) VALUES ('jan@email.cz');  -- OK
+INSERT INTO uzivatele (email) VALUES ('jan@email.cz');  -- CHYBA! Duplicate entry</pre>
+
+                <h3>CHECK – kontrola hodnot</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+CREATE TABLE produkty (
+    cena DECIMAL(10,2) CHECK (cena >= 0),      -- Cena nesmí být záporná
+    mnozstvi INT CHECK (mnozstvi > 0),          -- Množství musí být kladné
+    hodnoceni INT CHECK (hodnoceni BETWEEN 1 AND 5)
+);
+
+INSERT INTO produkty (cena) VALUES (-100);      -- CHYBA! Check constraint violated</pre>
+
+                <h3>PRIMARY KEY – primární klíč</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Kombinace UNIQUE + NOT NULL + vytvoří index
+CREATE TABLE uzivatele (
+    id INT PRIMARY KEY AUTO_INCREMENT,   -- Automaticky se zvyšuje
+    jmeno VARCHAR(50)
+);
+
+-- Složený primární klíč
+CREATE TABLE objednavka_polozka (
+    objednavka_id INT,
+    produkt_id INT,
+    mnozstvi INT,
+    PRIMARY KEY (objednavka_id, produkt_id)  -- Kombinace je unikátní
+);</pre>
+
+                <h3>FOREIGN KEY – cizí klíč</h3>
+                <p>Zajišťuje <strong>referenční integritu</strong> – hodnoty musí existovat v odkazované tabulce.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+CREATE TABLE uzivatele (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    jmeno VARCHAR(50)
+);
+
+CREATE TABLE objednavky (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    uzivatel_id INT,
+    datum DATE,
+    FOREIGN KEY (uzivatel_id) REFERENCES uzivatele(id)
+        ON DELETE CASCADE       -- Smazání uživatele smaže i jeho objednávky
+        ON UPDATE CASCADE       -- Změna ID uživatele se promítne
+);
+
+-- Pokus o vložení neexistujícího uživatele
+INSERT INTO objednavky (uzivatel_id) VALUES (999);
+-- CHYBA! Foreign key constraint fails (uživatel 999 neexistuje)</pre>
+
+                <h3>Akce při ON DELETE / ON UPDATE</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Akce</th>
+                        <th style="padding: 0.5rem;">Popis</th>
+                        <th style="padding: 0.5rem;">Příklad</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>CASCADE</code></td>
+                        <td style="padding: 0.5rem;">Smaže/aktualizuje závislé záznamy</td>
+                        <td style="padding: 0.5rem;">Smazání uživatele smaže jeho objednávky</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>SET NULL</code></td>
+                        <td style="padding: 0.5rem;">Nastaví NULL do cizího klíče</td>
+                        <td style="padding: 0.5rem;">Objednávka zůstane, uzivatel_id = NULL</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>RESTRICT</code></td>
+                        <td style="padding: 0.5rem;">Zabrání smazání/změně</td>
+                        <td style="padding: 0.5rem;">Nelze smazat uživatele s objednávkami</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>NO ACTION</code></td>
+                        <td style="padding: 0.5rem;">Jako RESTRICT (kontrola na konci transakce)</td>
+                        <td style="padding: 0.5rem;">Stejné jako RESTRICT</td>
+                    </tr>
+                </table>
+
+                <h2>Zobrazení informací o tabulce</h2>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Zobrazení struktury tabulky
+DESCRIBE uzivatele;
+-- nebo
+SHOW COLUMNS FROM uzivatele;
+
+-- Zobrazení indexů
+SHOW INDEX FROM uzivatele;
+
+-- Kompletní definice tabulky včetně constraints
+SHOW CREATE TABLE uzivatele;</pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>INDEX:</strong> Zrychluje vyhledávání (jako rejstřík v knize)</li>
+                        <li><strong>PRIMARY KEY:</strong> Unikátní + NOT NULL + automatický index</li>
+                        <li><strong>UNIQUE:</strong> Unikátní hodnoty (může být NULL jednou)</li>
+                        <li><strong>NOT NULL:</strong> Hodnota je povinná</li>
+                        <li><strong>DEFAULT:</strong> Výchozí hodnota když nezadáš</li>
+                        <li><strong>CHECK:</strong> Kontrola podmínky (cena >= 0)</li>
+                        <li><strong>FOREIGN KEY:</strong> Odkaz na jinou tabulku (referenční integrita)</li>
+                        <li><strong>CASCADE:</strong> Změny se propagují do závislých záznamů</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

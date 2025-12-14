@@ -1,0 +1,890 @@
+11. Historie a vývoj počítačových sítí, Internet
+První počítačové sítě, data/informace, komunikace
+Počítačové sítě začaly vznikat v 60. letech 20. století, kdy byl vyvinut ARPANET (Advanced Research Projects Agency Network). Cílem bylo propojit počítače různých univerzit a vládních institucí, aby mohly sdílet data a výpočetní výkon. ARPANET byl první sítí založenou na technologii přepojování paketů, která rozdělí data na malé části (pakety), jež jsou přenášeny samostatně a sestavovány na cílovém zařízení.
+•	Data a informace: Data jsou základní jednotkou přenosu, zatímco informace je jejich interpretace. Přenos dat v sítích vyžaduje protokoly, které určují formát a pravidla komunikace (např. TCP/IP).
+•	Komunikace: Síťová komunikace zahrnuje vysílání, přenos a příjem datových paketů mezi zařízeními. Klíčovým faktorem je rychlost, spolehlivost a bezpečnost.
+Princip činnosti sítí a jejich základní dělení
+•	Princip činnosti: Počítačová síť propojuje zařízení (např. počítače, servery, tiskárny) pomocí přenosových médií (kabely, Wi-Fi). Síť umožňuje sdílení zdrojů, komunikaci a přístup k internetu.
+•	Základní dělení:
+o	Podle velikosti:
+	LAN (Local Area Network): Lokální síť, omezená na budovu nebo malou oblast (např. domácí síť).
+	MAN (Metropolitan Area Network): Propojuje více LAN v rámci města.
+	WAN (Wide Area Network): Globální síť, jako je internet.
+o	Podle topologie:
+	Sběrnicová: Všechna zařízení jsou připojena k jednomu kabelu (sběrnici).
+	Hvězdicová: Zařízení jsou připojena k centrálnímu bodu (např. switch).
+	Kruhová: Data se přenášejí v kruhu.
+o	Podle řízení přístupu:
+	Peer-to-peer: Všechna zařízení jsou rovnocenná.
+	Klient-server: Klienti žádají služby od centrálního serveru.
+Historie Internetu, organizace a správa, standardy, síťová architektura
+•	Historie internetu:
+o	1969: Vznik ARPANETu.
+o	1983: Přechod na protokol TCP/IP, čímž vznikl základ moderního internetu.
+o	1990: Zánik ARPANETu, internet se stal veřejně dostupným.
+•	Organizace a správa: Správa internetu je decentralizovaná. Organizace jako IANA (Internet Assigned Numbers Authority) a ICANN (Internet Corporation for Assigned Names and Numbers) spravují adresní prostor a domény.
+•	Standardy: RFC (Request for Comments) dokumenty definují pravidla a standardy.
+•	Síťová architektura: Internet má hierarchickou strukturu s páteřními sítěmi (backbone), poskytovateli internetových služeb (ISP) a koncovými uživateli.
+1. ARPANET (1969–1990)
+•	Charakteristika: První počítačová síť založená na přepojování paketů. Byla vytvořena americkým Ministerstvem obrany.
+•	Cíle: Sdílení zdrojů mezi univerzitami a vojenskými institucemi.
+•	Technologie: Používala protokol NCP (Network Control Protocol) a později přešla na TCP/IP (1983).
+•	Význam: ARPANET položil základ internetu a koncept přepojování paketů.
+________________________________________
+2. CYCLADES (Francie, 1972)
+•	Charakteristika: Francouzská síť, která vznikla jako experimentální projekt.
+•	Inovace: Představila koncept end-to-end protokolu, který zajistil přenosovou spolehlivost na úrovni koncových zařízení, nikoli samotné sítě.
+•	Technologie: Zásadní inspirace pro TCP/IP protokol.
+•	Význam: Přinesla myšlenku decentralizované komunikace, kterou následně převzal internet.
+________________________________________
+3. NPL Network (Velká Británie, 1968)
+•	Charakteristika: Projekt britské Národní fyzikální laboratoře (NPL).
+•	Technologie: Byla jednou z prvních sítí, která implementovala koncept přepojování paketů.
+•	Význam: Sloužila jako testovací prostředí pro rané síťové technologie, které ovlivnily vývoj ARPANETu.
+________________________________________
+4. X.25 (1970s)
+•	Charakteristika: Mezinárodní standard pro přepojování paketů.
+•	Technologie:
+o	Definoval tři vrstvy komunikace: fyzickou, linkovou a síťovou.
+o	Používal se pro komunikaci přes veřejné datové sítě (např. telefonní linky).
+•	Použití: Hojně využívaný ve finančních institucích (např. bankomaty) a telekomunikacích.
+•	Význam: X.25 byl základem pro pozdější protokoly, jako je Frame Relay.
+________________________________________
+5. USENET (1979)
+•	Charakteristika: Distribuovaná síť zaměřená na diskusní skupiny a sdílení informací.
+•	Technologie:
+o	Založena na UUCP (Unix-to-Unix Copy Protocol).
+o	Umožňovala uživatelům posílat zprávy do skupin (tzv. newsgroups).
+•	Význam: Předchůdce moderních fór, diskusních platforem a e-mailových skupin.
+________________________________________
+6. BITNET (1981)
+•	Charakteristika: Síť propojující univerzity a akademické instituce.
+•	Technologie:
+o	Přenos zpráv a souborů.
+o	Jednoduchý systém elektronické pošty.
+•	Význam: Podporovala spolupráci mezi akademickými institucemi a sdílení informací.
+________________________________________
+7. FidoNet (1984)
+•	Charakteristika: Amatérská síť pro výměnu zpráv mezi uživateli BBS (Bulletin Board System).
+•	Technologie:
+o	Používala modemové připojení.
+o	Fungovala na základě pravidelných synchronizačních cyklů.
+•	Význam: Umožnila komunitám komunikovat před rozšířením internetu.
+________________________________________
+8. NSFNET (1986–1995)
+•	Charakteristika: Národní vědecká nadace (NSF) v USA vytvořila NSFNET jako akademickou síť propojující univerzity.
+•	Technologie:
+o	Sloužila jako páteřní síť pro internet.
+o	Založená na TCP/IP.
+•	Význam: Byla to hlavní akademická síť, která položila základy pro dnešní internetovou infrastrukturu.
+________________________________________
+9. EUNET (Evropa, 1982)
+•	Charakteristika: Evropská síť propojující akademické instituce a výzkumné organizace.
+•	Technologie:
+o	Založená na UNIXových systémech a protokolu UUCP.
+o	Sloužila jako platforma pro sdílení informací.
+•	Význam: První evropská síť umožňující komunikaci přes hranice.
+________________________________________
+10. MILNET (1983)
+•	Charakteristika: Vojenská část ARPANETu, která byla oddělena kvůli bezpečnostním důvodům.
+•	Technologie:
+o	Pokračovala v používání TCP/IP protokolu.
+o	Oddělila vojenský a civilní provoz.
+•	Význam: Zabezpečená vojenská síť, která sloužila pro strategické a taktické operace.
+________________________________________
+Shrnutí významu historických sítí
+Každá z těchto sítí přispěla k technologickému vývoji:
+1.	ARPANET ukázal koncept přepojování paketů.
+2.	CYCLADES zdůraznil důležitost end-to-end komunikace.
+3.	X.25 vytvořil základ pro komerční datové sítě.
+4.	USENET a BITNET podpořily spolupráci akademiků.
+5.	NSFNET transformoval akademické sítě na globální internet.
+
+
+12.Fyzická vrstva modelu ISO/OSI (Physical Layer)
+Fyzická vrstva je první a nejnižší vrstva modelu ISO/OSI. Tato vrstva je zodpovědná za přenos dat ve formě signálů mezi síťovými zařízeními. Detaily k jednotlivým bodům:
+________________________________________
+1. Pozice vrstvy v modelech, funkce
+Pozice:
+•	Fyzická vrstva se nachází na samém spodku sedmivrstvého modelu ISO/OSI.
+•	Její funkcí je zprostředkovat fyzické spojení mezi zařízeními a zajistit přenos datových bitů prostřednictvím přenosových médií.
+Funkce:
+•	Převod dat na signály: Tato vrstva převádí digitální data na fyzické signály (elektrické, optické, nebo rádiové).
+•	Definice přenosových médií: Stanovuje, jaké typy kabelů nebo bezdrátových médií budou použity.
+•	Synchronizace bitů: Zajišťuje správnou synchronizaci při přenosu dat, aby přijímač věděl, kde začíná a končí datový bit.
+•	Přenosová rychlost: Určuje maximální rychlost přenosu dat v síti.
+•	Fyzická topologie: Řídí uspořádání připojení mezi zařízeními (např. hvězda, sběrnice, kruh).
+________________________________________
+2. Druhy kabeláže, konektory
+Druhy kabeláže:
+1.	Kroucená dvojlinka (Twisted Pair):
+o	Skládá se z párů měděných vodičů kroucených do spirály, což minimalizuje elektromagnetické rušení.
+o	UTP (Unshielded Twisted Pair): Bez stínění, vhodné pro kancelářské a domácí sítě.
+o	STP (Shielded Twisted Pair): S ochranou proti rušení, vhodné pro průmyslové prostředí.
+o	Maximální rychlost: Až 10 Gbps na krátké vzdálenosti.
+2.	Koaxiální kabel (Coaxial Cable):
+o	Má centrální vodič obklopený izolací, stíněním a pláštěm.
+o	Používá se pro kabelové televize a starší sítě.
+o	Výhody: Vysoká odolnost proti rušení.
+o	Nevýhody: Omezená flexibilita.
+3.	Optické vlákno (Fiber Optic Cable):
+o	Přenáší data prostřednictvím světelných pulzů.
+o	Typy:
+	Single-mode: Pro přenos na dlouhé vzdálenosti (např. páteřní sítě).
+	Multi-mode: Pro kratší vzdálenosti, např. v datových centrech.
+o	Výhody: Vysoká přenosová rychlost, nízké zpoždění.
+o	Nevýhody: Vyšší cena, náročnější instalace.
+Konektory:
+1.	RJ-45:
+o	Používá se s kroucenou dvojlinkou pro Ethernet.
+o	Podporuje přenosové rychlosti od 10 Mbps do 10 Gbps.
+2.	BNC (Bayonet Neill-Concelman):
+o	Pro koaxiální kabely, zejména v CCTV nebo starších sítích.
+3.	SC, LC, ST:
+o	Používají se s optickými vlákny.
+o	Rozdíly jsou v konstrukci a velikosti konektorů.
+________________________________________
+3. Vlastnosti přenosových médií, typy přenosů
+Vlastnosti přenosových médií:
+•	Šířka pásma: Maximální kapacita přenosu dat, např. 1 Gbps u měděného kabelu, 100 Gbps u optického vlákna.
+•	Rušení (EMI/RFI): Elektrická a rádiová interference, která může narušit přenos.
+•	Vzdálenost: Omezená délkou kabelu (např. kroucená dvojlinka do 100 m, optické vlákno až stovky km).
+•	Latence: Doba zpoždění signálu mezi odesláním a přijetím.
+Typy přenosů:
+1.	Simplexní přenos:
+o	Data proudí pouze jedním směrem (např. vysílání rádia).
+2.	Poloduplexní přenos:
+o	Data mohou proudit oběma směry, ale ne současně (např. vysílačky).
+3.	Plný duplex:
+o	Obousměrná komunikace v reálném čase (např. telefonní hovory).
+________________________________________
+4. Analogové a digitální sítě, kódování a modulace
+Analogové sítě:
+•	Přenášejí plynulé signály, např. zvuk telefonních hovorů.
+•	Používají amplitudu a frekvenci pro přenos dat.
+Digitální sítě:
+•	Přenášejí diskrétní signály (1 a 0).
+•	Výhody: Nižší šum, vyšší spolehlivost.
+Kódování:
+•	Převádí digitální data na signály.
+o	NRZ (Non-Return to Zero): Jednoduché kódování binárních hodnot.
+o	Manchester: Data jsou kódována s vloženými hodinami.
+Modulace:
+•	Přizpůsobuje signál přenosovému médiu:
+o	AM (Amplitudová modulace): Změna amplitudy signálu.
+o	FM (Frekvenční modulace): Změna frekvence signálu.
+o	QAM (Kvadraturní amplitudová modulace): Kombinace změny amplitudy a fáze.
+________________________________________
+5. Síťové prvky a jejich funkce
+1.	Repeater (Opakovač):
+o	Zesiluje signál a prodlužuje dosah sítě.
+2.	Hub:
+o	Přeposílá data všem zařízením v síti bez ohledu na cíl.
+3.	Switch:
+o	Inteligentně přeposílá data pouze cílovému zařízení.
+o	Funguje na druhé (linkové) vrstvě modelu OSI.
+4.	Router:
+o	Směruje datové pakety mezi různými sítěmi.
+o	Pracuje na třetí (síťové) vrstvě modelu OSI.
+5.	Modem:
+o	Převádí digitální data na analogový signál a naopak.
+6.	Přístupový bod (Access Point):
+o	Slouží k propojení bezdrátových zařízení s kabelovou sítí.
+
+
+13. Linková vrstva modelu ISO/OSI (Data Link Layer)
+Linková vrstva (2. vrstva modelu ISO/OSI) hraje klíčovou roli v zajištění spolehlivé komunikace mezi zařízeními na lokální síti. Tato vrstva přebírá surová data z fyzické vrstvy, organizuje je do rámců (frames) a zajišťuje jejich přenos mezi sousedními zařízeními. Níže je podrobný rozpis klíčových bodů:
+________________________________________
+1. Pozice vrstvy v modelech, funkce
+Pozice:
+•	Linková vrstva je druhá vrstva v modelu ISO/OSI.
+•	Nachází se nad fyzickou vrstvou a pod síťovou vrstvou.
+•	Přemosťuje rozdíly mezi fyzickými médii a vyššími vrstvami, což umožňuje bezproblémovou komunikaci.
+Funkce:
+•	Rámcování (Framing):
+o	Rozděluje surová data na bloky zvané rámce.
+o	Přidává hlavičku (header) a koncový kód (trailer) k přenášeným datům.
+•	Řízení přístupu k médiu (Media Access Control, MAC):
+o	Zajišťuje, že zařízení mají přístup k přenosovému médiu bez konfliktů.
+o	Řeší problémy s kolizemi v sítích (např. pomocí metody CSMA/CD v Ethernetu).
+•	Detekce chyb (Error Detection):
+o	Identifikuje chyby vzniklé při přenosu dat pomocí CRC (Cyclic Redundancy Check).
+•	Řízení toku dat (Flow Control):
+o	Zabraňuje zahlcení zařízení rychlým přenosem dat.
+•	Adresace:
+o	Používá fyzické adresy (MAC adresy) k identifikaci zařízení v síti.
+________________________________________
+2. Propojení síťových prvků, kabeláž, protokoly
+Propojení síťových prvků:
+•	Switche:
+o	Přeposílají rámce mezi zařízeními na základě jejich MAC adres.
+•	Bridge (Mosty):
+o	Propojují dvě nebo více sítí na úrovni linkové vrstvy.
+•	Access Pointy (AP):
+o	Umožňují bezdrátové zařízení připojit k síti.
+Kabeláž:
+•	Kroucená dvojlinka (Twisted Pair): Nejčastěji používaná pro Ethernet.
+•	Koaxiální kabel: Používán v starších sítích.
+•	Optické vlákno (Fiber Optic): Pro vysokorychlostní přenosy a dlouhé vzdálenosti.
+Protokoly:
+•	Ethernet: Standardizuje přenosové technologie v LAN.
+•	PPP (Point-to-Point Protocol): Používá se pro přímé připojení mezi dvěma zařízeními.
+•	HDLC (High-Level Data Link Control): Protokol pro sériové linky.
+•	Wi-Fi (IEEE 802.11): Bezdrátové připojení.
+________________________________________
+3. Podvrstvy, účel/funkce
+Linková vrstva se dělí na dvě podvrstvy:
+1. Podvrstva řízení přístupu k médiu (Media Access Control, MAC):
+•	Účel:
+o	Spravuje přístup k fyzickému médiu.
+o	Definuje, jak data vstupují na přenosové médium.
+•	Funkce:
+o	Fyzická adresace: Používá MAC adresy (48bitové).
+o	Řízení kolizí: V sítích jako Ethernet (např. metoda CSMA/CD).
+o	Přenos dat mezi zařízeními na stejné síti.
+2. Podvrstva řízení logického spoje (Logical Link Control, LLC):
+•	Účel:
+o	Poskytuje rozhraní mezi linkovou vrstvou a vrstvami vyššími.
+o	Řídí komunikaci a tok dat mezi zařízeními.
+•	Funkce:
+o	Multiplexování: Umožňuje více protokolům sdílet stejný fyzický přenosový kanál.
+o	Detekce chyb: Používá kontrolní součty pro zajištění integrity dat.
+________________________________________
+4. Adresy/adresace, přístupové metody
+Adresy/adresace:
+•	MAC adresa (Media Access Control Address):
+o	Unikátní identifikátor síťového zařízení.
+o	48bitová adresa rozdělená na 2 části: OUI (Organizationally Unique Identifier) a NIC (Network Interface Controller).
+o	Používá se pro směrování rámců v LAN.
+Přístupové metody:
+•	CSMA/CD (Carrier Sense Multiple Access with Collision Detection):
+o	Používá se v Ethernetu.
+o	Zařízení naslouchají na médiu, zda je volné, a v případě kolize přenos přeruší a opakují.
+•	CSMA/CA (Carrier Sense Multiple Access with Collision Avoidance):
+o	Používá se v Wi-Fi.
+o	Zabraňuje kolizím tím, že zařízení rezervuje přenosové médium před odesláním dat.
+•	Token Passing:
+o	Používá se v sítích jako Token Ring.
+o	Token je speciální rámec, který zařízení potřebuje pro zahájení přenosu.
+________________________________________
+5. Síťové prvky a jejich funkce
+1.	Switch:
+o	Přeposílá rámce na základě MAC adres.
+o	Zlepšuje výkon sítě tím, že minimalizuje kolize.
+2.	Bridge (Most):
+o	Propojuje různé segmenty sítě.
+o	Filtruje data na základě MAC adres.
+3.	Access Point (Přístupový bod):
+o	Slouží k propojení bezdrátových zařízení s kabelovou sítí.
+o	Funguje na úrovni linkové vrstvy.
+4.	NIC (Síťová karta):
+o	Zprostředkovává komunikaci mezi počítačem a síťovou infrastrukturou.
+o	Obsahuje MAC adresu zařízení.
+________________________________________
+Shrnutí:
+Linková vrstva zajišťuje přenos dat mezi zařízeními v rámci lokální sítě a správu přístupu k přenosovému médiu. Klíčovými koncepty této vrstvy jsou rámce, MAC adresy, přístupové metody a protokoly, jako je Ethernet nebo Wi-Fi. Dělení na podvrstvy (MAC a LLC) umožňuje jasnou správu fyzického přístupu i řízení komunikace. Tato vrstva je základem pro efektivní a spolehlivý přenos dat v síti.
+
+14. Síťová vrstva modelu ISO/OSI (Network Layer)
+Síťová vrstva je třetí vrstva modelu ISO/OSI. Její hlavní úlohou je zajištění směrování a přenosu datových paketů mezi zdrojem a cílem, a to i přes více sítí. Zajišťuje logickou adresaci a směrování dat v distribuovaných sítích.
+________________________________________
+1. Pozice vrstvy v modelech, funkce
+Pozice:
+•	Síťová vrstva je třetí vrstva modelu ISO/OSI, nad linkovou vrstvou (Data Link Layer) a pod transportní vrstvou (Transport Layer).
+•	Zatímco linková vrstva se stará o přenos dat mezi zařízeními na stejné síti (lokálně), síťová vrstva se zabývá komunikací mezi různými sítěmi.
+Funkce:
+1.	Směrování (Routing):
+o	Určuje nejvhodnější cestu, kterou se data dostanou z jednoho uzlu (node) do druhého.
+2.	Logická adresace:
+o	Přiděluje síťové adresy zařízením (např. IPv4, IPv6).
+o	Tato adresace je nezávislá na fyzickém umístění zařízení.
+3.	Fragmentace a sestavení paketů:
+o	Rozděluje velké datové bloky na menší části, které mohou být přenášeny prostřednictvím sítě (MTU – Maximum Transmission Unit).
+o	Po přenosu je sestavuje zpět do původní podoby.
+4.	Detekce a řízení přetížení:
+o	Sleduje síťové zatížení a minimalizuje přetížení.
+5.	Přenos dat mezi různými typy sítí:
+o	Zajišťuje kompatibilitu mezi sítěmi, které používají různé technologie.
+________________________________________
+2. Adresní prostory/třídy IPv4 adres, typy, maska
+Adresní prostory IPv4:
+IPv4 používá 32bitové adresy, což umožňuje přibližně 4,3 miliardy unikátních adres. Adresa je rozdělena do 4 osmibitových bloků oddělených tečkami (např. 192.168.1.1).
+Třídy IPv4 adres:
+IPv4 adresy jsou rozděleny do 5 tříd (A, B, C, D, E) podle první části adresy:
+•	Třída A:
+o	Rozsah: 0.0.0.0 – 127.255.255.255
+o	Použití: Velké sítě.
+o	Maska sítě: 255.0.0.0 (prefix /8).
+•	Třída B:
+o	Rozsah: 128.0.0.0 – 191.255.255.255
+o	Použití: Středně velké sítě.
+o	Maska sítě: 255.255.0.0 (prefix /16).
+•	Třída C:
+o	Rozsah: 192.0.0.0 – 223.255.255.255
+o	Použití: Malé sítě.
+o	Maska sítě: 255.255.255.0 (prefix /24).
+•	Třída D:
+o	Rozsah: 224.0.0.0 – 239.255.255.255
+o	Použití: Multicast.
+•	Třída E:
+o	Rozsah: 240.0.0.0 – 255.255.255.255
+o	Použití: Experimentální adresy.
+Typy IPv4 adres:
+1.	Veřejné adresy:
+o	Globálně unikátní a směrovatelné na internetu.
+2.	Soukromé adresy:
+o	Používají se v lokálních sítích.
+o	Rozsahy:
+	Třída A: 10.0.0.0 – 10.255.255.255
+	Třída B: 172.16.0.0 – 172.31.255.255
+	Třída C: 192.168.0.0 – 192.168.255.255.
+3.	Broadcast adresy:
+o	Používají se k adresování všech zařízení v síti (např. 192.168.1.255).
+4.	Loopback adresy:
+o	Testovací adresa zařízení (127.0.0.1).
+Maska podsítě (Subnet Mask):
+•	Slouží k rozdělení adresního prostoru na menší podsítě.
+•	Např. maska 255.255.255.0 (prefix /24) znamená, že první tři oktety určují síť a poslední oktet určuje hostitele.
+________________________________________
+3. Adresní prostory IPv6 adres, typy, maska
+IPv6 používá 128bitové adresy, což umožňuje přibližně 3.4×10383.4 \times 10^{38}3.4×1038 unikátních adres. Adresa je zapsána v osmi 16bitových blocích oddělených dvojtečkami (např. 2001:0db8:85a3:0000:0000:8a2e:0370:7334).
+Typy IPv6 adres:
+1.	Unicast:
+o	Identifikuje jediné zařízení.
+o	Rozsah: Např. 2001::/16.
+2.	Multicast:
+o	Adresuje skupinu zařízení.
+o	Rozsah: FF00::/8.
+3.	Anycast:
+o	Adresuje nejbližší zařízení ve skupině.
+Adresní bloky IPv6:
+•	Globálně unikátní adresy: 2000::/3.
+•	Link-local adresy: FE80::/10 (pouze pro lokální komunikaci).
+•	Soukromé adresy: FC00::/7.
+Maska podsítě:
+•	Používá se prefix (např. /64), který určuje počet bitů pro síťovou část adresy.
+________________________________________
+4. Bloky dat, protokoly: účel/funkce, struktura
+Bloky dat:
+•	Na síťové vrstvě se přenáší pakety (packets).
+•	Struktura paketu:
+1.	Hlavička (Header): Obsahuje informace jako zdrojová a cílová IP adresa, délka paketu a kontrolní součet.
+2.	Data: Obsahuje užitečná data přenášená vyššími vrstvami.
+Protokoly:
+
+
+  ,
+
+1.	IP (Internet Protocol):
+o	Účel: Směrování a doručení paketů.
+o	Struktura: Hlavička obsahuje IP adresy, verzi, délku a další parametry.
+2.	ICMP (Internet Control Message Protocol):
+o	Účel: Diagnostika a hlášení chyb v síti (např. příkaz ping).
+3.	ARP (Address Resolution Protocol):
+o	Účel: Převod IP adres na MAC adresy.
+4.	NAT (Network Address Translation):
+o	Účel: Převádí privátní IP adresy na veřejné.
+________________________________________
+5. Síťové prvky a jejich funkce
+1.	Router (Směrovač):
+o	Směruje pakety mezi různými sítěmi.
+o	Analyzuje IP adresy a určuje nejlepší cestu pro přenos dat.
+2.	Firewall:
+o	Chrání síť před neoprávněnými přístupy a útoky.
+3.	Gateway (Brána):
+o	Překládá protokoly mezi různými sítěmi.
+4.	Layer 3 Switch:
+o	Kombinace switch a routeru.
+o	Přepíná data na základě IP adres (pracuje na síťové vrstvě).
+________________________________________
+Shrnutí:
+Síťová vrstva modelu ISO/OSI je zodpovědná za logickou adresaci, směrování a přenos dat mezi sítěmi. Používá adresy IPv4 a IPv6, protokoly jako IP, ICMP a ARP a pracuje s prvky jako routery nebo firewally. Je klíčovou vrstvou pro propojení různých sítí a zajištění efektivní komunikace.
+15. Adresace a směrování v sítích
+Adresace a směrování tvoří základní mechanismy pro komunikaci v počítačových sítích. Adresace zajišťuje jednoznačnou identifikaci zařízení v síti, zatímco směrování umožňuje přenos dat mezi zařízeními ve stejné nebo odlišné síti.
+________________________________________
+1. Schéma sítě (PC, switch, routery)
+Schéma sítě zobrazuje fyzické a logické uspořádání síťových prvků. Typické prvky:
+1.	PC (Personal Computer):
+o	Koncová zařízení, která generují a přijímají data.
+o	Mají unikátní IP adresu a připojují se k síti přes switch nebo bezdrátově.
+2.	Switch (Přepínač):
+o	Pracuje na 2. vrstvě (linková vrstva) modelu ISO/OSI.
+o	Spojuje zařízení v rámci jedné LAN (Local Area Network) a přepíná data na základě MAC adres.
+3.	Router (Směrovač):
+o	Pracuje na 3. vrstvě (síťová vrstva) modelu ISO/OSI.
+o	Propojuje různé sítě a směruje data mezi nimi pomocí IP adres.
+Příklad schématu:
+•	LAN s jedním routerem:
+o	Router propojený s internetem.
+o	Switch propojuje router a několik PC.
+o	Každé PC má IP adresu z rozsahu přiděleného LAN.
+________________________________________
+2. VLSM maska, určení IPv4 adres sítě, subnetting
+VLSM (Variable Length Subnet Mask):
+•	Umožňuje použít různě dlouhé masky podsítě (subnet mask) v rámci jedné sítě.
+•	Efektivní využití adresního prostoru tím, že přiděluje přesný počet adres pro každou podsíť.
+Určení IPv4 adres sítě:
+•	IPv4 adresa má dvě části:
+1.	Síťová část: Identifikuje síť (např. 192.168.1.0/24).
+2.	Hostitelská část: Identifikuje zařízení v síti.
+Subnetting:
+•	Rozdělení jedné sítě na menší podsítě pomocí masky podsítě.
+•	Příklad:
+o	Síť: 192.168.1.0/24
+o	Rozdělení na podsítě:
+	192.168.1.0/26 (64 adres, 62 hostitelé)
+	192.168.1.64/26 (64 adres, 62 hostitelé)
+________________________________________
+3. CIDR adresace, síťové výpočty
+CIDR (Classless Inter-Domain Routing):
+•	Nahrazuje tradiční třídní adresování (A, B, C).
+•	Používá se pro agregaci adres do větších bloků (supernetting) nebo dělení na menší (subnetting).
+•	Zápis: Síťová adresa/prefix (např. 192.168.1.0/24).
+Síťové výpočty:
+1.	Počet hostitelů:
+o	2(32−prefix)−22^{(32 - \text{prefix})} - 22(32−prefix)−2
+o	Např. /24: 2(32−24)−2=2542^{(32-24)} - 2 = 2542(32−24)−2=254 hostitelé.
+2.	Rozsah adres:
+o	Začíná první adresou sítě (např. 192.168.1.0).
+o	Končí broadcast adresou (např. 192.168.1.255).
+3.	Maska podsítě:
+o	/24 = 255.255.255.0
+o	/26 = 255.255.255.192
+________________________________________
+4. Druhy směrování, směrovací tabulka, metrika
+Druhy směrování:
+1.	Statické směrování:
+o	Administrátor ručně nastaví cesty.
+o	Výhody: Jednoduché pro malé sítě.
+o	Nevýhody: Není flexibilní při změnách v síti.
+2.	Dynamické směrování:
+o	Směrovače automaticky upravují směrovací tabulky na základě aktuální topologie.
+o	Používá směrovací protokoly (např. OSPF, RIP).
+Směrovací tabulka:
+•	Obsahuje záznamy o směrech k cílovým sítím.
+•	Položky:
+1.	Cílová síť: Např. 192.168.1.0/24.
+2.	Maska sítě: Např. 255.255.255.0.
+3.	Next hop: Adresa následujícího routeru.
+4.	Metrika: Hodnota určující kvalitu cesty (např. počet skoků).
+Metrika:
+•	Parametr používaný k určení nejlepší cesty.
+•	Typy metrik:
+1.	Počet skoků (Hop Count):
+	Počet routerů, kterými data procházejí.
+2.	Šířka pásma: Rychlost dostupného spojení.
+3.	Zpoždění: Čas potřebný pro přenos dat.
+________________________________________
+5. Směrovací metody a protokoly
+Směrovací metody:
+1.	Unicast:
+o	Přenos mezi dvěma zařízeními.
+2.	Multicast:
+o	Přenos z jednoho zařízení na skupinu zařízení.
+3.	Broadcast:
+o	Přenos na všechna zařízení v síti.
+Směrovací protokoly:
+1.	RIP (Routing Information Protocol):
+o	Používá metodu "počet skoků".
+o	Maximálně 15 skoků.
+o	Jednoduchý, ale pomalý.
+2.	OSPF (Open Shortest Path First):
+o	Protokol typu link-state.
+o	Rychlé a přesné směrování.
+o	Používá metriky jako šířka pásma.
+3.	BGP (Border Gateway Protocol):
+o	Používá se mezi autonomními systémy (Internet).
+o	Klíčový protokol pro globální směrování.
+4.	EIGRP (Enhanced Interior Gateway Routing Protocol):
+o	Cisco proprietární protokol.
+o	Rychlejší než RIP, méně náročný než OSPF.
+________________________________________
+Shrnutí:
+Adresace a směrování v sítích jsou základními kameny efektivní komunikace. Adresace zahrnuje přidělování unikátních IP adres (IPv4/IPv6) a subnetting pro optimalizaci adresního prostoru. Směrování, podporované statickými a dynamickými metodami, využívá směrovací tabulky a protokoly k určení nejlepší cesty pro přenos dat. Dynamické protokoly jako RIP, OSPF nebo BGP umožňují automatizaci a škálovatelnost v komplexních sítích.
+16. Transportní, relační a prezentační vrstva modelu ISO/OSI
+________________________________________
+Transportní vrstva (4. vrstva ISO/OSI)
+Transportní vrstva zajišťuje spolehlivou a efektivní komunikaci mezi aplikacemi běžícími na různých zařízeních. Je klíčovou vrstvou, která umožňuje segmentaci dat, kontrolu toku a případně opakování přenosu při chybách.
+________________________________________
+Pozice vrstvy v modelech, funkce:
+•	Pozice:
+o	Transportní vrstva se nachází mezi síťovou vrstvou (3. vrstva) a relační vrstvou (5. vrstva).
+•	Funkce:
+1.	Spolehlivost:
+	Zajišťuje, že data jsou doručena bez chyb, v pořadí a kompletní.
+2.	Segmentace a rekonstrukce:
+	Rozděluje data na segmenty a zajišťuje jejich správné sestavení na straně příjemce.
+3.	Řízení toku:
+	Zabraňuje zahlcení příjemce daty (flow control).
+4.	Detekce a oprava chyb:
+	Identifikuje chyby během přenosu a provádí opakované přenosy.
+________________________________________
+Bloky dat a jejich identifikace:
+•	Data přenášená transportní vrstvou jsou označována jako segmenty.
+•	Identifikace:
+o	Každý segment obsahuje:
+1.	Čísla portů:
+	Určují, která aplikace na zařízení je zdrojem a cílem dat.
+	Např. port 80 pro HTTP, port 443 pro HTTPS.
+2.	Sekvenční čísla:
+	Zajišťují doručení dat ve správném pořadí.
+3.	Kontrolní součet (checksum):
+	Slouží k detekci chyb.
+________________________________________
+Protokoly: účel, funkce, struktura:
+1.	TCP (Transmission Control Protocol):
+o	Účel: Spolehlivý, orientovaný na připojení.
+o	Funkce:
+	Potvrzování (acknowledgments).
+	Řízení toku a sekvenční číslování.
+	Detekce a oprava chyb.
+o	Struktura segmentu TCP:
+	Hlavička obsahuje čísla portů, sekvenční číslo, potvrzovací číslo, kontrolní součet.
+2.	UDP (User Datagram Protocol):
+o	Účel: Nespojovaný, lehký protokol.
+o	Funkce:
+	Rychlý přenos dat bez potvrzování.
+	Vhodný pro streaming, VoIP, online hry.
+o	Struktura datagramu UDP:
+	Jednodušší hlavička než TCP, zahrnuje pouze čísla portů, délku a kontrolní součet.
+________________________________________
+Zabezpečení spolehlivé komunikace:
+•	Transportní vrstva zajišťuje spolehlivost pomocí:
+1.	Potvrzování (ACK):
+	Odesílatel očekává potvrzení přijetí dat.
+2.	Opakovaný přenos:
+	Pokud potvrzení nepřijde, data jsou znovu odeslána.
+3.	Kontrola toku:
+	Příjemce reguluje množství dat, která může přijmout.
+________________________________________
+Relační vrstva (5. vrstva ISO/OSI)
+Relační vrstva je zodpovědná za řízení a udržování relace (session) mezi dvěma zařízeními nebo aplikacemi.
+________________________________________
+Pozice vrstvy v modelech, funkce:
+•	Pozice:
+o	Nachází se nad transportní vrstvou a pod prezentační vrstvou.
+•	Funkce:
+1.	Správa relací:
+	Zahájení, udržování a ukončení relací mezi aplikacemi.
+2.	Synchronizace:
+	Vkládání synchronizačních bodů, které umožňují pokračování přenosu po přerušení.
+3.	Řízení komunikace:
+	Určuje, která strana může aktuálně posílat nebo přijímat data.
+________________________________________
+Prezentační vrstva (6. vrstva ISO/OSI)
+Prezentační vrstva je zodpovědná za formátování a kódování dat, aby je aplikace mohly snadno interpretovat.
+________________________________________
+Pozice vrstvy v modelech, funkce:
+•	Pozice:
+o	Nachází se nad relační vrstvou a pod aplikační vrstvou.
+•	Funkce:
+1.	Kódování a dekódování:
+	Zajišťuje převod mezi různými datovými formáty (např. ASCII, Unicode).
+2.	Komprese dat:
+	Snižuje velikost dat pro rychlejší přenos.
+3.	Šifrování a dešifrování:
+	Zvyšuje bezpečnost přenosu.
+________________________________________
+Protokoly: účel, funkce:
+1.	TLS (Transport Layer Security):
+o	Šifrování komunikace.
+o	Ověření identity stran.
+2.	SSL (Secure Sockets Layer):
+o	Předchůdce TLS, dnes méně používaný.
+3.	JPEG, GIF, MP3:
+o	Standardy pro formátování dat (obrázky, audio).
+________________________________________
+Tabulky a konverze znaků, bezpečnostní funkce:
+•	Tabulky znaků:
+o	ASCII, Unicode, EBCDIC.
+•	Bezpečnostní funkce:
+1.	Šifrování dat:
+	Např. pomocí algoritmů AES, RSA.
+2.	Ochrana integrity:
+	Kontrola, zda data nebyla během přenosu změněna.
+________________________________________
+Rozšíření elektronické pošty, typy kódování:
+•	Rozšíření:
+o	MIME (Multipurpose Internet Mail Extensions):
+	Umožňuje posílat ne-textové formáty (obrázky, zvuk).
+•	Typy kódování:
+o	Base64: Kódování binárních dat do textového formátu.
+o	Quoted-Printable: Umožňuje přenos znaků mimo ASCII.
+________________________________________
+Shrnutí:
+Tři vrstvy – transportní, relační a prezentační – společně zajišťují, že data jsou přenášena spolehlivě, správně interpretována a zabezpečena. Transportní vrstva se zaměřuje na segmentaci, řízení toku a spolehlivost. Relační vrstva spravuje a synchronizuje relace, zatímco prezentační vrstva provádí konverze a zajišťuje bezpečnost dat. Tyto vrstvy tvoří základ pro efektivní komunikaci aplikací v počítačových sítích.
+17. Aplikační vrstva modelu ISO/OSI – detailní zpracování
+Aplikační vrstva je nejvyšší vrstvou v modelu ISO/OSI a je zodpovědná za interakci mezi uživatelskými aplikacemi a podkladovými vrstvami sítě. Tento model je zjednodušením komunikace, která se uskutečňuje mezi počítači v síti, a aplikační vrstva se postará o to, aby uživatelé nebo aplikace mohli efektivně komunikovat.
+________________________________________
+Pozice vrstvy v modelu a její funkce:
+•	Pozice v modelu:
+o	Aplikační vrstva je na 7. pozici v modelu ISO/OSI.
+o	Leží nad všemi ostatními vrstvami a zajišťuje přímý přístup aplikací k síti.
+o	Aplikační vrstva je jedinou vrstvou, která je v přímém kontaktu s uživatelskými aplikacemi.
+•	Funkce:
+o	Poskytování rozhraní pro aplikace: Aplikační vrstva poskytuje aplikacím služby pro komunikaci přes síť. Tento proces obvykle zahrnuje zasílání požadavků na jiné zařízení nebo server.
+o	Sběr a zpracování dat: Vrstva se podílí na sběru dat a jejich přípravě pro přenos do nižších vrstev. To může zahrnovat kódování dat do specifického formátu nebo šifrování pro bezpečnostní účely.
+o	Řízení komunikace mezi aplikacemi: Aplikační vrstva se stará o to, aby data byla správně směrována mezi aplikacemi, které jsou na různých zařízeních v síti.
+________________________________________
+DNS systém, WWW služba, URL
+1.	DNS (Domain Name System):
+o	Účel:
+	DNS slouží k překladu doménových jmen na IP adresy. To znamená, že když zadáme webovou adresu (např. www.google.com), DNS server přeloží toto jméno na IP adresu serveru, který tuto stránku hostuje.
+o	Funkce:
+	Umožňuje uživatelům připojit se k webovým stránkám a jiným službám pomocí snadno zapamatovatelných jmen místo číselných IP adres.
+o	Struktura:
+	DNS používá hierarchickou strukturu domén, přičemž každá doména může mít poddomény.
+	Nejvyšší úroveň začíná doménou nejvyššího řádu (např. ".com", ".org"), následuje název domény a případné subdomény.
+o	Princip komunikace:
+	Při zadání doménového jména je odeslán DNS dotaz na příslušný DNS server, který vrátí odpověď ve formě IP adresy.
+2.	WWW služba (World Wide Web):
+o	Účel:
+	WWW poskytuje způsob pro vyhledávání a zobrazování dokumentů a zdrojů na internetu pomocí prohlížeče. Tento obsah je obvykle dostupný ve formátu HTML (HyperText Markup Language).
+o	Funkce:
+	Webové stránky jsou hostovány na serverech a jsou přístupné prostřednictvím internetového prohlížeče, který používá protokol HTTP nebo HTTPS.
+	WWW umožňuje propojení mezi různými stránkami prostřednictvím hypertextových odkazů (linků).
+o	Protokol:
+	HTTP (HyperText Transfer Protocol) je protokol, který WWW používá k přenosu dat (stránek) mezi webovými servery a klienty (např. prohlížeči).
+3.	URL (Uniform Resource Locator):
+o	Účel:
+	URL je jedinečný identifikátor pro zdroje na internetu.
+o	Struktura:
+	URL se skládá z několika částí:
+1.	Protokol (HTTP, HTTPS, FTP, atd.) – určuje, jaký protokol bude použit pro komunikaci.
+2.	Doménové jméno (např. www.google.com) – specifikuje server.
+3.	Cesta – určuje konkrétní soubor nebo stránku na serveru (např. /about).
+4.	Volitelně port a parametry (např. ?id=123).
+________________________________________
+Základní protokoly: účel/funkce, struktura, princip komunikace, stavové kódy
+1.	HTTP (HyperText Transfer Protocol):
+o	Účel:
+	HTTP je protokol používaný pro přenos hypertextových dokumentů (stránek) v rámci WWW.
+o	Funkce:
+	Definuje, jak jsou požadavky na server a odpovědi serveru strukturovány.
+o	Struktura:
+	Požadavek: Klient (např. webový prohlížeč) odesílá požadavek s metodou (GET, POST, PUT, DELETE) a cílovou URL.
+	Odpověď: Server vrací odpověď, která může obsahovat HTML dokument, obrázky, nebo jiné soubory.
+o	Princip komunikace:
+	Klient odešle požadavek na server a server vrátí odpověď, která obsahuje data pro zobrazení na straně klienta.
+o	Stavové kódy:
+	200 OK – požadavek byl úspěšně zpracován.
+	404 Not Found – požadovaná stránka nebyla nalezena.
+	500 Internal Server Error – došlo k chybě na straně serveru.
+2.	FTP (File Transfer Protocol):
+o	Účel:
+	FTP se používá pro přenos souborů mezi klientem a serverem.
+o	Funkce:
+	Umožňuje uživatelům nahrávat, stahovat, přejmenovávat nebo mazat soubory na serveru.
+o	Struktura:
+	Používá dvě komunikační spojení – jedno pro příkazy a druhé pro přenos dat.
+o	Princip komunikace:
+	Klient odesílá příkazy serveru pro přenos souborů a server vrací odpovědi.
+________________________________________
+Elektronická pošta: účel/funkce, protokoly, princip komunikace
+1.	Účel elektronické pošty:
+o	Elektronická pošta (e-mail) umožňuje uživatelům odesílat a přijímat zprávy a přílohy mezi různými zařízeními a uživatelskými účty.
+o	E-mail je rychlý a efektivní způsob, jak komunikovat na dálku.
+2.	Protokoly:
+o	SMTP (Simple Mail Transfer Protocol):
+	Účel: Protokol používaný pro odesílání e-mailů ze serveru na server.
+	Princip: Odesílá zprávy mezi e-mailovými servery.
+o	POP3 (Post Office Protocol 3):
+	Účel: Používá se pro stahování e-mailů ze serveru na klienta.
+	Princip: Klient si stáhne všechny zprávy na svůj počítač a zprávy jsou na serveru obvykle smazány.
+o	IMAP (Internet Message Access Protocol):
+	Účel: Umožňuje klientovi přistupovat k e-mailům uloženým na serveru bez jejich stahování.
+	Princip: Uživatel má přístup k e-mailům na serveru a může je třídit a spravovat.
+3.	Princip komunikace:
+o	E-mailová komunikace probíhá tak, že odesílatel používá SMTP pro odeslání zprávy na e-mailový server, který ji doručí na příjemcův server, odkud ji příjemce může stáhnout pomocí POP3 nebo IMAP.
+o	E-mailové klienty (např. Outlook, Thunderbird) komunikují se servery prostřednictvím těchto protokolů.
+________________________________________
+Závěr:
+Aplikační vrstva modelu ISO/OSI zajišťuje konektivitu mezi aplikacemi a podkladovými vrstvami. Pomocí protokolů jako DNS, HTTP, FTP, SMTP, IMAP a POP3 se uskutečňuje široká škála internetových služeb od webových stránek po elektronickou poštu. Každý protokol má svou specifickou roli v zajištění efektivní a spolehlivé komunikace mezi uživatelskými aplikacemi a servery.
+18. Síťové prvky modelu ISO/OSI a strukturovaná kabeláž
+V oblasti počítačových sítí hraje klíčovou roli správná volba a používání síťových prvků, které zajišťují přenos dat mezi zařízeními a správu datového toku v síti. Dále je důležitá strukturovaná kabeláž, která tvoří fyzickou infrastrukturu sítě a umožňuje přenos informací mezi těmito zařízeními.
+________________________________________
+Síťové prvky: dělení, konstrukce, funkce, použití
+Síťové prvky se dělí podle jejich role v síti a funkce, kterou plní v rámci přenosu a směrování dat. Níže jsou uvedeny hlavní síťové prvky a jejich charakteristiky.
+1.	Režimová zařízení:
+o	Hub (rozdělovač):
+	Konstrukce: Jednoduché zařízení, které se skládá z jednoho centrálního rozbočovače. Všechny porty jsou propojeny na centrální sběrnici.
+	Funkce: Zajišťuje základní propojení mezi zařízeními v síti. Data, která přicházejí na jeden port, jsou vysílána na všechny ostatní porty.
+	Použití: Používá se v menších, nezabezpečených sítích, kde není nutné řídit přístup na základě adresy.
+o	Switch (přepínač):
+	Konstrukce: Obsahuje několik portů, které jsou schopny přijímat a přeposílat data na základě adresy MAC.
+	Funkce: Operuje na druhé vrstvě modelu ISO/OSI (linková vrstva). Umožňuje efektivní směrování paketů mezi zařízeními v síti, čímž zvyšuje výkon sítě.
+	Použití: Používá se v praxi pro větší sítě, kde je potřeba efektivní směrování dat a minimalizace kolizí.
+o	Router (směrovač):
+	Konstrukce: Zařízení, které propojuje různé síťové segmenty a směruje pakety mezi nimi na základě IP adres.
+	Funkce: Operuje na třetí vrstvě (síťová vrstva) modelu ISO/OSI. Směruje pakety mezi různými podsíťemi nebo sítěmi.
+	Použití: Používá se k propojení lokálních sítí s internetem nebo mezi různými částmi firemních sítí.
+o	Firewall (firewall):
+	Konstrukce: Software nebo hardware zařízení, které filtruje síťovou komunikaci na základě předem definovaných bezpečnostních pravidel.
+	Funkce: Slouží k ochraně sítě před neoprávněným přístupem a zajišťuje bezpečnostní politiku.
+	Použití: Používá se na ochranu sítě před vnějšími hrozbami, např. u firemních sítí, domácích sítí nebo v datových centrech.
+o	Bridge (most):
+	Konstrukce: Zařízení, které propojuje dvě nebo více síťových segmentů a zajišťuje, že data přicházející z jednoho segmentu budou předána na správný segment.
+	Funkce: Operuje na druhé vrstvě ISO/OSI a zajišťuje efektivní rozdělení a správu provozu v síti.
+	Použití: Používá se k segmentaci sítě a snížení kolizí nebo zlepšení výkonu sítě.
+o	Modem:
+	Konstrukce: Zařízení, které převádí digitální signály z počítače na analogové signály pro přenos po telefonní lince (nebo naopak).
+	Funkce: Umožňuje připojení k internetu prostřednictvím telefonní linky.
+	Použití: Používá se pro dial-up připojení nebo v domácnostech pro připojení k internetu.
+________________________________________
+Schematické značky CISCO
+Cisco je známý výrobce síťových zařízení a používá standardní značky pro všechny své produkty. V praxi se schémata pro zařízení často zobrazují pomocí jednoduchých symbolů.
+1.	Switch (přepínač): Značka pro switch je obvykle zobrazena jako čtvercová ikona s několika porty.
+2.	Router (směrovač): Značka pro router je často znázorněna jako čtverec s ikonou směrování nebo trojúhelníkem symbolizujícím síť.
+3.	Hub (rozdělovač): Hub je znázorněn jako malé zařízení s několika porty, obvykle bez pokročilých směrovacích funkcí.
+4.	Firewall (firewall): Symbol pro firewall může být zobrazen jako zařízení s ochrannou ikonkou nebo zámkem.
+5.	Modem: Modem je obvykle označen jako zařízení se dvěma připojeními - jedno pro počítač a druhé pro telefonní linku.
+Toto schéma je klíčové pro dokumentaci síťové topologie a správu sítí v organizacích.
+________________________________________
+Strukturovaná kabeláž: komponenty, topologie, kategorie, rack
+Strukturovaná kabeláž je systematický způsob uspořádání a instalace kabelů, který umožňuje snadnou údržbu, flexibilitu a správu síťového připojení v různých prostředích.
+1.	Komponenty strukturované kabeláže:
+o	Kabely: Používají se různé typy kabelů podle potřeby, např. kroucená dvojlinka (UTP) nebo optické vlákno.
+o	Racks a panely: K dispozici jsou racky pro uložení síťových zařízení a patch panely pro organizaci připojení.
+o	Jacks a zásuvky: Umožňují připojení zařízení k síti. Jsou součástí kabeláže, která spojuje zařízení s aktivními síťovými prvky.
+o	Patch kabely: Krátké kabely používané k propojení mezi zařízeními a patch panely nebo mezi panely a racky.
+2.	Topologie:
+o	Hvězdicová topologie (Star Topology): V této topologii jsou všechna zařízení připojena k centrálnímu síťovému prvku, jako je switch nebo hub. Je to nejběžnější topologie pro místní sítě (LAN).
+o	Sběrnicová topologie (Bus Topology): Všechny zařízení jsou připojena k jedinému kabelu (sběrnici). Tato topologie je dnes již méně používaná, ale v minulosti byla běžná v Ethernet sítích.
+o	Kruhová topologie (Ring Topology): Zařízení jsou propojena do uzavřeného kruhu, kde data putují jedním směrem kolem sítě.
+3.	Kategorie kabeláže:
+o	Cat 5e (Category 5 Enhanced): Podporuje rychlost až 1000 Mbps a je běžně používána v místních sítích.
+o	Cat 6: Vylepšená verze, která podporuje rychlosti až 10 Gbps na kratší vzdálenosti.
+o	Cat 6a a Cat 7: Podporují vyšší přenosové rychlosti a větší šířku pásma pro datacentra a profesionální aplikace.
+4.	Rack:
+o	Rack mount: Racks slouží k montáži síťových zařízení a serverů. Měly by splňovat standardy pro správné umístění zařízení, chlazení a správu kabeláže.
+o	19" rack: Nejběžnější standard pro umístění síťových zařízení a serverů. V tomto racku je možné umístit až 42U zařízení (jednotky výšky).
+________________________________________
+Závěr:
+Síťové prvky modelu ISO/OSI a strukturovaná kabeláž tvoří nezbytnou součást každé moderní počítačové sítě. Správné použití síťových prvků, jako jsou switche, routery, modemy, a správné návrhy kabeláže, topologie a výběr komponent zajišťují optimální výkon, efektivitu a bezpečnost sítě. Tato infrastruktura je základem pro přenos dat a provoz jak v malých, tak ve velkých firemních a internetových sítích.
+
+
+19. Ethernet
+Ethernet je jeden z nejběžnějších a nejrozšířenějších standardů pro počítačové sítě, zejména v rámci místních sítí (LAN). Ethernet poskytuje způsob, jakým zařízení komunikují mezi sebou prostřednictvím fyzického média, typicky pomocí kabelů nebo bezdrátového připojení. V tomto detailním popisu prozkoumáme historii Ethernetu, jeho vývoj, značení, kabeláž, bloky dat, princip činnosti, řešení kolizí a různé varianty Ethernetu, jako je 10/100/1000 Ethernet.
+________________________________________
+Historie a vývoj, značení, kabeláž
+Historie a vývoj
+Ethernet byl vyvinut v roce 1973 skupinou inženýrů vedenou Robertem Metcalfem ve společnosti Xerox Palo Alto Research Center (PARC) jako součást projektu pro propojení počítačů a sdílení informací v rámci místní sítě. První verze Ethernetu byla známá jako "Ethernet 1.0" a fungovala na rychlosti 2,94 Mbps. V roce 1980, s vydáním standardu IEEE 802.3, byl Ethernet oficiálně uznán jako standard pro místní sítě (LAN). Tento standard definoval pravidla pro přenos dat, typy kabelů, strukturu rámců a způsob komunikace mezi zařízeními v síti.
+Vývoj Ethernetu
+V průběhu let se Ethernet vyvinul a zlepšoval v několika klíčových aspektech:
+•	Ethernet 2: Tento vylepšený standard zlepšil přenosovou rychlost na 10 Mbps (10BASE-T) a byl rozšířen na velké množství zařízení.
+•	Fast Ethernet: V roce 1995 byl představen standard 100BASE-TX, který umožnil přenosovou rychlost až 100 Mbps.
+•	Gigabit Ethernet: Později přišel standard 1000BASE-T, který zvýšil rychlost na 1 Gbps (1000 Mbps).
+•	10 Gigabit Ethernet: Nejnovější verze, která umožňuje přenosovou rychlost až 10 Gbps.
+Značení Ethernetu
+Ethernetové standardy jsou pojmenovány podle svého přenosového média a rychlosti přenosu dat. Například:
+•	10BASE-T: 10 Mbps přes kroucenou dvojlinku.
+•	100BASE-TX: 100 Mbps přes kroucenou dvojlinku.
+•	1000BASE-T: 1000 Mbps (1 Gbps) přes kroucenou dvojlinku.
+•	10GBASE-T: 10 Gbps přes kroucenou dvojlinku.
+•	100BASE-FX: 100 Mbps přes optické vlákno.
+•	1000BASE-SX: 1 Gbps přes optické vlákno.
+Kabeláž
+Ethernet používá různé typy kabeláže, v závislosti na typu Ethernetu a požadavcích na přenosovou rychlost:
+•	Kroucená dvojlinka (UTP/STP): Nejčastější kabeláž pro Ethernet, kde každý pár vodičů je kroucený, aby se minimalizovaly elektromagnetické rušení.
+o	Cat 5e (Category 5 enhanced): Podporuje Ethernet rychlostí 1000 Mbps (1 Gbps).
+o	Cat 6: Podporuje až 10 Gbps na kratší vzdálenosti.
+•	Optické vlákno: Pro vyšší rychlosti a delší vzdálenosti je Ethernet často přenášen přes optická vlákna, například 100BASE-FX a 1000BASE-SX.
+________________________________________
+Bloky dat, princip činnosti, řešení kolizí
+Bloky dat
+Ethernet používá Ethernet rámce (Ethernet frames) k přenosu dat mezi zařízeními v síti. Ethernet rámec se skládá z následujících částí:
+1.	Preámbule: Slouží k synchronizaci zařízení na začátku rámce. Má délku 7 bajtů.
+2.	Destinační adresa: MAC adresa zařízení, které má rámec přijmout (6 bajtů).
+3.	Zdrojová adresa: MAC adresa odesílatele (6 bajtů).
+4.	Typ / Délka: Identifikuje typ protokolu na vyšší vrstvě (např. IP, ARP) nebo velikost dat (2 bajty).
+5.	Data (Payload): Skutečná data, která jsou odesílána mezi zařízeními (max. 1500 bajtů).
+6.	Kontrolní součet (FCS): Kontrolní součet pro detekci chyb v datech (4 bajty).
+Princip činnosti
+Ethernet funguje na principu bezpečného přenosu dat mezi zařízeními v síti. Zařízení v Ethernetové síti používají MAC adresy (Media Access Control) k identifikaci, a každý rámec dat je směrován na základě této adresy. Všechna zařízení v síti sdílejí společný přenosový kanál, což znamená, že přenos dat mezi dvěma zařízeními probíhá tímto sdíleným kanálem, dokud není připojen switch (přepínač), který směruje data mezi jednotlivými zařízeními.
+Řešení kolizí
+Ethernet používá protokol CSMA/CD (Carrier Sense Multiple Access with Collision Detection) k řízení přístupu k médiu:
+•	Carrier Sense: Zařízení "poslouchá" kanál, aby zjistilo, zda je volný.
+•	Multiple Access: Všechna zařízení mohou přistupovat k médiu.
+•	Collision Detection: Pokud dvě zařízení současně začnou vysílat data a dojde ke kolizi, oba odesílatelé detekují tuto kolizi a zastaví vysílání. Pak po náhodné prodlevě data znovu pošlou.
+________________________________________
+10/100/1000 Ethernet: popis, přenos a kódování dat
+10BASE-T (10 Mbps)
+•	Popis: Nejstarší standard Ethernetu, který umožňuje přenosovou rychlost až 10 Mbps.
+•	Kabeláž: Používá kroucenou dvojlinku (Cat 3 nebo Cat 5).
+•	Použití: V minulosti pro menší a starší sítě, dnes již obvykle zastaralý.
+100BASE-TX (Fast Ethernet) (100 Mbps)
+•	Popis: Zrychlená verze Ethernetu s přenosovou rychlostí až 100 Mbps.
+•	Kabeláž: Používá kroucenou dvojlinku (Cat 5e nebo vyšší).
+•	Použití: Nejčastěji používaný standard pro většinu domácích a malých firemních sítí.
+1000BASE-T (Gigabit Ethernet) (1000 Mbps / 1 Gbps)
+•	Popis: Nejrozšířenější Ethernet pro místní sítě s přenosovou rychlostí až 1 Gbps.
+•	Kabeláž: Používá kroucenou dvojlinku (Cat 5e a vyšší).
+•	Použití: Vhodný pro větší sítě, jako jsou kancelářské budovy nebo datacentra.
+Přenos a kódování dat
+Pro přenos dat v Ethernetových sítích jsou používány různé metody kódování:
+•	Manchester kódování: Používá se pro synchronizaci hodinového signálu a přenos bitů. Každý bit je reprezentován přechodem.
+•	4B/5B kódování: Používá se ve Fast Ethernetu (100BASE-TX) k dosažení lepšího signálového poměru a snížení chybovosti.
+•	PAM-5 (Pulse Amplitude Modulation): Používá se v Gigabit Ethernetu pro přenos signálů přes kroucené dvojlinky, kde každý signál představuje 5 různých hodnot.
+________________________________________
+Závěr
+Ethernet je klíčovým protokolem pro vytváření a správu počítačových sítí. S jeho vývojem, od původního 10BASE-T až po moderní 10GBASE-T, se stal základem pro většinu místních sítí (LAN) a umožnil rychlý přenos dat mezi zařízeními. Když je správně implementován, poskytuje stabilní, spolehlivou a efektivní síťovou infrastrukturu.
+20. Bezdrátové síťové technologie
+Bezdrátové síťové technologie umožňují přenos dat mezi zařízeními bez použití fyzických kabelů, což je velmi praktické pro mobilitu a flexibilitu. Bezdrátové sítě se používají pro různorodé aplikace, jako jsou domácí a firemní sítě, mobilní telekomunikace, připojení k internetu a různá IoT (Internet of Things) zařízení. Následuje detailní přehled o elektromagnetických vlnách, spektru, různých bezdrátových technologiích, jako jsou Bluetooth a Wi-Fi, a přehled dalších bezdrátových technologií.
+________________________________________
+Elektromagnetická vlna a spektrum
+Elektromagnetická vlna
+Elektromagnetické vlny jsou oscilující elektrická a magnetická pole, která se šíří prostorem a přenášejí energii. V bezdrátových sítích se elektromagnetické vlny používají k přenosu dat. Jsou vyzařovány anténami a mohou cestovat vzduchem nebo jinými materiály, přičemž mohou mít různé frekvence a vlnové délky.
+Spektrum
+Spektrum elektromagnetických vln se dělí do různých pásem podle frekvence a vlnové délky. Pro bezdrátové komunikace jsou důležitá následující pásma:
+•	Nízké frekvence (30 Hz až 300 Hz): Používají se pro dlouhé vzdálenosti (např. AM rádio).
+•	VHF a UHF pásma (30 MHz až 3 GHz): Jsou používána pro široké aplikace, jako je televize, mobilní telefony a Wi-Fi.
+•	Mikrovlny (1 GHz až 300 GHz): Využívají se pro Wi-Fi, Bluetooth, satelitní komunikace a radarové systémy.
+Každé pásmo má své specifické využití a požadavky na přenosovou kapacitu, což ovlivňuje šířku pásma a rychlost přenosu dat.
+________________________________________
+Datové přenosy a základní metody přenosu
+Bezdrátové přenosy dat mohou využívat různé metody přenosu, v závislosti na technologii, která je použita. Základní metody přenosu zahrnují:
+1.	Frekvenční modulace (FM): Používá se pro přenos informací pomocí změny frekvence nosné vlny.
+2.	Amplitudová modulace (AM): Mění amplitudu nosné vlny podle přenášených dat.
+3.	Fázová modulace (PM): Moduluje fázi nosné vlny k přenosu dat.
+4.	Digitální modulace: Využívá techniky jako QAM (Quadrature Amplitude Modulation), které umožňují vyšší datové přenosové rychlosti při využívání různých amplitud a fází pro různé hodnoty dat.
+Pro efektivní přenos dat je také důležitá kódování a komprese, která zajišťuje nižší chyby při přenosu a efektivní využití šířky pásma.
+________________________________________
+Bluetooth
+Účel
+Bluetooth je bezdrátová technologie, která je určena pro krátké vzdálenosti (obvykle do 100 metrů) a slouží k připojení zařízení jako jsou mobilní telefony, sluchátka, počítače, tiskárny a další zařízení v osobní oblasti (PAN - Personal Area Network).
+Parametry
+•	Frekvenční pásmo: Bluetooth funguje v pásmu 2.4 GHz, což je ISM (Industrial, Scientific, Medical) pásmo, které je volně k dispozici pro různé aplikace.
+•	Přenosová rychlost: Bluetooth může dosahovat přenosové rychlosti až 3 Mbps v nejnovějších verzích (např. Bluetooth 5).
+•	Rozsah: Bluetooth je navrženo pro přenosy na vzdálenost od několika centimetrů až po 100 metrů v závislosti na verzi.
+Princip činnosti/modulační metody
+Bluetooth používá metodu FHSS (Frequency Hopping Spread Spectrum), která znamená, že data jsou přenášena na různých frekvencích, čímž se minimalizují rušení a zajišťuje bezpečnost přenosu. Komunikace probíhá v malých blocích dat, které se přenášejí mezi zařízeními ve formě paketů.
+Topologie sítě
+Bluetooth sítě využívají piconet a scatternet topologie:
+•	Piconet: Síť skládající se z jednoho zařízení, které slouží jako master, a několika dalších slave zařízení.
+•	Scatternet: Skupina více piconetů propojených mezi sebou, čímž je vytvořena složitější síť.
+________________________________________
+Wi-Fi
+Účel
+Wi-Fi je standard pro bezdrátové LAN (WLAN) a umožňuje připojení k síti Internet a mezi zařízeními bez potřeby kabelového připojení. Wi-Fi je široce využíváno v domácnostech, kancelářích a veřejných prostorech pro zajištění připojení k Internetu.
+Parametry
+•	Frekvenční pásmo: Wi-Fi využívá frekvenční pásma 2.4 GHz a 5 GHz. Novější verze Wi-Fi, jako Wi-Fi 6, může také využívat pásmo 6 GHz.
+•	Přenosová rychlost: Wi-Fi 6 umožňuje přenosy až 9.6 Gbps. Rychlost se liší podle verze Wi-Fi a šířky pásma.
+•	Rozsah: Obvykle kolem 100 metrů pro pásmo 2.4 GHz, a kolem 50 metrů pro pásmo 5 GHz v otevřeném prostoru.
+Princip činnosti/modulační metody
+Wi-Fi používá OFDM (Orthogonal Frequency Division Multiplexing), což je metoda, která rozdělí signál na více nosných frekvencí, což zlepšuje přenosovou rychlost a robustnost proti rušení.
+•	802.11a/b/g/n/ac/ax: Různé verze Wi-Fi standardů přinášejí vylepšení v oblasti rychlosti, kapacity a pokrytí.
+•	MIMO (Multiple Input Multiple Output): Technika, která umožňuje současné využívání více antén pro zlepšení přenosové rychlosti a kapacity sítě.
+Topologie sítě
+Wi-Fi používá hvězdicovou topologii, kde zařízení (klienti) komunikují prostřednictvím přístupového bodu (AP - Access Point), který je připojen k routeru nebo jiné síťové infrastruktuře.
+Anténní systémy
+Wi-Fi systémy používají různé druhy antén:
+•	Omnidirekcionální antény: Vyzařují signál rovnoměrně ve všech směrech.
+•	Direkcionální antény: Soustředí signál do konkrétního směru, čímž zvyšují dosah a sílu signálu v určité oblasti.
+________________________________________
+Přehled a užití jiných technologií
+•	ZigBee: Je to bezdrátová komunikační technologie určená pro nízkou spotřebu energie a krátké vzdálenosti. Používá se hlavně v IoT zařízeních pro chytré domácnosti, senzory, a zařízení pro automatizaci.
+•	Z-Wave: Podobně jako ZigBee, je Z-Wave určeno pro chytré domácnosti. Umožňuje nízkonákladovou a nízkovýkonovou komunikaci mezi zařízeními.
+•	NFC (Near Field Communication): Technologie umožňující bezdrátovou komunikaci na velmi krátkou vzdálenost (do 10 cm). Používá se například pro bezkontaktní platby, připojování k zařízení nebo v aplikacích pro označování.
+•	LoRa (Long Range): Bezdrátová technologie určená pro velmi dlouhé vzdálenosti při nízké spotřebě energie, ideální pro aplikace v IoT, jako jsou senzory a monitorovací zařízení na rozsáhlých územích.
+________________________________________
+Závěr
+Bezdrátové síťové technologie jsou základem moderní komunikace. Bluetooth a Wi-Fi jsou dvě z nejběžněji používaných technologií pro osobní a podnikové sítě, zatímco další technologie jako ZigBee a LoRa rozšiřují možnosti v oblasti IoT. S rostoucí poptávkou po mobilních a bezdrátových aplikacích se tyto technologie neustále vyvíjejí, zvyšují rychlost, pokrytí a efektivitu přenosu dat.

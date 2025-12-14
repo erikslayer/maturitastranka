@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Fyzická vrstva modelu ISO/OSI - kabeláž, konektory, přenosová média, síťové prvky.">
+    <title>12. Fyzická vrstva modelu ISO/OSI - PSI | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a>
+                <span class="separator">›</span>
+                <a href="../index.html">ICT</a>
+                <span class="separator">›</span>
+                <a href="../psi.html">Počítačové sítě</a>
+                <span class="separator">›</span>
+                <span class="current">Fyzická vrstva</span>
+            </nav>
+
+            <div class="book-header animate-fade-in">
+                <h1>⚡ Fyzická vrstva modelu ISO/OSI</h1>
+                <p class="author">Téma 12 - PSI</p>
+                <div class="meta">
+                    <span class="meta-item">📡 Počítačové sítě</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+
+            <div class="glass-panel animate-fade-in book-content">
+                <p>Fyzická vrstva je <strong>první a nejnižší vrstva</strong> modelu ISO/OSI. Tato vrstva je zodpovědná
+                    za přenos dat ve formě signálů mezi síťovými zařízeními.</p>
+
+                <h2>1. Pozice vrstvy v modelech, funkce</h2>
+
+                <h3>Pozice</h3>
+                <ul>
+                    <li>Fyzická vrstva se nachází na samém spodku sedmivrstvého modelu ISO/OSI</li>
+                    <li>Její funkcí je zprostředkovat fyzické spojení mezi zařízeními a zajistit přenos datových bitů
+                        prostřednictvím přenosových médií</li>
+                </ul>
+
+                <h3>Funkce</h3>
+                <ul>
+                    <li><strong>Převod dat na signály:</strong> Tato vrstva převádí digitální data na fyzické signály
+                        (elektrické, optické, nebo rádiové)</li>
+                    <li><strong>Definice přenosových médií:</strong> Stanovuje, jaké typy kabelů nebo bezdrátových médií
+                        budou použity</li>
+                    <li><strong>Synchronizace bitů:</strong> Zajišťuje správnou synchronizaci při přenosu dat, aby
+                        přijímač věděl, kde začíná a končí datový bit</li>
+                    <li><strong>Přenosová rychlost:</strong> Určuje maximální rychlost přenosu dat v síti</li>
+                    <li><strong>Fyzická topologie:</strong> Řídí uspořádání připojení mezi zařízeními (např. hvězda,
+                        sběrnice, kruh)</li>
+                </ul>
+
+                <h2>2. Druhy kabeláže, konektory</h2>
+
+                <h3>Druhy kabeláže</h3>
+
+                <h4>Kroucená dvojlinka (Twisted Pair)</h4>
+                <ul>
+                    <li>Skládá se z párů měděných vodičů kroucených do spirály, což minimalizuje elektromagnetické
+                        rušení</li>
+                    <li><strong>UTP (Unshielded Twisted Pair):</strong> Bez stínění, vhodné pro kancelářské a domácí
+                        sítě</li>
+                    <li><strong>STP (Shielded Twisted Pair):</strong> S ochranou proti rušení, vhodné pro průmyslové
+                        prostředí</li>
+                    <li>Maximální rychlost: Až 10 Gbps na krátké vzdálenosti</li>
+                </ul>
+
+                <h4>Koaxiální kabel (Coaxial Cable)</h4>
+                <ul>
+                    <li>Má centrální vodič obklopený izolací, stíněním a pláštěm</li>
+                    <li>Používá se pro kabelové televize a starší sítě</li>
+                    <li><strong>Výhody:</strong> Vysoká odolnost proti rušení</li>
+                    <li><strong>Nevýhody:</strong> Omezená flexibilita</li>
+                </ul>
+
+                <h4>Optické vlákno (Fiber Optic Cable)</h4>
+                <ul>
+                    <li>Přenáší data prostřednictvím světelných pulzů</li>
+                    <li><strong>Single-mode:</strong> Pro přenos na dlouhé vzdálenosti (např. páteřní sítě)</li>
+                    <li><strong>Multi-mode:</strong> Pro kratší vzdálenosti, např. v datových centrech</li>
+                    <li><strong>Výhody:</strong> Vysoká přenosová rychlost, nízké zpoždění</li>
+                    <li><strong>Nevýhody:</strong> Vyšší cena, náročnější instalace</li>
+                </ul>
+
+                <h3>Konektory</h3>
+                <ul>
+                    <li><strong>RJ-45:</strong> Používá se s kroucenou dvojlinkou pro Ethernet. Podporuje přenosové
+                        rychlosti od 10 Mbps do 10 Gbps.</li>
+                    <li><strong>BNC (Bayonet Neill-Concelman):</strong> Pro koaxiální kabely, zejména v CCTV nebo
+                        starších sítích.</li>
+                    <li><strong>SC, LC, ST:</strong> Používají se s optickými vlákny. Rozdíly jsou v konstrukci a
+                        velikosti konektorů.</li>
+                </ul>
+
+                <h2>3. Vlastnosti přenosových médií, typy přenosů</h2>
+
+                <h3>Vlastnosti přenosových médií</h3>
+                <ul>
+                    <li><strong>Šířka pásma:</strong> Maximální kapacita přenosu dat, např. 1 Gbps u měděného kabelu,
+                        100 Gbps u optického vlákna</li>
+                    <li><strong>Rušení (EMI/RFI):</strong> Elektrická a rádiová interference, která může narušit přenos
+                    </li>
+                    <li><strong>Vzdálenost:</strong> Omezená délkou kabelu (např. kroucená dvojlinka do 100 m, optické
+                        vlákno až stovky km)</li>
+                    <li><strong>Latence:</strong> Doba zpoždění signálu mezi odesláním a přijetím</li>
+                </ul>
+
+                <h3>Typy přenosů</h3>
+                <ul>
+                    <li><strong>Simplexní přenos:</strong> Data proudí pouze jedním směrem (např. vysílání rádia)</li>
+                    <li><strong>Poloduplexní přenos:</strong> Data mohou proudit oběma směry, ale ne současně (např.
+                        vysílačky)</li>
+                    <li><strong>Plný duplex:</strong> Obousměrná komunikace v reálném čase (např. telefonní hovory)</li>
+                </ul>
+
+                <h2>4. Analogové a digitální sítě, kódování a modulace</h2>
+
+                <h3>Analogové sítě</h3>
+                <ul>
+                    <li>Přenášejí plynulé signály, např. zvuk telefonních hovorů</li>
+                    <li>Používají amplitudu a frekvenci pro přenos dat</li>
+                </ul>
+
+                <h3>Digitální sítě</h3>
+                <ul>
+                    <li>Přenášejí diskrétní signály (1 a 0)</li>
+                    <li><strong>Výhody:</strong> Nižší šum, vyšší spolehlivost</li>
+                </ul>
+
+                <h3>Kódování</h3>
+                <p>Převádí digitální data na signály:</p>
+                <ul>
+                    <li><strong>NRZ (Non-Return to Zero):</strong> Jednoduché kódování binárních hodnot</li>
+                    <li><strong>Manchester:</strong> Data jsou kódována s vloženými hodinami</li>
+                </ul>
+
+                <h3>Modulace</h3>
+                <p>Přizpůsobuje signál přenosovému médiu:</p>
+                <ul>
+                    <li><strong>AM (Amplitudová modulace):</strong> Změna amplitudy signálu</li>
+                    <li><strong>FM (Frekvenční modulace):</strong> Změna frekvence signálu</li>
+                    <li><strong>QAM (Kvadraturní amplitudová modulace):</strong> Kombinace změny amplitudy a fáze</li>
+                </ul>
+
+                <h2>5. Síťové prvky a jejich funkce</h2>
+                <ul>
+                    <li><strong>Repeater (Opakovač):</strong> Zesiluje signál a prodlužuje dosah sítě</li>
+                    <li><strong>Hub:</strong> Přeposílá data všem zařízením v síti bez ohledu na cíl</li>
+                    <li><strong>Switch:</strong> Inteligentně přeposílá data pouze cílovému zařízení. Funguje na druhé
+                        (linkové) vrstvě modelu OSI.</li>
+                    <li><strong>Router:</strong> Směruje datové pakety mezi různými sítěmi. Pracuje na třetí (síťové)
+                        vrstvě modelu OSI.</li>
+                    <li><strong>Modem:</strong> Převádí digitální data na analogový signál a naopak</li>
+                    <li><strong>Přístupový bod (Access Point):</strong> Slouží k propojení bezdrátových zařízení s
+                        kabelovou sítí</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../../script.js"></script>
+</body>
+
+</html>

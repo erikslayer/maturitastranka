@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Grafický subsystém PC - GPU, architektura, výpočetní jednotky a technologie.">
+    <title>6. Grafický subsystém PC (GPU) - HW | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../hw.html">Hardware</a><span class="separator">›</span>
+                <span class="current">Grafický subsystém (GPU)</span>
+            </nav>
+
+            <div class="book-header animate-fade-in">
+                <h1>🎮 Grafický subsystém PC (GPU)</h1>
+                <p class="author">Téma 6 - Hardware</p>
+                <div class="meta">
+                    <span class="meta-item">🖥️ Hardware</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>1. Grafická karta vs Integrovaná grafika</h2>
+
+                <h3>Dedikovaná grafická karta</h3>
+                <ul>
+                    <li>Samostatná karta s vlastním GPU a VRAM</li>
+                    <li>Vysoký výkon pro hry a profesionální aplikace</li>
+                    <li>Připojení přes PCIe x16</li>
+                    <li>Vyžaduje externí napájení (6-pin, 8-pin)</li>
+                </ul>
+
+                <h3>Integrovaná grafika (iGPU)</h3>
+                <ul>
+                    <li>Integrována přímo v procesoru</li>
+                    <li>Sdílí RAM s CPU (UMA - Unified Memory Architecture)</li>
+                    <li>Nižší výkon, ale dostatečný pro kancelářské použití</li>
+                    <li>Intel UHD/Iris Xe, AMD Radeon Graphics</li>
+                </ul>
+
+                <h2>2. Architektura GPU</h2>
+
+                <h3>CUDA/Stream Cores</h3>
+                <ul>
+                    <li><strong>NVIDIA:</strong> CUDA cores - tisíce jednoduchých jader</li>
+                    <li><strong>AMD:</strong> Stream processors</li>
+                    <li>Paralelní zpracování tisíců vláken současně</li>
+                </ul>
+
+                <h3>Tensor Cores (NVIDIA)</h3>
+                <ul>
+                    <li>Specializované jednotky pro AI a deep learning</li>
+                    <li>Akcelerace operací maticového násobení</li>
+                    <li>Využití: DLSS, AI inference</li>
+                </ul>
+
+                <h3>RT Cores (Ray Tracing)</h3>
+                <ul>
+                    <li>Hardwarová akcelerace ray tracingu</li>
+                    <li>Realistické odrazy, stíny a osvětlení</li>
+                    <li>NVIDIA RTX, AMD RDNA 2+</li>
+                </ul>
+
+                <h2>3. Grafická paměť (VRAM)</h2>
+
+                <h3>Typy paměti</h3>
+                <ul>
+                    <li><strong>GDDR6:</strong> Běžná v moderních GPU, vysoká propustnost</li>
+                    <li><strong>GDDR6X:</strong> Vyšší rychlost (RTX 4090), PAM4 signalizace</li>
+                    <li><strong>HBM2/HBM3:</strong> Extreme propustnost pro datacenter GPU</li>
+                </ul>
+
+                <h3>Parametry VRAM</h3>
+                <ul>
+                    <li><strong>Kapacita:</strong> 4-24 GB (desktopové karty)</li>
+                    <li><strong>Šířka sběrnice:</strong> 128-bit, 192-bit, 256-bit, 384-bit</li>
+                    <li><strong>Propustnost:</strong> GB/s (bandwidth)</li>
+                </ul>
+
+                <h2>4. Klíčové technologie</h2>
+
+                <h3>Ray Tracing</h3>
+                <ul>
+                    <li>Simulace skutečného chování světla</li>
+                    <li>Realistické odrazy, stíny, globální osvětlení</li>
+                    <li>Výkonově náročné</li>
+                </ul>
+
+                <h3>DLSS (Deep Learning Super Sampling) - NVIDIA</h3>
+                <ul>
+                    <li>AI upscaling obrazu pro vyšší FPS</li>
+                    <li>Renderování na nižším rozlišení, AI zvýšení kvality</li>
+                    <li>DLSS 3: Frame Generation (mezirámce generované AI)</li>
+                </ul>
+
+                <h3>FSR (FidelityFX Super Resolution) - AMD</h3>
+                <ul>
+                    <li>Open-source upscaling technologie</li>
+                    <li>Funguje na širší škále hardware</li>
+                    <li>FSR 3: Podobné frame generation jako DLSS 3</li>
+                </ul>
+
+                <h3>G-SYNC a FreeSync</h3>
+                <ul>
+                    <li>Synchronizace obnovovací frekvence monitoru s GPU</li>
+                    <li>Eliminuje screen tearing a stuttering</li>
+                    <li><strong>G-SYNC:</strong> NVIDIA (proprietární modul)</li>
+                    <li><strong>FreeSync:</strong> AMD (otevřený standard VESA Adaptive-Sync)</li>
+                </ul>
+
+                <h2>5. Video výstupy</h2>
+                <ul>
+                    <li><strong>HDMI 2.1:</strong> 4K@120Hz, 8K@60Hz, eARC</li>
+                    <li><strong>DisplayPort 1.4a/2.0:</strong> 4K@144Hz, 8K@60Hz, DSC komprese</li>
+                    <li><strong>USB-C (DP Alt Mode):</strong> Videoobraz + napájení</li>
+                    <li><strong>DVI/VGA:</strong> Zastaralé, již se nepoužívají</li>
+                </ul>
+
+                <h2>6. Výrobci GPU</h2>
+
+                <h3>NVIDIA</h3>
+                <ul>
+                    <li><strong>GeForce RTX 4000:</strong> Gaming (Ada Lovelace arch.)</li>
+                    <li><strong>RTX A-series:</strong> Profesionální workstation</li>
+                    <li><strong>Tesla/A100/H100:</strong> Datacenter, AI</li>
+                </ul>
+
+                <h3>AMD</h3>
+                <ul>
+                    <li><strong>Radeon RX 7000:</strong> Gaming (RDNA 3)</li>
+                    <li><strong>Radeon Pro:</strong> Workstation</li>
+                    <li><strong>Instinct:</strong> Datacenter compute</li>
+                </ul>
+
+                <h3>Intel</h3>
+                <ul>
+                    <li><strong>Arc A-series:</strong> Nový hráč na trhu (Xe architecture)</li>
+                    <li>Arc A770, A750, A380</li>
+                </ul>
+
+                <h2>7. Výkon a benchmarking</h2>
+                <ul>
+                    <li><strong>FPS (Frames Per Second):</strong> Snímky za sekundu</li>
+                    <li><strong>4K gaming:</strong> 3840 × 2160, vyžaduje silnou GPU</li>
+                    <li><strong>1080p/1440p:</strong> Běžné rozlišení pro gaming</li>
+                    <li><strong>Benchmark:</strong> 3DMark, Unigine, hry</li>
+                </ul>
+
+                <h2>8. TDP a chlazení</h2>
+                <ul>
+                    <li><strong>TDP:</strong> 150W (střední třída) až 450W+ (high-end)</li>
+                    <li><strong>Vzduchové:</strong> 2-3 ventilátory, heatpipes</li>
+                    <li><strong>Vodní (AIO):</strong> Nejvyšší výkon chlazení</li>
+                    <li><strong>Throttling:</strong> Snížení výkonu při přehřátí</li>
+                </ul>
+
+                <h2>9. Multi-GPU</h2>
+                <ul>
+                    <li><strong>NVIDIA SLI:</strong> Ukončeno pro spotřebitelské karty</li>
+                    <li><strong>AMD CrossFire:</strong> Též deprecated</li>
+                    <li>Moderní hry preferují jednu silnou GPU</li>
+                    <li>Stále se používá pro profesionální compute (NVLink)</li>
+                </ul>
+
+                <h2>🎓 Shrnutí</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>GPU:</strong> Tisíce paralelních jader pro grafiku</li>
+                        <li><strong>VRAM:</strong> GDDR6/6X pro uložení textur a framebufferů</li>
+                        <li><strong>RT Cores:</strong> Hardwarový ray tracing</li>
+                        <li><strong>DLSS/FSR:</strong> AI upscaling pro vyšší FPS</li>
+                        <li><strong>Výstupy:</strong> HDMI 2.1, DisplayPort 2.0</li>
+                        <li><strong>Výrobci:</strong> NVIDIA (RTX), AMD (Radeon), Intel (Arc)</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../../script.js"></script>
+</body>
+
+</html>

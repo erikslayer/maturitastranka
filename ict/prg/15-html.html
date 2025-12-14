@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Základy HTML - struktura dokumentu, značky, sémantika.">
+    <title>15. HTML - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">HTML</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🌐 HTML</h1>
+                <p class="author">Téma 15 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je HTML?</h2>
+                <p><strong>HyperText Markup Language</strong> je značkovací jazyk pro tvorbu webových stránek. Definuje
+                    <strong>strukturu a obsah</strong> stránky pomocí značek (tagů).</p>
+
+                <p><strong>💡 HTML není programovací jazyk!</strong> Je to značkovací jazyk – popisuje strukturu, ne
+                    logiku.</p>
+
+                <h2>Základní struktura HTML dokumentu</h2>
+                <pre class="language-plaintext"><code>&lt;!DOCTYPE html&gt;                     &lt;!-- Deklarace typu dokumentu (HTML5) --&gt;
+&lt;html lang="cs"&gt;                    &lt;!-- Kořenový element, jazyk stránky --&gt;
+&lt;head&gt;
+    &lt;!-- Metadata (nejsou viditelná na stránce) --&gt;
+    &lt;meta charset="UTF-8"&gt;          &lt;!-- Kódování znaků --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;meta name="description" content="Popis stránky pro vyhledávače"&gt;
+    &lt;title&gt;Název stránky&lt;/title&gt;   &lt;!-- Záložka prohlížeče --&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;  &lt;!-- Připojení CSS --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Viditelný obsah stránky --&gt;
+    &lt;h1&gt;Hlavní nadpis&lt;/h1&gt;
+    &lt;p&gt;Odstavec textu.&lt;/p&gt;
+    
+    &lt;script src="script.js"&gt;&lt;/script&gt;  &lt;!-- JavaScript na konci body --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h2>Anatomie HTML značky</h2>
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <pre class="language-plaintext"><code>&lt;a href="https://example.com" target="_blank"&gt;Odkaz&lt;/a&gt;
+ │  │                         │              │      │
+ │  └─ atribut ──────────────┘              │      │
+ │          │                                │      │
+ └─ otevírací tag ──────────────────────────┘      │
+                   obsah                           │
+                                    uzavírací tag ─┘</code></pre>
+                </div>
+
+                <h2>Základní značky</h2>
+
+                <h3>Nadpisy (h1-h6)</h3>
+                <pre class="language-plaintext"><code>&lt;h1&gt;Hlavní nadpis&lt;/h1&gt;    &lt;!-- Jen JEDEN na stránku! --&gt;
+&lt;h2&gt;Podnadpis&lt;/h2&gt;
+&lt;h3&gt;Menší nadpis&lt;/h3&gt;
+&lt;!-- h4, h5, h6 pro další úrovně --&gt;</code></pre>
+
+                <h3>Text</h3>
+                <pre class="language-plaintext"><code>&lt;p&gt;Odstavec textu. Mezery a nové řádky se ignorují.&lt;/p&gt;
+
+&lt;strong&gt;Tučný text&lt;/strong&gt;      &lt;!-- Důležitý text --&gt;
+&lt;em&gt;Kurzíva&lt;/em&gt;                  &lt;!-- Zvýrazněný text --&gt;
+&lt;mark&gt;Zvýrazněný&lt;/mark&gt;           &lt;!-- Marker --&gt;
+
+&lt;br&gt;                              &lt;!-- Zalomení řádku (bez uzavíracího tagu) --&gt;
+&lt;hr&gt;                              &lt;!-- Horizontální čára --&gt;
+
+&lt;!-- Speciální znaky (entity) --&gt;
+&amp;lt;    &lt;!-- < --&gt;
+&amp;gt;    &lt;!-- > --&gt;
+&amp;amp;   &lt;!-- & --&gt;
+&amp;nbsp;  &lt;!-- Nezlomitelná mezera --&gt;</code></pre>
+
+                <h3>Odkazy</h3>
+                <pre class="language-plaintext"><code>&lt;!-- Základní odkaz --&gt;
+&lt;a href="https://google.com"&gt;Google&lt;/a&gt;
+
+&lt;!-- Otevře v nové záložce --&gt;
+&lt;a href="https://google.com" target="_blank"&gt;Google&lt;/a&gt;
+
+&lt;!-- Relativní odkaz (v rámci webu) --&gt;
+&lt;a href="kontakt.html"&gt;Kontakt&lt;/a&gt;
+&lt;a href="../index.html"&gt;Domů&lt;/a&gt;
+
+&lt;!-- E-mailový odkaz --&gt;
+&lt;a href="mailto:info@example.com"&gt;Napište nám&lt;/a&gt;
+
+&lt;!-- Kotva (skok na ID) --&gt;
+&lt;a href="#sekce1"&gt;Přejít na sekci&lt;/a&gt;
+...
+&lt;h2 id="sekce1"&gt;Sekce 1&lt;/h2&gt;</code></pre>
+
+                <h3>Obrázky</h3>
+                <pre class="language-plaintext"><code>&lt;!-- Základní obrázek (samouzavírací tag) --&gt;
+&lt;img src="obrazek.jpg" alt="Popis obrázku"&gt;
+
+&lt;!-- S rozměry --&gt;
+&lt;img src="obrazek.jpg" alt="Popis" width="300" height="200"&gt;
+
+&lt;!-- alt je POVINNÝ! Pro přístupnost a SEO --&gt;</code></pre>
+
+                <h3>Seznamy</h3>
+                <pre class="language-plaintext"><code>&lt;!-- Nečíslovaný seznam (odrážky) --&gt;
+&lt;ul&gt;
+    &lt;li&gt;Položka 1&lt;/li&gt;
+    &lt;li&gt;Položka 2&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Číslovaný seznam --&gt;
+&lt;ol&gt;
+    &lt;li&gt;První&lt;/li&gt;
+    &lt;li&gt;Druhý&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Definiční seznam --&gt;
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Značkovací jazyk&lt;/dd&gt;
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Stylovací jazyk&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+                <h2>Sémantické značky (HTML5)</h2>
+                <p>Přidávají <strong>význam</strong> struktuře stránky. Důležité pro SEO a přístupnost.</p>
+
+                <pre class="language-plaintext"><code>&lt;header&gt;
+    &lt;!-- Záhlaví stránky/sekce (logo, navigace) --&gt;
+    &lt;nav&gt;
+        &lt;!-- Navigační menu --&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="#"&gt;Domů&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#"&gt;O nás&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+    &lt;!-- Hlavní obsah (jen jeden na stránku) --&gt;
+    
+    &lt;article&gt;
+        &lt;!-- Samostatný obsah (článek, příspěvek) --&gt;
+        &lt;h2&gt;Titulek článku&lt;/h2&gt;
+        &lt;p&gt;Obsah...&lt;/p&gt;
+    &lt;/article&gt;
+    
+    &lt;section&gt;
+        &lt;!-- Tematická sekce --&gt;
+        &lt;h2&gt;Nadpis sekce&lt;/h2&gt;
+    &lt;/section&gt;
+    
+    &lt;aside&gt;
+        &lt;!-- Doplňkový obsah (sidebar) --&gt;
+    &lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;
+    &lt;!-- Zápatí stránky (kontakt, copyright) --&gt;
+    &lt;p&gt;&amp;copy; 2025 Moje stránka&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+
+                <h2>Tabulky</h2>
+                <pre class="language-plaintext"><code>&lt;table&gt;
+    &lt;thead&gt;                          &lt;!-- Záhlaví tabulky --&gt;
+        &lt;tr&gt;                          &lt;!-- Řádek (table row) --&gt;
+            &lt;th&gt;Jméno&lt;/th&gt;            &lt;!-- Buňka záhlaví (table header) --&gt;
+            &lt;th&gt;Věk&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;                          &lt;!-- Tělo tabulky --&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Jan&lt;/td&gt;              &lt;!-- Buňka dat (table data) --&gt;
+            &lt;td&gt;25&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Eva&lt;/td&gt;
+            &lt;td&gt;30&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+                <h2>Formuláře</h2>
+                <pre class="language-sql"><code>&lt;form action="/zpracuj" method="POST"&gt;
+    &lt;!-- Textový vstup --&gt;
+    &lt;label for="jmeno"&gt;Jméno:&lt;/label&gt;
+    &lt;input type="text" id="jmeno" name="jmeno" placeholder="Vaše jméno" required&gt;
+    
+    &lt;!-- Email --&gt;
+    &lt;input type="email" name="email" required&gt;
+    
+    &lt;!-- Heslo --&gt;
+    &lt;input type="password" name="heslo"&gt;
+    
+    &lt;!-- Číslo --&gt;
+    &lt;input type="number" name="vek" min="0" max="120"&gt;
+    
+    &lt;!-- Datum --&gt;
+    &lt;input type="date" name="datum"&gt;
+    
+    &lt;!-- Checkbox --&gt;
+    &lt;input type="checkbox" id="souhlas" name="souhlas"&gt;
+    &lt;label for="souhlas"&gt;Souhlasím&lt;/label&gt;
+    
+    &lt;!-- Radio buttons --&gt;
+    &lt;input type="radio" name="pohlavi" value="m"&gt; Muž
+    &lt;input type="radio" name="pohlavi" value="f"&gt; Žena
+    
+    &lt;!-- Select (dropdown) --&gt;
+    &lt;select name="mesto"&gt;
+        &lt;option value="praha"&gt;Praha&lt;/option&gt;
+        &lt;option value="brno"&gt;Brno&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;!-- Textarea --&gt;
+    &lt;textarea name="zprava" rows="4" cols="50"&gt;&lt;/textarea&gt;
+    
+    &lt;!-- Odeslání --&gt;
+    &lt;button type="submit"&gt;Odeslat&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>HTML</strong> = značkovací jazyk pro strukturu webu</li>
+                        <li><strong>DOCTYPE html</strong> = deklarace HTML5</li>
+                        <li><strong>head:</strong> Metadata (title, meta, link)</li>
+                        <li><strong>body:</strong> Viditelný obsah</li>
+                        <li><strong>Sémantické tagy:</strong> header, nav, main, article, section, footer</li>
+                        <li><strong>Základní tagy:</strong> h1-h6, p, a, img, ul/ol/li, table, form</li>
+                        <li><strong>alt</strong> u obrázků je povinný!</li>
+                        <li><strong>Formuláře:</strong> form, input (text, email, password...), button</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

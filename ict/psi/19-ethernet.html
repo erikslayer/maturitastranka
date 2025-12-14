@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ethernet - historie, vývoj, standardy, rámce, CSMA/CD, 10/100/1000 Ethernet.">
+    <title>19. Ethernet - PSI | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../psi.html">Počítačové sítě</a><span class="separator">›</span>
+                <span class="current">Ethernet</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔄 Ethernet</h1>
+                <p class="author">Téma 19 - PSI</p>
+                <div class="meta">
+                    <span class="meta-item">📡 Počítačové sítě</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <p>Ethernet je nejběžnější standard pro počítačové sítě, zejména v LAN.</p>
+                <h2>Historie a vývoj</h2>
+                <ul>
+                    <li><strong>1973:</strong> Vyvinut Robertem Metcalfem ve Xerox PARC</li>
+                    <li><strong>1980:</strong> Standard IEEE 802.3</li>
+                    <li>Původní rychlost: 2,94 Mbps (Ethernet 1.0)</li>
+                </ul>
+                <h3>Vývoj Ethernetu</h3>
+                <ul>
+                    <li><strong>Ethernet 2:</strong> 10 Mbps (10BASE-T)</li>
+                    <li><strong>Fast Ethernet:</strong> 100 Mbps (100BASE-TX, 1995)</li>
+                    <li><strong>Gigabit Ethernet:</strong> 1 Gbps (1000BASE-T)</li>
+                    <li><strong>10 Gigabit Ethernet:</strong> 10 Gbps</li>
+                </ul>
+                <h2>Značení Ethernetu</h2>
+                <ul>
+                    <li><strong>10BASE-T:</strong> 10 Mbps, kroucená dvojlinka</li>
+                    <li><strong>100BASE-TX:</strong> 100 Mbps, kroucená dvojlinka</li>
+                    <li><strong>1000BASE-T:</strong> 1 Gbps, kroucená dvojlinka</li>
+                    <li><strong>10GBASE-T:</strong> 10 Gbps, kroucená dvojlinka</li>
+                    <li><strong>100BASE-FX:</strong> 100 Mbps, optické vlákno</li>
+                    <li><strong>1000BASE-SX:</strong> 1 Gbps, optické vlákno</li>
+                </ul>
+                <h2>Kabeláž</h2>
+                <ul>
+                    <li><strong>Kroucená dvojlinka (UTP/STP):</strong> Nejčastější kabeláž</li>
+                    <li><strong>Cat 5e:</strong> 1 Gbps</li>
+                    <li><strong>Cat 6:</strong> Až 10 Gbps</li>
+                    <li><strong>Optické vlákno:</strong> Pro vyšší rychlosti a delší vzdálenosti</li>
+                </ul>
+                <h2>Bloky dat - Ethernet rámec</h2>
+                <ol>
+                    <li><strong>Preámbule:</strong> Synchronizace (7 bajtů)</li>
+                    <li><strong>Destinační adresa:</strong> MAC příjemce (6 bajtů)</li>
+                    <li><strong>Zdrojová adresa:</strong> MAC odesílatele (6 bajtů)</li>
+                    <li><strong>Typ/Délka:</strong> Protokol vyšší vrstvy (2 bajty)</li>
+                    <li><strong>Data (Payload):</strong> Max 1500 bajtů</li>
+                    <li><strong>FCS:</strong> Kontrolní součet (4 bajty)</li>
+                </ol>
+                <h2>Princip činnosti</h2>
+                <p>Zařízení používají MAC adresy k identifikaci. Rámce jsou směrovány na základě této adresy. Se
+                    switchem se data směrují pouze k cílovému zařízení.</p>
+                <h2>Řešení kolizí - CSMA/CD</h2>
+                <ul>
+                    <li><strong>Carrier Sense:</strong> Zařízení poslouchá, zda je kanál volný</li>
+                    <li><strong>Multiple Access:</strong> Všechna zařízení mohou přistupovat k médiu</li>
+                    <li><strong>Collision Detection:</strong> Při kolizi se přenos zastaví a opakuje po náhodné prodlevě
+                    </li>
+                </ul>
+                <h2>10/100/1000 Ethernet</h2>
+                <h3>10BASE-T (10 Mbps)</h3>
+                <ul>
+                    <li>Nejstarší standard, Cat 3/Cat 5</li>
+                    <li>Dnes již zastaralý</li>
+                </ul>
+                <h3>100BASE-TX (100 Mbps)</h3>
+                <ul>
+                    <li>Nejčastěji používaný standard</li>
+                    <li>Cat 5e nebo vyšší</li>
+                </ul>
+                <h3>1000BASE-T (1 Gbps)</h3>
+                <ul>
+                    <li>Nejrozšířenější pro LAN</li>
+                    <li>Cat 5e a vyšší</li>
+                </ul>
+                <h2>Kódování dat</h2>
+                <ul>
+                    <li><strong>Manchester:</strong> Synchronizace a přenos bitů</li>
+                    <li><strong>4B/5B:</strong> Fast Ethernet, lepší signálový poměr</li>
+                    <li><strong>PAM-5:</strong> Gigabit Ethernet, 5 různých hodnot</li>
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

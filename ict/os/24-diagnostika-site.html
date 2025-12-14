@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nastavení a diagnostika síťového prostředí v operačních systémech.">
+    <title>24. Diagnostika síťového prostředí - OS | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../os.html">Operační systémy</a><span class="separator">›</span>
+                <span class="current">Diagnostika sítě</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔧 Diagnostika síťového prostředí</h1>
+                <p class="author">Téma 24 - Operační systémy</p>
+                <div class="meta">
+                    <span class="meta-item">⚙️ Operační systémy</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Nastavení síťového prostředí</h2>
+                <p>Aby se počítač mohl připojit k síti a internetu, potřebuje správnou <strong>síťovou
+                        konfiguraci</strong>. Klíčové parametry:</p>
+
+                <ul>
+                    <li><strong>IP adresa:</strong> Unikátní identifikátor zařízení v síti (např. 192.168.1.100)</li>
+                    <li><strong>Maska podsítě:</strong> Určuje, která část IP je síť a která zařízení (např.
+                        255.255.255.0)</li>
+                    <li><strong>Výchozí brána (Gateway):</strong> IP routeru, přes který se dostaneme do internetu</li>
+                    <li><strong>DNS server:</strong> Překládá doménová jména na IP adresy</li>
+                </ul>
+
+                <h3>Statická vs Dynamická IP</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Vlastnost</th>
+                        <th style="padding: 0.5rem;">Statická IP</th>
+                        <th style="padding: 0.5rem;">Dynamická IP (DHCP)</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Nastavení</td>
+                        <td style="padding: 0.5rem;">Ruční</td>
+                        <td style="padding: 0.5rem;">Automatické od DHCP serveru</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Změna</td>
+                        <td style="padding: 0.5rem;">Nemění se</td>
+                        <td style="padding: 0.5rem;">Může se měnit při obnově</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Použití</td>
+                        <td style="padding: 0.5rem;">Servery, tiskárny</td>
+                        <td style="padding: 0.5rem;">Běžné počítače, mobily</td>
+                    </tr>
+                </table>
+
+                <h2>🔍 Diagnostické nástroje</h2>
+
+                <h3>ipconfig / ip addr – Zobrazení síťové konfigurace</h3>
+                <p>Základní nástroj pro zjištění aktuálního nastavení síťového adaptéru.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+# WINDOWS
+ipconfig                  # Základní info (IP, maska, brána)
+ipconfig /all            # Detailní info včetně MAC, DHCP, DNS
+
+# Ukázkový výstup:
+# Ethernet adapter LAN:
+#    IPv4 Address. . . . : 192.168.1.100
+#    Subnet Mask . . . . : 255.255.255.0
+#    Default Gateway . . : 192.168.1.1
+
+ipconfig /release        # Uvolní DHCP přidělenou adresu
+ipconfig /renew          # Požádá DHCP o novou adresu
+ipconfig /flushdns       # Vymaže DNS cache (užitečné při problémech s překlady)
+
+# LINUX
+ip addr                  # Zobrazí IP adresy všech adaptérů
+ip addr show eth0        # Jen konkrétní adaptér
+ifconfig                 # Starší verze (deprecated)</pre>
+
+                <h3>ping – Test dostupnosti</h3>
+                <p>Posílá ICMP Echo pakety a měří odezvu. Základní test „funguje síť?".</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+ping google.com          # Test dostupnosti internetu
+ping 192.168.1.1         # Test dostupnosti routeru
+
+# Ukázkový výstup:
+# Reply from 142.250.185.206: bytes=32 time=15ms TTL=118
+# Reply from 142.250.185.206: bytes=32 time=14ms TTL=118
+# 
+# Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)
+# Minimum = 14ms, Maximum = 15ms, Average = 14ms
+
+# Co znamená výstup:
+# - time = latence (menší = lepší, <50ms je OK)
+# - TTL = Time To Live (kolik skoků zbývá)
+# - Lost = ztráta paketů (mělo by být 0%)
+
+ping -t google.com       # Windows: nekonečný ping (Ctrl+C ukončí)
+ping -c 5 google.com     # Linux: jen 5 paketů</pre>
+
+                <p><strong>💡 Diagnostický postup:</strong></p>
+                <ol>
+                    <li><code>ping 127.0.0.1</code> – test TCP/IP stacku (localhost)</li>
+                    <li><code>ping vlastní_IP</code> – test síťové karty</li>
+                    <li><code>ping výchozí_brána</code> – test připojení k routeru</li>
+                    <li><code>ping 8.8.8.8</code> – test připojení k internetu (Google DNS)</li>
+                    <li><code>ping google.com</code> – test DNS překladu</li>
+                </ol>
+
+                <h3>tracert / traceroute – Sledování cesty</h3>
+                <p>Ukazuje <strong>všechny routery</strong> na cestě k cíli. Užitečné pro nalezení, kde vzniká problém.
+                </p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+# Windows
+tracert google.com
+
+# Linux
+traceroute google.com
+
+# Ukázkový výstup:
+#  1     1 ms   192.168.1.1      [router doma]
+#  2    10 ms   10.0.0.1         [router poskytovatele]
+#  3    15 ms   85.70.62.1       [páteřní síť]
+#  4    20 ms   142.250.185.206  [cíl - Google]
+
+# * * * = router neodpovídá nebo blokuje ICMP</pre>
+
+                <h3>netstat – Síťová připojení a porty</h3>
+                <p>Zobrazuje aktivní síťová spojení a naslouchající porty.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+netstat -an              # Všechna připojení s čísly portů
+
+# Ukázkový výstup:
+# Proto  Local Address         Foreign Address       State
+# TCP    0.0.0.0:80           0.0.0.0:0             LISTENING
+# TCP    192.168.1.100:52341  142.250.185.206:443   ESTABLISHED
+
+# Stavy:
+# LISTENING    = čeká na připojení (server)
+# ESTABLISHED  = aktivní spojení
+# TIME_WAIT    = spojení se zavírá
+# CLOSE_WAIT   = čeká na uzavření
+
+netstat -b               # Windows: zobrazí, který program používá port
+netstat -tulpn           # Linux: TCP/UDP s programy</pre>
+
+                <h3>nslookup / dig – DNS dotazy</h3>
+                <p>Dotazuje se DNS serverů na překlad doménových jmen.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+nslookup google.com
+
+# Ukázkový výstup:
+# Server:  router.local (192.168.1.1)
+# 
+# Name:    google.com
+# Addresses:  142.250.185.206
+
+nslookup google.com 8.8.8.8   # Dotaz na konkrétní DNS server
+
+# Linux: pokročilejší alternativa
+dig google.com
+dig google.com +short         # Jen IP adresa</pre>
+
+                <h3>arp – ARP tabulka</h3>
+                <p>Zobrazuje mapování IP adres na MAC adresy v lokální síti.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+arp -a
+
+# Ukázkový výstup:
+# Interface: 192.168.1.100
+#   Internet Address      Physical Address      Type
+#   192.168.1.1           aa-bb-cc-dd-ee-ff     dynamic
+#   192.168.1.50          11-22-33-44-55-66     dynamic</pre>
+
+                <h2>⚙️ Síťové služby</h2>
+
+                <h3>DHCP (Dynamic Host Configuration Protocol)</h3>
+                <p><strong>Automatické přidělování IP adres</strong> zařízením v síti.</p>
+                <ul>
+                    <li>Klient pošle broadcast „Potřebuji IP"</li>
+                    <li>DHCP server nabídne IP adresu</li>
+                    <li>Klient přijme a potvrdí</li>
+                    <li><strong>Přiděluje:</strong> IP, masku, bránu, DNS, dobu platnosti (lease)</li>
+                </ul>
+
+                <p><strong>💡 Lease time:</strong> Jak dlouho je IP přidělena. Po vypršení musí klient požádat o
+                    prodloužení.</p>
+
+                <h3>DNS (Domain Name System)</h3>
+                <p><strong>Překlad doménových jmen na IP adresy</strong> – internet by bez DNS fungoval jen s IP
+                    adresami.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+google.com  →  DNS Server  →  142.250.185.206</pre>
+
+                <p><strong>Veřejné DNS servery:</strong></p>
+                <ul>
+                    <li><strong>Google:</strong> 8.8.8.8, 8.8.4.4</li>
+                    <li><strong>Cloudflare:</strong> 1.1.1.1, 1.0.0.1 (rychlý, soukromí)</li>
+                    <li><strong>OpenDNS:</strong> 208.67.222.222</li>
+                </ul>
+
+                <h3>Firewall</h3>
+                <p><strong>Filtruje síťový provoz</strong> podle pravidel. Chrání počítač před neoprávněným přístupem.
+                </p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+# WINDOWS
+# GUI: Windows Defender Firewall
+netsh advfirewall show allprofiles    # Stav firewallu
+
+# LINUX
+sudo ufw status                       # Ubuntu (ufw)
+sudo ufw enable                       # Zapnutí
+sudo ufw allow 22                     # Povolení SSH portu
+sudo ufw deny 80                      # Blokování HTTP
+
+sudo iptables -L                      # Nízkoúrovňová pravidla</pre>
+
+                <h2>🛠️ Řešení běžných problémů</h2>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem; text-align: left;">Symptom</th>
+                        <th style="padding: 0.5rem; text-align: left;">Možná příčina</th>
+                        <th style="padding: 0.5rem; text-align: left;">Řešení</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Nejde ping na bránu</td>
+                        <td style="padding: 0.5rem;">Kabel, Wi-Fi, DHCP</td>
+                        <td style="padding: 0.5rem;">Zkontroluj připojení, <code>ipconfig /renew</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Jde ping na IP, ne na doménu</td>
+                        <td style="padding: 0.5rem;">DNS problém</td>
+                        <td style="padding: 0.5rem;"><code>ipconfig /flushdns</code>, změň DNS</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Pomalé připojení</td>
+                        <td style="padding: 0.5rem;">Vytížení sítě, špatný signál</td>
+                        <td style="padding: 0.5rem;">Speedtest, zkontroluj signál Wi-Fi</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">IP 169.254.x.x</td>
+                        <td style="padding: 0.5rem;">DHCP selhal (APIPA)</td>
+                        <td style="padding: 0.5rem;">Zkontroluj DHCP server, restart</td>
+                    </tr>
+                </table>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>ipconfig/ip addr:</strong> Zjištění IP, masky, brány</li>
+                        <li><strong>ping:</strong> Test dostupnosti, měření latence</li>
+                        <li><strong>tracert/traceroute:</strong> Cesta paketů – kde je problém</li>
+                        <li><strong>netstat:</strong> Aktivní připojení a porty</li>
+                        <li><strong>nslookup:</strong> Test DNS překladu</li>
+                        <li><strong>DHCP:</strong> Automatické přidělení IP</li>
+                        <li><strong>DNS:</strong> Překlad doménových jmen (8.8.8.8)</li>
+                        <li><strong>Firewall:</strong> Blokuje/povoluje síťový provoz</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

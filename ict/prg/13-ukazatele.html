@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ukazatele v C++ - dynamická alokace paměti, smart pointers.">
+    <title>13. Ukazatele C++ - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Ukazatele C++</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🎯 Ukazatele C++</h1>
+                <p class="author">Téma 13 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je ukazatel?</h2>
+                <p>Ukazatel (pointer) je proměnná, která <strong>uchovává adresu v paměti</strong>. Místo samotné
+                    hodnoty ukládá, kde v paměti se hodnota nachází.</p>
+
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <pre class="language-plaintext"><code>Paměť:
+Adresa:    0x1000    0x1004    0x1008    0x100C
+           ┌────────┬────────┬────────┬────────┐
+Hodnota:   │   42   │   ?    │ 0x1000 │   ?    │
+           └────────┴────────┴────────┴────────┘
+               ↑                   │
+           proměnná x         ukazatel ptr
+               └───────────────────┘
+             ptr ukazuje na x (obsahuje adresu x)</code></pre>
+                </div>
+
+                <p><strong>💡 Proč používat ukazatele?</strong></p>
+                <ul>
+                    <li><strong>Dynamická alokace:</strong> Vytvářet data za běhu s požadovanou velikostí</li>
+                    <li><strong>Efektivní předávání:</strong> Předat adresu místo kopírování velkých dat</li>
+                    <li><strong>Datové struktury:</strong> Spojové seznamy, stromy, grafy</li>
+                    <li><strong>Polymorfismus:</strong> Ukazatel na bázovou třídu může ukazovat na potomka</li>
+                </ul>
+
+                <h2>Deklarace a operátory</h2>
+                <pre class="language-cpp"><code>// Deklarace ukazatele: typ* nazev
+int* ptr;           // Ukazatel na int (zatím neukazuje nikam užitečného)
+double* ptrDouble;  // Ukazatel na double
+
+// Operátor & (address-of) - získá adresu proměnné
+int x = 42;
+ptr = &x;           // ptr nyní obsahuje adresu proměnné x
+
+cout << &x;         // Vypíše adresu: 0x7fff5fbff8ac
+cout << ptr;        // Stejná adresa
+
+// Operátor * (dereference) - získá hodnotu na adrese
+cout << *ptr;       // Vypíše 42 (hodnotu na adrese v ptr)
+
+*ptr = 100;         // Změní hodnotu proměnné x přes ukazatel!
+cout << x;          // 100</code></pre>
+
+                <p><strong>⚠️ Pozor na matoucí syntaxi:</strong></p>
+                <ul>
+                    <li><code>int* ptr</code> – hvězdička u deklarace = „je to ukazatel"</li>
+                    <li><code>*ptr</code> – hvězdička u použití = „hodnota na adrese" (dereference)</li>
+                </ul>
+
+                <h2>nullptr a nebezpečí</h2>
+                <pre class="language-cpp"><code>int* ptr = nullptr;     // Ukazatel neukazuje nikam (C++11)
+int* ptr = NULL;        // Starší varianta (C-style)
+
+// Před použitím vždy kontroluj!
+if (ptr != nullptr) {
+    cout << *ptr;       // Bezpečné
+}
+
+// ⚠️ NEBEZPEČÍ - dereference nullptr
+int* zly = nullptr;
+cout << *zly;           // PÁD PROGRAMU! (Segmentation fault)</code></pre>
+
+                <h2>Dynamická alokace paměti</h2>
+                <p>Operátor <code>new</code> alokuje paměť na haldě (heap), <code>delete</code> ji uvolní.</p>
+
+                <pre class="language-csharp"><code>// Alokace jedné proměnné
+int* cislo = new int;        // Vytvoří int na haldě
+*cislo = 42;                 // Přiřadí hodnotu
+
+int* cislo2 = new int(100);  // Alokace s inicializací
+
+// DŮLEŽITÉ: Uvolnění paměti
+delete cislo;                // Uvolní paměť
+cislo = nullptr;             // Dobá praxe: nastavit na nullptr
+
+// Alokace pole
+int* pole = new int[10];     // Pole 10 intů na haldě
+pole[0] = 1;
+pole[9] = 10;
+
+// Uvolnění POLE - pozor na hranáč!
+delete[] pole;               // delete[] pro pole!</code></pre>
+
+                <h3>⚠️ Memory leak (únik paměti)</h3>
+                <pre class="language-css"><code>void spatnaFunkce() {
+    int* ptr = new int(42);  // Alokace
+    // ... kód ...
+    // Zapomenuli jsme delete!
+}   // ptr zaniká, ale paměť zůstává alokovaná = MEMORY LEAK!
+
+// Při opakovaném volání program zabere stále více paměti</code></pre>
+
+                <h2>Ukazatele a pole</h2>
+                <p>Název pole je ve skutečnosti ukazatel na první prvek.</p>
+
+                <pre class="language-cpp"><code>int pole[5] = {10, 20, 30, 40, 50};
+
+// pole je ukazatel na první prvek
+cout << pole;       // Adresa: 0x7fff...
+cout << *pole;      // 10 (první prvek)
+
+// Ukazatelová aritmetika
+cout << *(pole + 0);   // 10 (pole[0])
+cout << *(pole + 1);   // 20 (pole[1])
+cout << *(pole + 4);   // 50 (pole[4])
+
+// pole[i] je syntaktický cukr pro *(pole + i)</code></pre>
+
+                <h2>Ukazatele na funkce</h2>
+                <pre class="language-css"><code>// Funkce
+int secti(int a, int b) {
+    return a + b;
+}
+
+// Ukazatel na funkci
+int (*operace)(int, int) = secti;
+
+// Volání přes ukazatel
+int vysledek = operace(5, 3);  // 8
+
+// Použití: callback funkce, pole funkcí</code></pre>
+
+                <h2>Smart Pointers (C++11)</h2>
+                <p>Moderní C++ nabízí „chytré ukazatele", které <strong>automaticky uvolňují paměť</strong>.</p>
+
+                <pre class="language-cpp"><code>#include &lt;memory&gt;
+
+// unique_ptr - jediný vlastník, nelze kopírovat
+unique_ptr&lt;int&gt; ptr1 = make_unique&lt;int&gt;(42);
+cout << *ptr1;                              // 42
+// Automaticky se uvolní když ptr1 opustí scope
+
+// unique_ptr&lt;int&gt; ptr2 = ptr1;            // CHYBA! Nelze kopírovat
+unique_ptr&lt;int&gt; ptr2 = move(ptr1);         // Přesun vlastnictví
+
+// shared_ptr - sdílené vlastnictví, počítá reference
+shared_ptr&lt;int&gt; sp1 = make_shared&lt;int&gt;(100);
+shared_ptr&lt;int&gt; sp2 = sp1;                 // Oba ukazují na stejná data
+// Uvolní se až když poslední shared_ptr zanikne
+
+cout << sp1.use_count();                    // 2 (počet referencí)
+
+// weak_ptr - nepřidává do počtu referencí (prevence cyklů)
+weak_ptr&lt;int&gt; wp = sp1;</code></pre>
+
+                <h3>Kdy použít který?</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Typ</th>
+                        <th style="padding: 0.5rem;">Použití</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>unique_ptr</code></td>
+                        <td style="padding: 0.5rem;">Výchozí volba, jeden vlastník</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>shared_ptr</code></td>
+                        <td style="padding: 0.5rem;">Více vlastníků, sdílení dat</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>weak_ptr</code></td>
+                        <td style="padding: 0.5rem;">Pozorování bez vlastnictví, prevence cyklů</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">raw pointer (<code>*</code>)</td>
+                        <td style="padding: 0.5rem;">Pouze když nevlastníš paměť, nízkoúrovňové API</td>
+                    </tr>
+                </table>
+
+                <h2>Reference vs Ukazatel</h2>
+                <pre class="language-plaintext"><code>int x = 10;
+
+// Reference
+int& ref = x;       // MUSÍ být inicializována
+ref = 20;           // x je nyní 20
+// Reference nemůže být přesměrována na jinou proměnnou
+
+// Ukazatel
+int* ptr = &x;
+*ptr = 30;          // x je nyní 30
+ptr = &jinaPromenna;// Může ukazovat jinam
+ptr = nullptr;      // Může být nullptr</code></pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Ukazatel</strong> = proměnná obsahující adresu v paměti</li>
+                        <li><strong>&</strong> = získej adresu (address-of)</li>
+                        <li><strong>*</strong> = získej hodnotu na adrese (dereference)</li>
+                        <li><strong>new/delete</strong> = dynamická alokace/uvolnění</li>
+                        <li><strong>new[]/delete[]</strong> = pro pole!</li>
+                        <li><strong>nullptr</strong> = ukazatel, který neukazuje nikam</li>
+                        <li><strong>Smart pointers:</strong> unique_ptr, shared_ptr – automatické uvolnění</li>
+                        <li>Vždy kontroluj nullptr před dereferencí!</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

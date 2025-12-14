@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dědičnost v C# - virtual, override, abstract, interfaces.">
+    <title>12. Dědičnost C# - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Dědičnost C#</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔗 Dědičnost C#</h1>
+                <p class="author">Téma 12 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Dědičnost v C#</h2>
+                <p>C# podporuje <strong>jednoduchou dědičnost</strong> (třída může dědit jen z jedné třídy), ale může
+                    implementovat <strong>více rozhraní</strong>.</p>
+
+                <h2>Základní syntaxe</h2>
+                <pre class="language-csharp"><code>// Bázová (rodičovská) třída
+class Zvire {
+    public string Jmeno { get; set; }
+    protected int Vek { get; set; }      // protected = přístupné v potomcích
+    
+    public Zvire(string jmeno, int vek) {
+        Jmeno = jmeno;
+        Vek = vek;
+    }
+    
+    public void Jez() {
+        Console.WriteLine($"{Jmeno} jí.");
+    }
+}
+
+// Odvozená třída
+class Pes : Zvire {                      // Dědí od Zvire
+    public string Plemeno { get; set; }
+    
+    // Konstruktor volá base() pro konstruktor předka
+    public Pes(string jmeno, int vek, string plemeno) : base(jmeno, vek) {
+        Plemeno = plemeno;
+    }
+    
+    public void Stekej() {
+        Console.WriteLine($"{Jmeno} říká: Haf!");
+    }
+}
+
+// Použití
+Pes rex = new Pes("Rex", 3, "Německý ovčák");
+rex.Jez();       // Zděděná metoda: "Rex jí."
+rex.Stekej();    // Vlastní metoda: "Rex říká: Haf!"</code></pre>
+
+                <h2>Virtual a Override</h2>
+                <p>Klíčová slova pro <strong>polymorfismus</strong> – umožňují potomkovi změnit chování zděděné metody.
+                </p>
+
+                <pre class="language-csharp"><code>class Zvire {
+    public string Jmeno { get; set; }
+    
+    // Metoda označená jako virtual může být přepsána
+    public virtual void VydejZvuk() {
+        Console.WriteLine("Nějaký zvuk");
+    }
+}
+
+class Pes : Zvire {
+    // override přepisuje virtuální metodu
+    public override void VydejZvuk() {
+        Console.WriteLine("Haf haf!");
+    }
+}
+
+class Kocka : Zvire {
+    public override void VydejZvuk() {
+        Console.WriteLine("Mňau!");
+    }
+}
+
+// Polymorfismus v akci
+Zvire[] zvirata = { new Pes(), new Kocka(), new Zvire() };
+foreach (Zvire z in zvirata) {
+    z.VydejZvuk();
+}
+// Výstup: "Haf haf!", "Mňau!", "Nějaký zvuk"</code></pre>
+
+                <p><strong>💡 Klíčové:</strong> Díky <code>virtual</code> + <code>override</code> se volá správná metoda
+                    podle <u>skutečného typu objektu</u>, ne podle typu proměnné.</p>
+
+                <h3>Volání metody předka</h3>
+                <pre class="language-csharp"><code>class Pes : Zvire {
+    public override void VydejZvuk() {
+        base.VydejZvuk();              // Zavolá metodu z Zvire
+        Console.WriteLine("Haf haf!"); // A přidá vlastní chování
+    }
+}</code></pre>
+
+                <h2>Abstraktní třídy a metody</h2>
+                <p>Abstraktní třída <strong>nelze instancovat</strong> – slouží pouze jako základ pro potomky.
+                    Abstraktní metoda nemá implementaci a MUSÍ být přepsána.</p>
+
+                <pre class="language-csharp"><code>// abstract class - nemůžeš vytvořit instanci
+abstract class Tvar {
+    public string Barva { get; set; }
+    
+    // Abstraktní metody - bez těla, potomek MUSÍ implementovat
+    public abstract double VypocitejObsah();
+    public abstract double VypocitejObvod();
+    
+    // Normální metoda - má implementaci
+    public void Vypis() {
+        Console.WriteLine($"Tvar barvy {Barva}");
+    }
+}
+
+// Tvar tvar = new Tvar();  // CHYBA! Nelze instancovat
+
+class Obdelnik : Tvar {
+    public double Sirka { get; set; }
+    public double Vyska { get; set; }
+    
+    public Obdelnik(double s, double v) {
+        Sirka = s;
+        Vyska = v;
+    }
+    
+    // MUSÍ implementovat abstraktní metody
+    public override double VypocitejObsah() {
+        return Sirka * Vyska;
+    }
+    
+    public override double VypocitejObvod() {
+        return 2 * (Sirka + Vyska);
+    }
+}
+
+class Kruh : Tvar {
+    public double Polomer { get; set; }
+    
+    public override double VypocitejObsah() => Math.PI * Polomer * Polomer;
+    public override double VypocitejObvod() => 2 * Math.PI * Polomer;
+}
+
+// Polymorfní použití
+Tvar[] tvary = { new Obdelnik(5, 3), new Kruh(2) };
+foreach (Tvar t in tvary) {
+    Console.WriteLine($"Obsah: {t.VypocitejObsah():F2}");
+}</code></pre>
+
+                <h2>Rozhraní (Interfaces)</h2>
+                <p>Rozhraní definuje <strong>smlouvu</strong> – jaké metody musí třída implementovat. Třída může
+                    implementovat <strong>více rozhraní</strong>.</p>
+
+                <pre class="language-csharp"><code>// Rozhraní - pouze signatury metod (bez implementace)
+interface IPohyblivy {
+    void Pohyb(int x, int y);
+    int Rychlost { get; set; }
+}
+
+interface IZvukovy {
+    void VydejZvuk();
+}
+
+// Třída implementuje více rozhraní
+class Auto : IPohyblivy, IZvukovy {
+    public int Rychlost { get; set; }
+    
+    public void Pohyb(int x, int y) {
+        Console.WriteLine($"Auto jede na pozici [{x}, {y}]");
+    }
+    
+    public void VydejZvuk() {
+        Console.WriteLine("Vrrrm!");
+    }
+}
+
+// Použití přes rozhraní
+IPohyblivy vozidlo = new Auto();
+vozidlo.Pohyb(10, 20);
+
+IZvukovy hlucny = new Auto();
+hlucny.VydejZvuk();</code></pre>
+
+                <h3>Rozdíl: Abstract Class vs Interface</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem; text-align: left;">Vlastnost</th>
+                        <th style="padding: 0.5rem; text-align: left;">Abstract Class</th>
+                        <th style="padding: 0.5rem; text-align: left;">Interface</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Dědičnost</td>
+                        <td style="padding: 0.5rem;">Jen jedna třída</td>
+                        <td style="padding: 0.5rem;">Více rozhraní</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Implementace metod</td>
+                        <td style="padding: 0.5rem;">Může mít</td>
+                        <td style="padding: 0.5rem;">Pouze signatury *</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Pole (data)</td>
+                        <td style="padding: 0.5rem;">Může mít</td>
+                        <td style="padding: 0.5rem;">Nemůže</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Konstruktor</td>
+                        <td style="padding: 0.5rem;">Může mít</td>
+                        <td style="padding: 0.5rem;">Nemůže</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Použití</td>
+                        <td style="padding: 0.5rem;">„Je" vztah (Pes JE Zvíře)</td>
+                        <td style="padding: 0.5rem;">„Umí" vztah (Auto UMÍ jet)</td>
+                    </tr>
+                </table>
+                <p><em>* Od C# 8.0 mohou mít interfaces výchozí implementace</em></p>
+
+                <h2>sealed – Zakázání dědičnosti</h2>
+                <pre class="language-css"><code>// sealed třída - nelze z ní dědit
+sealed class Konstanta {
+    public static int Hodnota = 42;
+}
+
+// class Potomek : Konstanta { }  // CHYBA!
+
+// sealed metoda - nelze ji dále přepisovat
+class Zaklad {
+    public virtual void Metoda() { }
+}
+
+class Stredni : Zaklad {
+    public sealed override void Metoda() { }  // Poslední přepsání
+}
+
+class Koncova : Stredni {
+    // public override void Metoda() { }  // CHYBA! Je sealed
+}</code></pre>
+
+                <h2>Kontrola typu za běhu</h2>
+                <pre class="language-csharp"><code>Zvire zvire = new Pes("Rex", 3, "Ovčák");
+
+// is - kontrola typu
+if (zvire is Pes) {
+    Console.WriteLine("Je to pes!");
+}
+
+// is s pattern matching (C# 7+)
+if (zvire is Pes mojePes) {
+    Console.WriteLine(mojePes.Plemeno);  // Automaticky přetypováno
+}
+
+// as - bezpečné přetypování (vrací null pokud nelze)
+Pes pes = zvire as Pes;
+if (pes != null) {
+    pes.Stekej();
+}
+
+// Přímé přetypování (vyhodí výjimku pokud nelze)
+Pes pes2 = (Pes)zvire;</code></pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Dědičnost:</strong> <code>class Potomek : Predek</code></li>
+                        <li><strong>virtual:</strong> Metoda může být přepsána v potomkovi</li>
+                        <li><strong>override:</strong> Přepisuje virtuální/abstraktní metodu</li>
+                        <li><strong>abstract class:</strong> Nelze instancovat, základ pro potomky</li>
+                        <li><strong>abstract method:</strong> Bez těla, MUSÍ být přepsána</li>
+                        <li><strong>interface:</strong> Smlouva – definuje co třída musí umět</li>
+                        <li><strong>C# = jednoduchá dědičnost + více interfaces</strong></li>
+                        <li><strong>base:</strong> Přístup k členům předka, volání konstruktoru</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

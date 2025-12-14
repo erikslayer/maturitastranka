@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Adresace a směrování v sítích - VLSM, CIDR, směrovací protokoly.">
+    <title>15. Adresace a směrování v sítích - PSI | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../psi.html">Počítačové sítě</a><span class="separator">›</span>
+                <span class="current">Adresace a směrování</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🧭 Adresace a směrování v sítích</h1>
+                <p class="author">Téma 15 - PSI</p>
+                <div class="meta">
+                    <span class="meta-item">📡 Počítačové sítě</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <p>Adresace a směrování tvoří základní mechanismy pro komunikaci v počítačových sítích.</p>
+                <h2>1. Schéma sítě (PC, switch, routery)</h2>
+                <ul>
+                    <li><strong>PC:</strong> Koncová zařízení s unikátní IP adresou</li>
+                    <li><strong>Switch:</strong> Pracuje na 2. vrstvě, spojuje zařízení v LAN pomocí MAC adres</li>
+                    <li><strong>Router:</strong> Pracuje na 3. vrstvě, propojuje různé sítě pomocí IP adres</li>
+                </ul>
+                <h2>2. VLSM maska, subnetting</h2>
+                <h3>VLSM (Variable Length Subnet Mask)</h3>
+                <ul>
+                    <li>Umožňuje použít různě dlouhé masky podsítě</li>
+                    <li>Efektivní využití adresního prostoru</li>
+                </ul>
+                <h3>IPv4 adresa má dvě části:</h3>
+                <ul>
+                    <li><strong>Síťová část:</strong> Identifikuje síť (např. 192.168.1.0/24)</li>
+                    <li><strong>Hostitelská část:</strong> Identifikuje zařízení v síti</li>
+                </ul>
+                <h3>Subnetting - příklad:</h3>
+                <ul>
+                    <li>Síť: 192.168.1.0/24</li>
+                    <li>Podsíť 1: 192.168.1.0/26 (64 adres)</li>
+                    <li>Podsíť 2: 192.168.1.64/26 (64 adres)</li>
+                </ul>
+                <h2>3. CIDR adresace, síťové výpočty</h2>
+                <h3>CIDR (Classless Inter-Domain Routing)</h3>
+                <ul>
+                    <li>Nahrazuje třídní adresování (A, B, C)</li>
+                    <li>Zápis: síťová adresa/prefix (např. 192.168.1.0/24)</li>
+                </ul>
+                <h3>Síťové výpočty</h3>
+                <ul>
+                    <li><strong>Počet hostitelů:</strong> 2^(32-prefix) - 2. Např. /24 = 254 hostitelů</li>
+                    <li><strong>Rozsah adres:</strong> Od první adresy sítě po broadcast adresu</li>
+                    <li><strong>Maska:</strong> /24 = 255.255.255.0, /26 = 255.255.255.192</li>
+                </ul>
+                <h2>4. Druhy směrování, směrovací tabulka, metrika</h2>
+                <h3>Druhy směrování</h3>
+                <ul>
+                    <li><strong>Statické:</strong> Ručně nastavené cesty, jednoduché pro malé sítě</li>
+                    <li><strong>Dynamické:</strong> Automaticky upravované pomocí protokolů (OSPF, RIP)</li>
+                </ul>
+                <h3>Směrovací tabulka</h3>
+                <ul>
+                    <li>Cílová síť, maska, next hop, metrika</li>
+                </ul>
+                <h3>Metrika</h3>
+                <ul>
+                    <li><strong>Počet skoků:</strong> Počet routerů na cestě</li>
+                    <li><strong>Šířka pásma:</strong> Rychlost spojení</li>
+                    <li><strong>Zpoždění:</strong> Čas přenosu</li>
+                </ul>
+                <h2>5. Směrovací metody a protokoly</h2>
+                <h3>Směrovací metody</h3>
+                <ul>
+                    <li><strong>Unicast:</strong> Mezi dvěma zařízeními</li>
+                    <li><strong>Multicast:</strong> Z jednoho na skupinu</li>
+                    <li><strong>Broadcast:</strong> Na všechna zařízení v síti</li>
+                </ul>
+                <h3>Směrovací protokoly</h3>
+                <ul>
+                    <li><strong>RIP:</strong> Metoda počtu skoků, max 15 skoků, jednoduchý ale pomalý</li>
+                    <li><strong>OSPF:</strong> Link-state protokol, rychlé a přesné směrování</li>
+                    <li><strong>BGP:</strong> Mezi autonomními systémy, klíčový pro internet</li>
+                    <li><strong>EIGRP:</strong> Cisco proprietární, rychlejší než RIP</li>
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

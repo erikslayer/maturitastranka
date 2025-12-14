@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSS - kaskádové styly, selektory, box model, flexbox.">
+    <title>16. CSS - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">CSS</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🎨 CSS</h1>
+                <p class="author">Téma 16 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je CSS?</h2>
+                <p><strong>Cascading Style Sheets</strong> je jazyk pro <strong>vizuální úpravu</strong> HTML dokumentů.
+                    Definuje barvy, fonty, rozložení, animace a další vzhled stránky.</p>
+
+                <p><strong>💡 Oddělení struktury od vzhledu:</strong> HTML = CO je na stránce, CSS = JAK to vypadá.</p>
+
+                <h2>Způsoby připojení CSS</h2>
+                <pre class="language-css"><code>&lt;!-- 1. Inline styly (přímo v HTML) - NEdoporučuje se --&gt;
+&lt;p style="color: red; font-size: 16px;"&gt;Červený text&lt;/p&gt;
+
+&lt;!-- 2. Interní styly (v &lt;head&gt;) --&gt;
+&lt;head&gt;
+    &lt;style&gt;
+        p { color: blue; }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;!-- 3. Externí stylopis (DOPORUČENO) --&gt;
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;</code></pre>
+
+                <h2>Anatomie CSS pravidla</h2>
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <pre class="language-css"><code>h1 {
+    color: blue;
+    font-size: 24px;
+}
+│    │       │
+│    │       └── hodnota
+│    └── vlastnost
+└── selektor</code></pre>
+                </div>
+
+                <h2>Selektory</h2>
+
+                <h3>Základní selektory</h3>
+                <pre class="language-css"><code>/* Element selektor */
+p { color: black; }                  /* Všechny &lt;p&gt; */
+
+/* Třída (class) - začíná tečkou */
+.upozorneni { color: red; }          /* &lt;div class="upozorneni"&gt; */
+
+/* ID - začíná # (unikátní na stránce) */
+#hlavni-nadpis { font-size: 32px; }  /* &lt;h1 id="hlavni-nadpis"&gt; */
+
+/* Univerzální selektor */
+* { margin: 0; padding: 0; }         /* Všechny elementy */</code></pre>
+
+                <h3>Kombinované selektory</h3>
+                <pre class="language-css"><code>/* Potomek (mezera) */
+article p { color: gray; }           /* &lt;p&gt; uvnitř &lt;article&gt; */
+
+/* Přímý potomek (>) */
+ul > li { list-style: none; }        /* Přímé &lt;li&gt; v &lt;ul&gt; */
+
+/* Sourozenec (+) */
+h2 + p { font-weight: bold; }        /* &lt;p&gt; hned za &lt;h2&gt; */
+
+/* Více selektorů (,) */
+h1, h2, h3 { font-family: Arial; }   /* Všechny nadpisy */
+
+/* Kombinace element + třída */
+p.dulezity { color: red; }           /* &lt;p class="dulezity"&gt; */</code></pre>
+
+                <h3>Pseudotřídy a pseudoelementy</h3>
+                <pre class="language-css"><code>/* Pseudotřídy - stav elementu */
+a:hover { color: red; }              /* Při najetí myší */
+a:visited { color: purple; }         /* Navštívený odkaz */
+a:active { color: orange; }          /* Při kliknutí */
+input:focus { border-color: blue; }  /* Když je aktivní */
+
+button:disabled { opacity: 0.5; }    /* Zakázané tlačítko */
+li:first-child { font-weight: bold; }/* První položka seznamu */
+li:nth-child(2n) { background: #eee; }/* Sudé položky */
+
+/* Pseudoelementy - část elementu */
+p::first-line { font-variant: small-caps; }
+p::first-letter { font-size: 2em; }
+h2::before { content: "→ "; }        /* Přidá obsah před */
+h2::after { content: " ←"; }         /* Přidá obsah za */</code></pre>
+
+                <h2>Box Model</h2>
+                <p>Každý HTML element je „krabice" se 4 vrstvami:</p>
+
+                <div
+                    style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center;">
+                    <pre class="language-plaintext"><code>┌─────────────── margin ─────────────────┐
+│ ┌─────────── border ───────────────┐   │
+│ │ ┌─────── padding ─────────────┐  │   │
+│ │ │ ┌────── content ──────────┐ │  │   │
+│ │ │ │                         │ │  │   │
+│ │ │ │    Obsah elementu       │ │  │   │
+│ │ │ │                         │ │  │   │
+│ │ │ └─────────────────────────┘ │  │   │
+│ │ └─────────────────────────────┘  │   │
+│ └──────────────────────────────────┘   │
+└────────────────────────────────────────┘</code></pre>
+                </div>
+
+                <pre class="language-css"><code>div {
+    /* Obsah */
+    width: 200px;
+    height: 100px;
+    
+    /* Vnitřní odsazení */
+    padding: 20px;                    /* Všechny strany */
+    padding: 10px 20px;               /* Vertikální | Horizontální */
+    padding: 10px 20px 15px 5px;      /* Top Right Bottom Left */
+    
+    /* Ohraničení */
+    border: 2px solid black;          /* Šířka Styl Barva */
+    border-radius: 8px;               /* Zaoblené rohy */
+    
+    /* Vnější odsazení */
+    margin: 20px;
+    margin: 0 auto;                   /* Vycentruje horizontálně */
+    
+    /* DŮLEŽITÉ: box-sizing */
+    box-sizing: border-box;           /* width zahrnuje padding a border */
+}</code></pre>
+
+                <p><strong>💡 <code>box-sizing: border-box;</code></strong> je téměř vždy lepší volba – šířka elementu
+                    zůstane stejná i s paddingem a borderem.</p>
+
+                <h2>Barvy a pozadí</h2>
+                <pre class="language-css"><code>div {
+    /* Barvy */
+    color: red;                       /* Pojmenovaná */
+    color: #ff0000;                   /* HEX */
+    color: rgb(255, 0, 0);            /* RGB */
+    color: rgba(255, 0, 0, 0.5);      /* RGBA s průhledností */
+    color: hsl(0, 100%, 50%);         /* HSL */
+    
+    /* Pozadí */
+    background-color: #f0f0f0;
+    background-image: url('obrazek.jpg');
+    background-size: cover;           /* Vyplní celý element */
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Zkrácený zápis */
+    background: #f0f0f0 url('bg.jpg') no-repeat center/cover;
+    
+    /* Gradient */
+    background: linear-gradient(to right, #ff0000, #0000ff);
+    background: radial-gradient(circle, #fff, #000);
+}</code></pre>
+
+                <h2>Typography</h2>
+                <pre class="language-css"><code>p {
+    font-family: 'Arial', sans-serif; /* Záložní fonty */
+    font-size: 16px;                  /* Velikost */
+    font-weight: bold;                /* Tloušťka (400 = normal, 700 = bold) */
+    font-style: italic;               /* Styl */
+    
+    line-height: 1.5;                 /* Výška řádku */
+    letter-spacing: 1px;              /* Mezery mezi písmeny */
+    text-align: center;               /* left | center | right | justify */
+    text-decoration: underline;       /* none | underline | line-through */
+    text-transform: uppercase;        /* uppercase | lowercase | capitalize */
+}</code></pre>
+
+                <h2>Flexbox (1D layout)</h2>
+                <p>Moderní způsob zarovnání elementů v <strong>jednom směru</strong> (řádku nebo sloupci).</p>
+
+                <pre class="language-css"><code>.kontejner {
+    display: flex;                    /* Aktivuje flexbox */
+    flex-direction: row;              /* row | column | row-reverse */
+    
+    /* Zarovnání na hlavní ose */
+    justify-content: center;          /* flex-start | center | flex-end */
+                                      /* space-between | space-around | space-evenly */
+    
+    /* Zarovnání na vedlejší ose */
+    align-items: center;              /* flex-start | center | flex-end | stretch */
+    
+    flex-wrap: wrap;                  /* Zalamování na nový řádek */
+    gap: 20px;                        /* Mezery mezi potomky */
+}
+
+.polozka {
+    flex: 1;                          /* Roztáhne se, zabere 1 díl */
+    flex-grow: 1;                     /* Růst */
+    flex-shrink: 0;                   /* Nesmršťuje se */
+    flex-basis: 200px;                /* Výchozí velikost */
+}</code></pre>
+
+                <h2>CSS Grid (2D layout)</h2>
+                <p>Pro komplexní <strong>dvourozměrné rozvržení</strong> (řádky i sloupce).</p>
+
+                <pre class="language-css"><code>.grid-kontejner {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;  /* 3 sloupce (fr = podíl) */
+    grid-template-rows: 100px auto;       /* 2 řádky */
+    gap: 20px;                            /* Mezery */
+}
+
+.polozka {
+    grid-column: 1 / 3;                   /* Od sloupce 1 do 3 */
+    grid-row: 1 / 2;                      /* Pouze první řádek */
+}</code></pre>
+
+                <h2>Responzivní design (Media Queries)</h2>
+                <pre class="language-css"><code>/* Základní styl (mobile-first) */
+.kontejner {
+    padding: 10px;
+}
+
+/* Tablety (768px a více) */
+@media (min-width: 768px) {
+    .kontejner {
+        padding: 20px;
+    }
+}
+
+/* Desktop (1024px a více) */
+@media (min-width: 1024px) {
+    .kontejner {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}</code></pre>
+
+                <h2>Specificita (priorita pravidel)</h2>
+                <p>Když se pravidla střetnou, vyhrává specifičtější selektor:</p>
+                <ol>
+                    <li><strong>!important</strong> (vyhýbej se!)</li>
+                    <li><strong>Inline styly</strong> (style="")</li>
+                    <li><strong>ID selektory</strong> (#id)</li>
+                    <li><strong>Třídy, pseudotřídy</strong> (.class, :hover)</li>
+                    <li><strong>Elementy</strong> (p, div)</li>
+                </ol>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>CSS</strong> = stylovací jazyk pro vzhled HTML</li>
+                        <li><strong>Selektory:</strong> element, .třída, #id, kombinace</li>
+                        <li><strong>Box model:</strong> content → padding → border → margin</li>
+                        <li><strong>box-sizing: border-box</strong> = width zahrnuje vše</li>
+                        <li><strong>Flexbox:</strong> 1D layout (display: flex, justify-content, align-items)</li>
+                        <li><strong>Grid:</strong> 2D layout (display: grid, grid-template-columns)</li>
+                        <li><strong>Media queries:</strong> @media (min-width: 768px) pro responzivitu</li>
+                        <li><strong>Pseudotřídy:</strong> :hover, :focus, :nth-child()</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

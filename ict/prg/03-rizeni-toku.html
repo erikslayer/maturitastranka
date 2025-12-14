@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Řízení toku programu - podmínky if, else, switch.">
+    <title>3. Řízení toku programu - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Řízení toku</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔀 Řízení toku programu</h1>
+                <p class="author">Téma 3 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je řízení toku?</h2>
+                <p>Normálně se příkazy vykonávají <strong>postupně</strong> – jeden za druhým. Řízení toku nám umožňuje
+                    tuto posloupnost měnit: některé příkazy přeskočit, jiné opakovat, nebo zvolit jednu z několika
+                    možností.</p>
+
+                <p>Základní struktury řízení toku jsou:</p>
+                <ul>
+                    <li><strong>Podmíněné příkazy:</strong> Vykonají se jen když je splněna podmínka (if, switch)</li>
+                    <li><strong>Cykly:</strong> Opakují příkazy (for, while) – viz téma 4</li>
+                    <li><strong>Skoky:</strong> Přeruší normální tok (break, continue, return)</li>
+                </ul>
+
+                <h2>Podmínka if-else</h2>
+                <p>Nejzákladnější podmínka – pokud je výraz pravdivý, vykoná se blok kódu. Pokud ne, může se vykonat
+                    alternativa.</p>
+
+                <h3>Jednoduchý if</h3>
+                <pre class="language-cpp"><code>int vek = 18;
+
+if (vek >= 18) {
+    cout << "Jsi plnoletý, můžeš volit." << endl;
+}
+// Pokud podmínka není splněna, nic se nestane</code></pre>
+
+                <h3>if-else (dvě větve)</h3>
+                <p>Když chceme udělat něco jiného, pokud podmínka neplatí:</p>
+                <pre class="language-cpp"><code>int vek = 16;
+
+if (vek >= 18) {
+    cout << "Jsi plnoletý.";
+} else {
+    cout << "Jsi nezletilý.";
+}
+// Vždy se vykoná PŘESNĚ jeden z bloků</code></pre>
+
+                <h3>else if (více větví)</h3>
+                <p>Pro více možností testujeme podmínky postupně – první splněná „vyhrává":</p>
+                <pre class="language-cpp"><code>int znamka = 2;
+
+if (znamka == 1) {
+    cout << "Výborně!";
+} else if (znamka == 2) {
+    cout << "Chvalitebně";
+} else if (znamka == 3) {
+    cout << "Dobře";
+} else if (znamka == 4) {
+    cout << "Dostatečně";
+} else if (znamka == 5) {
+    cout << "Nedostatečně";
+} else {
+    cout << "Neplatná známka";  // záchytná větev
+}</code></pre>
+
+                <p><strong>⚠️ Pozor na pořadí!</strong> Podmínky se testují shora dolů. První splněná se vykoná a zbytek
+                    se přeskočí.</p>
+
+                <h2>Příkaz switch</h2>
+                <p>Elegantní způsob, jak porovnat jednu hodnotu s více možnostmi. Vhodný pro <strong>diskrétní
+                        hodnoty</strong> (čísla, znaky, enumy).</p>
+
+                <pre class="language-cpp"><code>int den = 3;  // 1 = pondělí, 2 = úterý, ...
+
+switch (den) {
+    case 1:
+        cout << "Pondělí";
+        break;
+    case 2:
+        cout << "Úterý";
+        break;
+    case 3:
+        cout << "Středa";
+        break;
+    case 4:
+        cout << "Čtvrtek";
+        break;
+    case 5:
+        cout << "Pátek";
+        break;
+    case 6:
+    case 7:
+        cout << "Víkend!";  // case 6 i 7 sdílejí tento kód
+        break;
+    default:
+        cout << "Neplatný den";
+}</code></pre>
+
+                <p><strong>⚠️ Důležité: break!</strong> Bez <code>break</code> by kód „propadl" do dalšího case. To se
+                    nazývá <strong>fall-through</strong> a většinou to není žádoucí.</p>
+
+                <h3>Kdy použít switch vs if-else?</h3>
+                <ul>
+                    <li><strong>switch:</strong> Když porovnáváme jednu proměnnou s mnoha <u>konkrétními hodnotami</u>
+                    </li>
+                    <li><strong>if-else:</strong> Když máme složitější podmínky, rozsahy, nebo porovnáváme více
+                        proměnných</li>
+                </ul>
+
+                <h2>Relační operátory</h2>
+                <p>Porovnávají dvě hodnoty a vrací <code>true</code> nebo <code>false</code>:</p>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Operátor</th>
+                        <th style="padding: 0.5rem;">Význam</th>
+                        <th style="padding: 0.5rem;">Příklad</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; text-align: center;"><code>==</code></td>
+                        <td style="padding: 0.5rem;">Rovná se</td>
+                        <td style="padding: 0.5rem;"><code>x == 5</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; text-align: center;"><code>!=</code></td>
+                        <td style="padding: 0.5rem;">Nerovná se</td>
+                        <td style="padding: 0.5rem;"><code>x != 0</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; text-align: center;"><code>&lt;</code></td>
+                        <td style="padding: 0.5rem;">Menší než</td>
+                        <td style="padding: 0.5rem;"><code>vek &lt; 18</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; text-align: center;"><code>&gt;</code></td>
+                        <td style="padding: 0.5rem;">Větší než</td>
+                        <td style="padding: 0.5rem;"><code>teplota &gt; 30</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; text-align: center;"><code>&lt;=</code></td>
+                        <td style="padding: 0.5rem;">Menší nebo rovno</td>
+                        <td style="padding: 0.5rem;"><code>body &lt;= 100</code></td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; text-align: center;"><code>&gt;=</code></td>
+                        <td style="padding: 0.5rem;">Větší nebo rovno</td>
+                        <td style="padding: 0.5rem;"><code>vek &gt;= 18</code></td>
+                    </tr>
+                </table>
+
+                <p><strong>⚠️ Nejčastější chyba:</strong> Záměna <code>=</code> (přiřazení) za <code>==</code>
+                    (porovnání)!</p>
+                <pre class="language-css"><code>// ŠPATNĚ - přiřazení, vždy true!
+if (x = 5) { ... }
+
+// SPRÁVNĚ - porovnání
+if (x == 5) { ... }</code></pre>
+
+                <h2>Logické operátory</h2>
+                <p>Kombinují více podmínek do jedné:</p>
+
+                <h3>AND (&&) – obě podmínky musí platit</h3>
+                <pre class="language-cpp"><code>int vek = 25;
+bool maRidicsak = true;
+
+// Může řídit jen kdo je plnoletý A má řidičák
+if (vek >= 18 && maRidicsak) {
+    cout << "Můžeš řídit auto.";
+}</code></pre>
+
+                <h3>OR (||) – alespoň jedna podmínka musí platit</h3>
+                <pre class="language-cpp"><code>bool jeStudent = true;
+bool jeSenior = false;
+
+// Slevu má student NEBO senior
+if (jeStudent || jeSenior) {
+    cout << "Máš nárok na slevu.";
+}</code></pre>
+
+                <h3>NOT (!) – negace podmínky</h3>
+                <pre class="language-cpp"><code>bool jeZamceno = true;
+
+if (!jeZamceno) {
+    cout << "Dveře jsou otevřené.";
+} else {
+    cout << "Dveře jsou zamčené.";
+}</code></pre>
+
+                <h3>Kombinace operátorů</h3>
+                <pre class="language-cpp"><code>// Složitější podmínka
+if ((vek >= 18 && vek <= 65) || jeInvalida) {
+    cout << "Může pracovat.";
+}
+// Závorky určují prioritu - vždy je používejte pro jasnost!</code></pre>
+
+                <h2>Ternární operátor</h2>
+                <p>Zkrácený zápis jednoduchého if-else, který vrací hodnotu. Čte se jako otázka:</p>
+                <pre class="language-css"><code>// Syntaxe: podmínka ? hodnota_pokud_true : hodnota_pokud_false
+
+int vek = 20;
+string status = (vek >= 18) ? "dospělý" : "nezletilý";
+// Výsledek: status = "dospělý"
+
+// Je ekvivalentní:
+string status;
+if (vek >= 18) {
+    status = "dospělý";
+} else {
+    status = "nezletilý";
+}</code></pre>
+
+                <p><strong>💡 Kdy použít?</strong> Pouze pro jednoduché případy. U složitějších podmínek je if-else
+                    čitelnější.</p>
+
+                <h2>Vnořené podmínky</h2>
+                <p>Podmínky můžeme vnořovat do sebe, ale pozor na přílišnou složitost:</p>
+                <pre class="language-cpp"><code>bool jeStudent = true;
+double prumer = 1.3;
+
+if (jeStudent) {
+    if (prumer < 1.5) {
+        cout << "Prospěl s vyznamenáním";
+    } else if (prumer <= 4.0) {
+        cout << "Prospěl";
+    } else {
+        cout << "Neprospěl";
+    }
+} else {
+    cout << "Není student";
+}</code></pre>
+
+                <p><strong>⚠️ Tip:</strong> Příliš hluboké vnoření (více než 2-3 úrovně) snižuje čitelnost. Použij
+                    návratové příkazy nebo refaktoruj do funkcí.</p>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>if-else:</strong> Základní větvení, vykoná se jedna z větví</li>
+                        <li><strong>switch:</strong> Pro porovnání s mnoha hodnotami, nezapomeň na <code>break</code>!
+                        </li>
+                        <li>Relační op.: <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>,
+                            <code>&lt;=</code>, <code>&gt;=</code></li>
+                        <li>Logické op.: <code>&&</code> (AND), <code>||</code> (OR), <code>!</code> (NOT)</li>
+                        <li>Ternární operátor: <code>podmínka ? true : false</code></li>
+                        <li><strong>Častá chyba:</strong> <code>=</code> vs <code>==</code></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

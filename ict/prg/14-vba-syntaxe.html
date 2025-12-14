@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Základní syntaxe VBA - Visual Basic for Applications.">
+    <title>14. Základní syntaxe VBA - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Základní syntaxe VBA</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>📊 Základní syntaxe VBA</h1>
+                <p class="author">Téma 14 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je VBA?</h2>
+                <p><strong>Visual Basic for Applications (VBA)</strong> je programovací jazyk integrovaný do aplikací
+                    Microsoft Office (Excel, Word, Access...). Umožňuje <strong>automatizovat opakující se
+                        úkoly</strong> a vytvářet vlastní funkce.</p>
+
+                <p><strong>💡 Typické použití:</strong></p>
+                <ul>
+                    <li>Automatizace zpracování dat v Excelu</li>
+                    <li>Generování sestav a reportů</li>
+                    <li>Vytváření vlastních formulářů (UserForms)</li>
+                    <li>Propojení Office aplikací s databázemi</li>
+                </ul>
+
+                <h3>Kde psát VBA kód?</h3>
+                <p>V Excelu: <strong>Alt + F11</strong> → otevře VBA Editor. Kód se ukládá do modulů (Insert → Module).
+                </p>
+
+                <h2>Sub a Function</h2>
+                <p>VBA rozlišuje dva typy procedur:</p>
+
+                <h3>Sub (Subroutine) – procedura</h3>
+                <p>Provede akce, <strong>nevrací hodnotu</strong>. Lze spustit jako makro.</p>
+                <pre class="language-vb"><code>Sub Pozdrav()
+    MsgBox "Ahoj světe!"          ' Zobrazí dialog
+End Sub
+
+Sub PozdravSJmenem(jmeno As String)
+    MsgBox "Ahoj, " & jmeno & "!"  ' & spojuje řetězce
+End Sub
+
+' Volání procedury
+Call PozdravSJmenem("Jan")
+' nebo bez Call
+PozdravSJmenem "Jan"</code></pre>
+
+                <h3>Function – funkce</h3>
+                <p><strong>Vrací hodnotu</strong>. Lze použít přímo v buňkách Excelu jako vlastní funkci.</p>
+                <pre class="language-vb"><code>Function Secti(a As Integer, b As Integer) As Integer
+    Secti = a + b                  ' Přiřazení do názvu = návratová hodnota
+End Function
+
+Function JeParne(cislo As Integer) As Boolean
+    JeParne = (cislo Mod 2 = 0)
+End Function
+
+' V Excelu pak můžeš použít: =Secti(5, 3) → 8
+' Volání v kódu:
+Dim vysledek As Integer
+vysledek = Secti(10, 20)          ' vysledek = 30</code></pre>
+
+                <h2>Proměnné a datové typy</h2>
+                <pre class="language-vb"><code>' Deklarace proměnných (Dim = Dimension)
+Dim jmeno As String
+Dim vek As Integer
+Dim cena As Double
+Dim aktivni As Boolean
+Dim datum As Date
+Dim cokoliv As Variant             ' Může obsahovat jakýkoliv typ
+
+' Přiřazení hodnot
+jmeno = "Jan Novák"
+vek = 25
+cena = 199.90
+aktivni = True
+datum = #12/13/2025#               ' Datum ve speciálním formátu
+datum = Date                       ' Aktuální datum
+
+' Konstanty
+Const PI As Double = 3.14159
+Const MAX_HODNOTA As Integer = 100</code></pre>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Typ</th>
+                        <th style="padding: 0.5rem;">Popis</th>
+                        <th style="padding: 0.5rem;">Rozsah</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>Integer</code></td>
+                        <td style="padding: 0.5rem;">Celé číslo</td>
+                        <td style="padding: 0.5rem;">-32,768 až 32,767</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>Long</code></td>
+                        <td style="padding: 0.5rem;">Dlouhé celé číslo</td>
+                        <td style="padding: 0.5rem;">±2 miliardy</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>Double</code></td>
+                        <td style="padding: 0.5rem;">Desetinné číslo</td>
+                        <td style="padding: 0.5rem;">Přesná desetinná</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>String</code></td>
+                        <td style="padding: 0.5rem;">Text</td>
+                        <td style="padding: 0.5rem;">Až 2 miliardy znaků</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>Boolean</code></td>
+                        <td style="padding: 0.5rem;">Pravda/Nepravda</td>
+                        <td style="padding: 0.5rem;">True / False</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>Date</code></td>
+                        <td style="padding: 0.5rem;">Datum a čas</td>
+                        <td style="padding: 0.5rem;">1.1.100 až 31.12.9999</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>Variant</code></td>
+                        <td style="padding: 0.5rem;">Cokoliv</td>
+                        <td style="padding: 0.5rem;">Pomalejší, univerzální</td>
+                    </tr>
+                </table>
+
+                <h2>Podmínky (If, Select Case)</h2>
+                <pre class="language-vb"><code>' If...Then...Else
+Dim vek As Integer
+vek = 18
+
+If vek >= 18 Then
+    MsgBox "Dospělý"
+ElseIf vek >= 15 Then
+    MsgBox "Mladistvý"
+Else
+    MsgBox "Dítě"
+End If
+
+' Jednořádkový If
+If vek >= 18 Then MsgBox "Dospělý"
+
+' Select Case (jako switch)
+Dim den As Integer
+den = Weekday(Date)              ' 1 = neděle, 7 = sobota
+
+Select Case den
+    Case 1
+        MsgBox "Neděle"
+    Case 2 To 6                  ' Rozsah hodnot
+        MsgBox "Pracovní den"
+    Case 7
+        MsgBox "Sobota"
+    Case Else
+        MsgBox "Neplatný den"
+End Select</code></pre>
+
+                <h2>Cykly</h2>
+                <pre class="language-vb"><code>' For...Next
+Dim i As Integer
+For i = 1 To 10
+    Debug.Print i                ' Vypíše do Immediate Window
+Next i
+
+For i = 10 To 1 Step -1          ' Zpětně
+    Debug.Print i
+Next i
+
+' For Each (pro kolekce)
+Dim bunka As Range
+For Each bunka In Range("A1:A10")
+    bunka.Value = bunka.Value * 2
+Next bunka
+
+' Do While...Loop
+Dim pocet As Integer
+pocet = 0
+Do While pocet < 5
+    pocet = pocet + 1
+    Debug.Print pocet
+Loop
+
+' Do...Loop Until (podmínka na konci)
+Do
+    pocet = pocet + 1
+Loop Until pocet >= 10
+
+' Exit For / Exit Do - předčasné ukončení
+For i = 1 To 100
+    If i = 50 Then Exit For
+Next i</code></pre>
+
+                <h2>Práce s Excelem</h2>
+
+                <h3>Přístup k buňkám</h3>
+                <pre class="language-vb"><code>' Range objekt - adresa buňky
+Range("A1").Value = "Ahoj"            ' Zápis hodnoty
+Dim hodnota As Variant
+hodnota = Range("B2").Value           ' Čtení hodnoty
+
+' Cells objekt - řádek, sloupec (číselně)
+Cells(1, 1).Value = "A1"              ' Cells(řádek, sloupec)
+Cells(2, 3).Value = "C2"              ' C2
+
+' Oblast buněk
+Range("A1:D10").Value = 0             ' Vyplní oblast nulami
+Range("A1:A10").ClearContents         ' Smaže obsah
+
+' Aktivní buňka
+ActiveCell.Value = "Jsem aktivní"
+
+' Výběr
+Range("A1").Select                    ' Vybere buňku
+Selection.Font.Bold = True            ' Tučné písmo výběru</code></pre>
+
+                <h3>Formátování</h3>
+                <pre class="language-vb"><code>With Range("A1")
+    .Font.Bold = True
+    .Font.Size = 14
+    .Font.Color = RGB(255, 0, 0)      ' Červená
+    .Interior.Color = RGB(255, 255, 0) ' Žluté pozadí
+    .HorizontalAlignment = xlCenter
+End With</code></pre>
+
+                <h3>Práce s listy</h3>
+                <pre class="language-vb"><code>' Přístup k listu
+Sheets("List1").Range("A1").Value = "Data"
+Worksheets(1).Activate                ' Aktivuje první list
+
+' Přidání nového listu
+Sheets.Add.Name = "NovyList"
+
+' Kopírování a mazání
+Sheets("List1").Copy After:=Sheets("List2")
+Sheets("StarýList").Delete</code></pre>
+
+                <h2>Ošetření chyb</h2>
+                <pre class="language-vb"><code>Sub BezpecnaOperace()
+    On Error GoTo ObsluzChybu        ' Při chybě skoč na návěští
+    
+    Dim vysledek As Double
+    vysledek = 10 / 0                 ' Chyba! Dělení nulou
+    
+    Exit Sub                          ' Normální konec
+    
+ObsluzChybu:
+    MsgBox "Nastala chyba: " & Err.Description
+    Resume Next                       ' Pokračuj dalším příkazem
+End Sub
+
+' Ignorování chyb (opatrně!)
+On Error Resume Next
+' ... kód který může selhat ...
+On Error GoTo 0                       ' Obnoví normální zpracování</code></pre>
+
+                <h2>Pole (Arrays)</h2>
+                <pre class="language-vb"><code>' Statické pole
+Dim cisla(1 To 5) As Integer
+cisla(1) = 10
+cisla(2) = 20
+
+' Dynamické pole
+Dim data() As String
+ReDim data(1 To 10)                   ' Nastavení velikosti
+ReDim Preserve data(1 To 20)          ' Změna velikosti, zachová data
+
+' Pole z rozsahu
+Dim hodnoty As Variant
+hodnoty = Range("A1:A10").Value       ' 2D pole</code></pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Sub:</strong> Procedura bez návratové hodnoty</li>
+                        <li><strong>Function:</strong> Vrací hodnotu, použitelná v Excelu</li>
+                        <li><strong>Dim:</strong> Deklarace proměnné (Integer, String, Double...)</li>
+                        <li><strong>Range("A1"):</strong> Přístup k buňce adresou</li>
+                        <li><strong>Cells(1, 1):</strong> Přístup k buňce číselně</li>
+                        <li><strong>For...Next, Do...Loop:</strong> Cykly</li>
+                        <li><strong>If...Then...Else, Select Case:</strong> Podmínky</li>
+                        <li><strong>On Error:</strong> Ošetření chyb</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

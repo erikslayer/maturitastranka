@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rozdělení programovacích jazyků, základní pojmy programování.">
+    <title>1. Rozdělení programovacích jazyků - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Rozdělení jazyků</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>💻 Rozdělení programovacích jazyků</h1>
+                <p class="author">Téma 1 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Úvod do programovacích jazyků</h2>
+                <p>Programovací jazyk je <strong>formální jazyk</strong>, který slouží k zápisu algoritmů a instrukcí
+                    pro počítač. Existuje více než 700 programovacích jazyků, ale v praxi se běžně používá jen několik
+                    desítek. Každý jazyk má své specifické vlastnosti, výhody a nevýhody, které ho činí vhodným pro
+                    různé typy úloh.</p>
+
+                <p>Pochopení rozdílů mezi jazyky je důležité pro <strong>správný výběr nástroje</strong> pro daný
+                    projekt – stejně jako bychom nepoužili kladivo na šroubování, nepoužijeme ani Python na psaní
+                    ovladačů hardwaru.</p>
+
+                <h2>Rozdělení podle úrovně abstrakce</h2>
+                <p>Úroveň abstrakce určuje, jak blízko je jazyk k <strong>strojovému kódu</strong> (nízká úroveň) nebo k
+                    <strong>lidskému uvažování</strong> (vysoká úroveň).</p>
+
+                <h3>Nízkoúrovňové jazyky</h3>
+                <p>Tyto jazyky jsou velmi blízko hardwaru a poskytují přímou kontrolu nad pamětí a procesorem. Jsou
+                    rychlé, ale složité na psaní.</p>
+                <ul>
+                    <li><strong>Strojový kód:</strong> Binární instrukce procesoru (0 a 1) – přímo spustitelné CPU, ale
+                        prakticky nečitelné pro člověka</li>
+                    <li><strong>Assembler:</strong> Mnemotechnické značky pro instrukce (MOV, ADD, JMP) – každá
+                        instrukce odpovídá jedné strojové instrukci</li>
+                </ul>
+                <p><strong>💡 Příklad assembleru (x86):</strong></p>
+                <pre class="language-asm"><code>MOV AX, 5      ; ulož hodnotu 5 do registru AX
+ADD AX, 3      ; přičti 3 k registru AX
+; Výsledek: AX = 8</code></pre>
+                <p><strong>🎯 Použití:</strong> Ovladače hardwaru, operační systémy, embedded systémy, optimalizace
+                    kritických částí kódu.</p>
+
+                <h3>Vysokoúrovňové jazyky</h3>
+                <p>Jsou bližší lidskému jazyku a abstrahují od hardwaru. Jeden příkaz může znamenat desítky strojových
+                    instrukcí.</p>
+                <ul>
+                    <li>Snadnější čtení a psaní kódu</li>
+                    <li>Přenositelnost mezi platformami</li>
+                    <li><strong>Příklady:</strong> C, C++, Java, Python, C#, JavaScript, PHP</li>
+                </ul>
+                <p><strong>💡 Stejná operace ve vysokoúrovňovém jazyce:</strong></p>
+                <pre class="language-plaintext"><code>int vysledek = 5 + 3;  // Výsledek: 8</code></pre>
+                <p>Všimni si, jak je vysokoúrovňový zápis kratší a čitelnější!</p>
+
+                <h2>Rozdělení podle způsobu překladu</h2>
+                <p>Počítač rozumí pouze strojovému kódu. Zdrojový kód (to, co programátor napíše) musí být nějak
+                    převeden na instrukce procesoru. To lze udělat třemi způsoby:</p>
+
+                <h3>Kompilované jazyky</h3>
+                <p><strong>Kompilátor</strong> přeloží celý zdrojový kód najednou do spustitelného souboru (.exe) ještě
+                    <strong>před spuštěním</strong> programu.</p>
+                <ul>
+                    <li><strong>Proces:</strong> Zdrojový kód → Kompilátor → Strojový kód (.exe)</li>
+                    <li><strong>Výhody:</strong> Rychlé spuštění, optimalizace kódu, chyby odhaleny při kompilaci</li>
+                    <li><strong>Nevýhody:</strong> Nutnost rekompilace po změnách, závislost na platformě</li>
+                    <li><strong>Příklady:</strong> C, C++, Rust, Go</li>
+                </ul>
+
+                <h3>Interpretované jazyky</h3>
+                <p><strong>Interpret</strong> čte a vykonává kód <strong>řádek po řádku za běhu</strong> programu.</p>
+                <ul>
+                    <li><strong>Proces:</strong> Zdrojový kód → Interpret → Okamžité vykonání</li>
+                    <li><strong>Výhody:</strong> Rychlý vývoj, snadné ladění, přenositelnost</li>
+                    <li><strong>Nevýhody:</strong> Pomalejší běh (překlad za běhu), nutnost mít interpret nainstalovaný
+                    </li>
+                    <li><strong>Příklady:</strong> Python, JavaScript, PHP, Ruby</li>
+                </ul>
+
+                <h3>Jazyky s mezikódem (hybridní)</h3>
+                <p>Kombinace obou přístupů. Kód se nejprve zkompiluje do <strong>mezikódu (bytecode)</strong>, který pak
+                    vykonává virtuální stroj.</p>
+                <ul>
+                    <li><strong>Proces:</strong> Zdrojový kód → Kompilátor → Bytecode → Virtuální stroj</li>
+                    <li><strong>Výhody:</strong> „Napiš jednou, spusť kdekoliv" – nezávislost na platformě</li>
+                    <li><strong>Příklady:</strong>
+                        <ul>
+                            <li>Java → kompiluje do bytecode → běží na JVM (Java Virtual Machine)</li>
+                            <li>C# → kompiluje do IL → běží na .NET CLR (Common Language Runtime)</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p><strong>⚠️ Častá chyba:</strong> Studenti si pletou kompilaci a interpretaci. Klíčový rozdíl je
+                    <em>kdy</em> se překlad děje – kompilace <u>před</u> spuštěním, interpretace <u>za běhu</u>.</p>
+
+                <h2>Programovací paradigmata</h2>
+                <p>Paradigma je <strong>způsob přemýšlení</strong> o tom, jak strukturovat program. Většina moderních
+                    jazyků podporuje více paradigmat.</p>
+
+                <h3>Procedurální programování</h3>
+                <p>Program je <strong>sekvence příkazů</strong>, které se vykonávají postupně. Kód je organizován do
+                    procedur (funkcí).</p>
+                <ul>
+                    <li>Top-down přístup – řešíme problém shora dolů</li>
+                    <li><strong>Příklady:</strong> C, Pascal, starší BASIC</li>
+                </ul>
+                <pre class="language-cpp"><code>// Procedurální přístup v C
+void pozdrav() {
+    printf("Ahoj!");
+}
+int main() {
+    pozdrav();  // volání procedury
+    return 0;
+}</code></pre>
+
+                <h3>Objektově orientované programování (OOP)</h3>
+                <p>Program je tvořen <strong>objekty</strong>, které mají vlastnosti (data) a metody (chování). Základní
+                    pilíře:</p>
+                <ul>
+                    <li><strong>Zapouzdření:</strong> Data a metody jsou spojeny v objektu, vnitřní implementace je
+                        skryta</li>
+                    <li><strong>Dědičnost:</strong> Třídy mohou dědit vlastnosti od jiných tříd</li>
+                    <li><strong>Polymorfismus:</strong> Stejná metoda se může chovat různě pro různé objekty</li>
+                    <li><strong>Příklady:</strong> Java, C++, C#, Python</li>
+                </ul>
+                <pre class="language-csharp"><code>// OOP přístup v C#
+class Pes {
+    public string Jmeno { get; set; }
+    public void Stekej() {
+        Console.WriteLine("Haf!");
+    }
+}
+Pes rex = new Pes();
+rex.Jmeno = "Rex";
+rex.Stekej();  // "Haf!"</code></pre>
+
+                <h3>Funkcionální programování</h3>
+                <p>Důraz na <strong>čisté funkce</strong> bez vedlejších efektů. Data jsou neměnná (immutabilní).</p>
+                <ul>
+                    <li>Funkce jako první hodnoty – lze je předávat jako argumenty</li>
+                    <li>Vhodné pro paralelní zpracování</li>
+                    <li><strong>Příklady:</strong> Haskell, F#, Scala, Erlang</li>
+                </ul>
+
+                <h2>Základní pojmy programování</h2>
+                <p>Tyto pojmy jsou základem, které musíš znát:</p>
+                <ul>
+                    <li><strong>Algoritmus:</strong> Konečná posloupnost kroků vedoucí k vyřešení problému. Musí být
+                        jednoznačný, konečný a efektivní.</li>
+                    <li><strong>Program:</strong> Implementace (zápis) algoritmu v konkrétním programovacím jazyce.</li>
+                    <li><strong>Syntaxe:</strong> Pravidla pro správný zápis kódu – jak musí kód vypadat, abychom ho
+                        mohli přeložit.</li>
+                    <li><strong>Sémantika:</strong> Význam programových konstrukcí – co kód ve skutečnosti dělá.</li>
+                    <li><strong>IDE (Integrated Development Environment):</strong> Vývojové prostředí s editorem,
+                        kompilátorem a debuggerem v jednom (Visual Studio, VS Code, IntelliJ IDEA).</li>
+                    <li><strong>Debugger:</strong> Nástroj pro ladění programů – umožňuje krokovat kód a sledovat
+                        hodnoty proměnných.</li>
+                    <li><strong>Kompilace:</strong> Překlad zdrojového kódu do strojového kódu.</li>
+                    <li><strong>Runtime:</strong> Běhové prostředí, ve kterém se program vykonává.</li>
+                </ul>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Nízkoúrovňové jazyky</strong> = blízko hardwaru (assembler),
+                            <strong>vysokoúrovňové</strong> = blízko člověku (Python, Java)</li>
+                        <li><strong>Kompilované</strong> = překlad před spuštěním (C++), <strong>interpretované</strong>
+                            = překlad za běhu (Python)</li>
+                        <li><strong>Paradigmata:</strong> procedurální (funkce), OOP (objekty), funkcionální (čisté
+                            funkce)</li>
+                        <li>Umět vysvětlit rozdíl mezi syntaxí (jak píšu) a sémantikou (co to dělá)</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

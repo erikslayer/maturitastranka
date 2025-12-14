@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dědičnost v C++ - virtual, polymorfismus.">
+    <title>11. Dědičnost C++ - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Dědičnost C++</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔗 Dědičnost C++</h1>
+                <p class="author">Téma 11 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je dědičnost?</h2>
+                <p>Dědičnost je mechanismus OOP, který umožňuje <strong>vytvořit novou třídu na základě
+                        existující</strong>. Potomek (derived class) přebírá vlastnosti a metody předka (base class) a
+                    může je rozšířit nebo upravit.</p>
+
+                <p><strong>💡 Analogie:</strong></p>
+                <ul>
+                    <li><strong>Předek:</strong> Zvíře (má vlastnosti: jméno, věk; metody: jíst, spát)</li>
+                    <li><strong>Potomek:</strong> Pes (dědí vše od Zvířete + má navíc: štěkat, aportovat)</li>
+                </ul>
+
+                <p><strong>Výhody dědičnosti:</strong></p>
+                <ul>
+                    <li><strong>Znovupoužití kódu:</strong> Nepíšeš stejný kód dvakrát</li>
+                    <li><strong>Hierarchie:</strong> Logická organizace tříd</li>
+                    <li><strong>Polymorfismus:</strong> Umožňuje pracovat s objekty obecně</li>
+                </ul>
+
+                <h2>Základní syntaxe dědičnosti</h2>
+                <pre class="language-cpp"><code>// Bázová (rodičovská) třída
+class Zvire {
+protected:              // Přístupné v této třídě i v potomcích
+    string jmeno;
+    int vek;
+    
+public:
+    Zvire(string j, int v) : jmeno(j), vek(v) {
+        cout << "Zvíře " << jmeno << " vytvořeno" << endl;
+    }
+    
+    void predstavSe() {
+        cout << "Jsem " << jmeno << ", " << vek << " let." << endl;
+    }
+};
+
+// Odvozená (potomek) třída
+class Pes : public Zvire {    // Dědí od Zvire
+public:
+    string plemeno;
+    
+    // Konstruktor volá konstruktor předka
+    Pes(string j, int v, string p) : Zvire(j, v), plemeno(p) {
+        cout << "Pes plemene " << plemeno << " vytvořen" << endl;
+    }
+    
+    // Nová metoda pouze pro Psa
+    void stekej() {
+        cout << jmeno << " říká: Haf haf!" << endl;
+    }
+};
+
+// Použití
+Pes rex("Rex", 3, "Německý ovčák");
+rex.predstavSe();    // Zděděná metoda: "Jsem Rex, 3 let."
+rex.stekej();        // Vlastní metoda: "Rex říká: Haf haf!"</code></pre>
+
+                <h2>Úrovně přístupu při dědění</h2>
+                <p>Klíčové slovo za dvojtečkou určuje, jak se změní viditelnost zděděných členů:</p>
+
+                <pre class="language-plaintext"><code>class Potomek : public Predek    // Nejčastější
+class Potomek : protected Predek
+class Potomek : private Predek   // Méně časté</code></pre>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Dědění</th>
+                        <th style="padding: 0.5rem;">public členy</th>
+                        <th style="padding: 0.5rem;">protected členy</th>
+                        <th style="padding: 0.5rem;">private členy</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>public</code></td>
+                        <td style="padding: 0.5rem;">→ public</td>
+                        <td style="padding: 0.5rem;">→ protected</td>
+                        <td style="padding: 0.5rem;">❌ nedědí se</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>protected</code></td>
+                        <td style="padding: 0.5rem;">→ protected</td>
+                        <td style="padding: 0.5rem;">→ protected</td>
+                        <td style="padding: 0.5rem;">❌ nedědí se</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>private</code></td>
+                        <td style="padding: 0.5rem;">→ private</td>
+                        <td style="padding: 0.5rem;">→ private</td>
+                        <td style="padding: 0.5rem;">❌ nedědí se</td>
+                    </tr>
+                </table>
+
+                <p><strong>💡 V 99% případů používej <code>public</code> dědičnost!</strong></p>
+
+                <h2>Virtuální metody a polymorfismus</h2>
+                <p>Klíčové slovo <code>virtual</code> umožňuje, aby potomek <strong>přepsal chování</strong> metody
+                    předka. Tak funguje polymorfismus.</p>
+
+                <pre class="language-cpp"><code>class Zvire {
+public:
+    // BEZ virtual - volá se metoda podle TYPU ukazatele
+    void zvuk() {
+        cout << "Nějaký zvuk" << endl;
+    }
+    
+    // S virtual - volá se metoda podle SKUTEČNÉHO OBJEKTU
+    virtual void zvukVirtual() {
+        cout << "Nějaký zvuk" << endl;
+    }
+};
+
+class Pes : public Zvire {
+public:
+    void zvuk() {                    // Přepsání (nevirtuální)
+        cout << "Haf!" << endl;
+    }
+    
+    void zvukVirtual() override {    // Přepsání virtuální metody
+        cout << "Haf!" << endl;      // override je volitelné, ale doporučené
+    }
+};
+
+class Kocka : public Zvire {
+public:
+    void zvukVirtual() override {
+        cout << "Mňau!" << endl;
+    }
+};
+
+// Demonstrace polymorfismu
+Zvire* zvirata[3];
+zvirata[0] = new Zvire();
+zvirata[1] = new Pes();
+zvirata[2] = new Kocka();
+
+// Nevirtuální metoda - vždy volá Zvire::zvuk()
+for (int i = 0; i < 3; i++) {
+    zvirata[i]->zvuk();    // 3x "Nějaký zvuk" 😕
+}
+
+// Virtuální metoda - volá správnou verzi podle objektu
+for (int i = 0; i < 3; i++) {
+    zvirata[i]->zvukVirtual();  // "Nějaký zvuk", "Haf!", "Mňau!" 🎉
+}</code></pre>
+
+                <p><strong>⚠️ Klíčové:</strong> Bez <code>virtual</code> se volá metoda podle typu <u>ukazatele</u>. S
+                    <code>virtual</code> se volá podle skutečného typu <u>objektu</u>.</p>
+
+                <h2>Čistě virtuální metody (abstraktní třídy)</h2>
+                <p>Metoda bez implementace, kterou MUSÍ potomek přepsat. Dělá z třídy abstraktní třídu (nelze vytvořit
+                    instanci).</p>
+
+                <pre class="language-cpp"><code>class Tvar {
+public:
+    // Čistě virtuální metoda - nemá tělo, končí = 0
+    virtual double obsah() = 0;
+    virtual double obvod() = 0;
+    
+    // Virtuální destruktor (důležité pro správné uvolnění paměti)
+    virtual ~Tvar() { }
+};
+
+// Tvar tvar;  // CHYBA! Abstraktní třídu nelze instancovat
+
+class Obdelnik : public Tvar {
+    double sirka, vyska;
+public:
+    Obdelnik(double s, double v) : sirka(s), vyska(v) { }
+    
+    double obsah() override {    // MUSÍ implementovat
+        return sirka * vyska;
+    }
+    
+    double obvod() override {    // MUSÍ implementovat
+        return 2 * (sirka + vyska);
+    }
+};
+
+class Kruh : public Tvar {
+    double polomer;
+public:
+    Kruh(double r) : polomer(r) { }
+    
+    double obsah() override {
+        return 3.14159 * polomer * polomer;
+    }
+    
+    double obvod() override {
+        return 2 * 3.14159 * polomer;
+    }
+};
+
+// Polymorfní použití
+Tvar* tvary[2] = { new Obdelnik(5, 3), new Kruh(2) };
+for (auto t : tvary) {
+    cout << "Obsah: " << t->obsah() << endl;
+}</code></pre>
+
+                <h2>Vícenásobná dědičnost</h2>
+                <p>C++ umožňuje dědit z více tříd najednou. Může způsobit komplikace (diamond problem).</p>
+
+                <pre class="language-cpp"><code>class Letajici {
+public:
+    void let() { cout << "Letím!" << endl; }
+};
+
+class Plavajici {
+public:
+    void plav() { cout << "Plavu!" << endl; }
+};
+
+// Kachna dědí z obou
+class Kachna : public Letajici, public Plavajici {
+public:
+    void kvak() { cout << "Kvak!" << endl; }
+};
+
+Kachna donald;
+donald.let();    // Z Letajici
+donald.plav();   // Z Plavajici
+donald.kvak();   // Vlastní</code></pre>
+
+                <p><strong>⚠️ Pozor na diamond problem:</strong> Když dvě bázové třídy dědí ze stejného předka. Řeší se
+                    virtuální dědičností (<code>virtual public</code>).</p>
+
+                <h2>Volání konstruktorů předka</h2>
+                <pre class="language-cpp"><code>class Predek {
+protected:
+    int hodnota;
+public:
+    Predek(int h) : hodnota(h) {
+        cout << "Konstruktor Předka" << endl;
+    }
+};
+
+class Potomek : public Predek {
+    string text;
+public:
+    // Voláme konstruktor předka v inicializačním seznamu
+    Potomek(int h, string t) : Predek(h), text(t) {
+        cout << "Konstruktor Potomka" << endl;
+    }
+};
+
+Potomek p(42, "Ahoj");
+// Výstup:
+// Konstruktor Předka
+// Konstruktor Potomka</code></pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Dědičnost:</strong> <code>class Potomek : public Predek</code></li>
+                        <li><strong>protected:</strong> Přístupné v třídě i potomcích, ne zvenčí</li>
+                        <li><strong>virtual:</strong> Umožňuje přepsání metody v potomkovi (polymorfismus)</li>
+                        <li><strong>override:</strong> Označuje, že přepisujeme virtuální metodu</li>
+                        <li><strong>= 0:</strong> Čistě virtuální metoda → abstraktní třída</li>
+                        <li><strong>Polymorfismus:</strong> Ukazatel na předka může ukazovat na potomka</li>
+                        <li>Konstruktor potomka volá konstruktor předka v inicializačním seznamu</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Databáze a tabulky v relačních databázích - CREATE, datové typy, klíče.">
+    <title>19. Databáze a tabulky - DB | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../db.html">Databáze</a><span class="separator">›</span>
+                <span class="current">Databáze a tabulky</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>📊 Databáze a tabulky v relačních databázích</h1>
+                <p class="author">Téma 19 - Databáze</p>
+                <div class="meta">
+                    <span class="meta-item">💾 Databáze</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Správa databází</h2>
+                <p>Databáze je <strong>kontejner pro tabulky</strong> a další objekty (views, procedury...). Jedna
+                    instance MySQL/PostgreSQL může obsahovat mnoho databází.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Zobrazení existujících databází
+SHOW DATABASES;
+
+-- Vytvoření nové databáze
+CREATE DATABASE nazev_databaze;
+CREATE DATABASE IF NOT EXISTS nazev_databaze;  -- Nevyhodí chybu pokud existuje
+
+-- S nastavením kódování (důležité pro české znaky!)
+CREATE DATABASE eshop 
+    CHARACTER SET utf8mb4 
+    COLLATE utf8mb4_czech_ci;
+
+-- Použití databáze (přepnutí kontextu)
+USE nazev_databaze;
+
+-- Smazání databáze (⚠️ NENÁVRATNÉ!)
+DROP DATABASE nazev_databaze;
+DROP DATABASE IF EXISTS nazev_databaze;</pre>
+
+                <h2>Vytvoření tabulky (CREATE TABLE)</h2>
+                <p>Tabulka je základní struktura pro ukládání dat. Definuješ sloupce, jejich typy a omezení.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+CREATE TABLE uzivatele (
+    -- sloupec     typ               omezení
+    id             INT               AUTO_INCREMENT PRIMARY KEY,
+    jmeno          VARCHAR(50)       NOT NULL,
+    prijmeni       VARCHAR(50)       NOT NULL,
+    email          VARCHAR(100)      UNIQUE,
+    vek            INT               CHECK (vek >= 0 AND vek < 150),
+    aktivni        BOOLEAN           DEFAULT TRUE,
+    datum_registrace DATE            DEFAULT CURRENT_DATE,
+    poznamka       TEXT
+);
+
+-- Co znamenají jednotlivá omezení:
+-- AUTO_INCREMENT: Automaticky se zvyšuje (1, 2, 3...)
+-- PRIMARY KEY: Unikátní identifikátor, NOT NULL
+-- NOT NULL: Hodnota je povinná
+-- UNIQUE: Hodnota musí být v celé tabulce jedinečná
+-- CHECK: Kontrola podmínky
+-- DEFAULT: Výchozí hodnota</pre>
+
+                <h2>Datové typy MySQL</h2>
+
+                <h3>Číselné typy</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Typ</th>
+                        <th style="padding: 0.5rem;">Velikost</th>
+                        <th style="padding: 0.5rem;">Rozsah</th>
+                        <th style="padding: 0.5rem;">Použití</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>TINYINT</code></td>
+                        <td style="padding: 0.5rem;">1 B</td>
+                        <td style="padding: 0.5rem;">-128 až 127</td>
+                        <td style="padding: 0.5rem;">Věk, malá čísla</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>INT</code></td>
+                        <td style="padding: 0.5rem;">4 B</td>
+                        <td style="padding: 0.5rem;">±2.1 miliardy</td>
+                        <td style="padding: 0.5rem;">ID, počty (nejčastější)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>BIGINT</code></td>
+                        <td style="padding: 0.5rem;">8 B</td>
+                        <td style="padding: 0.5rem;">±9 trilionů</td>
+                        <td style="padding: 0.5rem;">Velká ID, časová razítka</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>DECIMAL(m,d)</code></td>
+                        <td style="padding: 0.5rem;">variabilní</td>
+                        <td style="padding: 0.5rem;">přesná čísla</td>
+                        <td style="padding: 0.5rem;"><strong>Peníze!</strong> DECIMAL(10,2)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>FLOAT/DOUBLE</code></td>
+                        <td style="padding: 0.5rem;">4/8 B</td>
+                        <td style="padding: 0.5rem;">desetinná</td>
+                        <td style="padding: 0.5rem;">Vědecké výpočty (nepřesné!)</td>
+                    </tr>
+                </table>
+
+                <p><strong>⚠️ Pro peníze vždy DECIMAL!</strong> FLOAT a DOUBLE mají zaokrouhlovací chyby.</p>
+
+                <h3>Textové typy</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Typ</th>
+                        <th style="padding: 0.5rem;">Max délka</th>
+                        <th style="padding: 0.5rem;">Použití</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>CHAR(n)</code></td>
+                        <td style="padding: 0.5rem;">255</td>
+                        <td style="padding: 0.5rem;">Pevná délka (PSČ, kódy)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>VARCHAR(n)</code></td>
+                        <td style="padding: 0.5rem;">65,535</td>
+                        <td style="padding: 0.5rem;">Proměnná délka (jména, email)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>TEXT</code></td>
+                        <td style="padding: 0.5rem;">65,535</td>
+                        <td style="padding: 0.5rem;">Dlouhý text (popis, komentář)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>ENUM</code></td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem;">Výčet: ENUM('M', 'F', 'X')</td>
+                    </tr>
+                </table>
+
+                <h3>Datum a čas</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+DATE          -- '2025-12-13'           (jen datum)
+TIME          -- '14:30:00'             (jen čas)
+DATETIME      -- '2025-12-13 14:30:00'  (datum + čas)
+TIMESTAMP     -- jako DATETIME, ale ukládá UTC
+YEAR          -- 2025                    (jen rok)</pre>
+
+                <h2>Klíče</h2>
+
+                <h3>Primární klíč (PRIMARY KEY)</h3>
+                <p><strong>Unikátní identifikátor</strong> každého záznamu v tabulce.</p>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Způsob 1: Inline
+id INT PRIMARY KEY AUTO_INCREMENT
+
+-- Způsob 2: Na konci definice
+CREATE TABLE produkty (
+    id INT AUTO_INCREMENT,
+    nazev VARCHAR(100),
+    PRIMARY KEY (id)
+);
+
+-- Složený primární klíč (kombinace je unikátní)
+CREATE TABLE objednavka_produkt (
+    objednavka_id INT,
+    produkt_id INT,
+    mnozstvi INT,
+    PRIMARY KEY (objednavka_id, produkt_id)
+);</pre>
+
+                <h3>Cizí klíč (FOREIGN KEY)</h3>
+                <p><strong>Odkaz na primární klíč</strong> jiné tabulky. Zajišťuje referenční integritu.</p>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+CREATE TABLE objednavky (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    datum DATE NOT NULL,
+    uzivatel_id INT NOT NULL,
+    
+    -- Cizí klíč odkazuje na uzivatele.id
+    FOREIGN KEY (uzivatel_id) 
+        REFERENCES uzivatele(id)
+        ON DELETE RESTRICT          -- Zabrání smazání uživatele s objednávkami
+        ON UPDATE CASCADE           -- Při změně ID uživatele aktualizuje
+);
+
+-- Pokus o vložení neexistujícího uživatele selže
+INSERT INTO objednavky (datum, uzivatel_id) VALUES ('2025-12-13', 999);
+-- Error: Cannot add or update a child row: a foreign key constraint fails</pre>
+
+                <h2>Úprava tabulky (ALTER TABLE)</h2>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Přidání sloupce
+ALTER TABLE uzivatele ADD telefon VARCHAR(20);
+ALTER TABLE uzivatele ADD adresa TEXT AFTER email;  -- Za sloupec email
+
+-- Změna datového typu
+ALTER TABLE uzivatele MODIFY vek SMALLINT;
+
+-- Přejmenování sloupce (MySQL 8+)
+ALTER TABLE uzivatele RENAME COLUMN jmeno TO krestni_jmeno;
+
+-- Smazání sloupce
+ALTER TABLE uzivatele DROP COLUMN telefon;
+
+-- Přidání indexu
+ALTER TABLE uzivatele ADD INDEX idx_email (email);
+
+-- Přidání cizího klíče
+ALTER TABLE objednavky 
+    ADD FOREIGN KEY (produkt_id) REFERENCES produkty(id);</pre>
+
+                <h2>Mazání tabulky</h2>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Smazání celé tabulky (struktura i data)
+DROP TABLE nazev_tabulky;
+DROP TABLE IF EXISTS nazev_tabulky;
+
+-- Smazání pouze dat (struktura zůstane)
+TRUNCATE TABLE nazev_tabulky;
+-- Rychlejší než DELETE FROM, resetuje AUTO_INCREMENT
+
+-- Přejmenování tabulky
+RENAME TABLE stary_nazev TO novy_nazev;</pre>
+
+                <h2>Zobrazení informací</h2>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Seznam tabulek v databázi
+SHOW TABLES;
+
+-- Struktura tabulky
+DESCRIBE uzivatele;
+-- nebo
+SHOW COLUMNS FROM uzivatele;
+
+-- Kompletní CREATE příkaz
+SHOW CREATE TABLE uzivatele;</pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>CREATE DATABASE:</strong> Vytvoří databázi, USE ji aktivuje</li>
+                        <li><strong>CREATE TABLE:</strong> Definice sloupců, typů a omezení</li>
+                        <li><strong>Číselné typy:</strong> INT (běžné), DECIMAL (peníze!), BIGINT (velká)</li>
+                        <li><strong>Textové typy:</strong> VARCHAR (proměnná), CHAR (pevná), TEXT (dlouhý)</li>
+                        <li><strong>PRIMARY KEY:</strong> Unikátní identifikátor (typicky id AUTO_INCREMENT)</li>
+                        <li><strong>FOREIGN KEY:</strong> Odkaz na jinou tabulku, referenční integrita</li>
+                        <li><strong>ALTER TABLE:</strong> Úprava struktury (ADD, MODIFY, DROP)</li>
+                        <li><strong>DROP vs TRUNCATE:</strong> DROP smaže vše, TRUNCATE jen data</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

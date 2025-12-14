@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Datové kontejnery v C++ a C# - vector, list, dictionary.">
+    <title>6. Datové kontejnery C++ a C# - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Datové kontejnery</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>📚 Datové kontejnery C++ a C#</h1>
+                <p class="author">Téma 6 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co jsou datové kontejnery?</h2>
+                <p>Datové kontejnery (kolekce) jsou <strong>dynamické datové struktury</strong>, které na rozdíl od polí
+                    mohou <strong>měnit svou velikost</strong> za běhu programu. Každý typ kontejneru je optimalizován
+                    pro jiné operace.</p>
+
+                <p><strong>💡 Kdy použít kontejner místo pole?</strong></p>
+                <ul>
+                    <li>Nevíš předem, kolik prvků budeš mít</li>
+                    <li>Potřebuješ často přidávat/odebírat prvky</li>
+                    <li>Potřebuješ rychlé vyhledávání podle klíče</li>
+                </ul>
+
+                <h2>Kontejnery v C++ (STL)</h2>
+                <p>Standard Template Library (STL) poskytuje šablonové kontejnery. Hlavičkové soubory:
+                    <code>&lt;vector&gt;</code>, <code>&lt;list&gt;</code>, <code>&lt;map&gt;</code>, atd.</p>
+
+                <h3>vector – Dynamické pole</h3>
+                <p>Nejpoužívanější kontejner. Jako pole, ale <strong>automaticky zvětšuje kapacitu</strong>.</p>
+                <pre class="language-cpp"><code>#include &lt;vector&gt;
+using namespace std;
+
+vector&lt;int&gt; cisla;              // Prázdný vector
+vector&lt;int&gt; cisla = {1, 2, 3};  // S inicializací
+vector&lt;int&gt; cisla(5, 0);        // 5 prvků, všechny = 0
+
+// Přidávání prvků
+cisla.push_back(10);    // Přidá na konec
+cisla.push_back(20);    // {1, 2, 3, 10, 20}
+
+// Přístup k prvkům
+cout << cisla[0];       // 1 - jako u pole
+cout << cisla.at(1);    // 2 - s kontrolou mezí (bezpečnější)
+cout << cisla.front();  // První prvek
+cout << cisla.back();   // Poslední prvek
+
+// Velikost
+cout << cisla.size();   // Počet prvků
+
+// Procházení
+for (int c : cisla) {
+    cout << c << " ";
+}
+
+// Odebírání
+cisla.pop_back();       // Odebere poslední prvek
+cisla.clear();          // Smaže všechny prvky</code></pre>
+
+                <h3>list – Dvojitě spojovaný seznam</h3>
+                <p><strong>Rychlé vkládání/mazání kdekoliv</strong>, ale pomalý náhodný přístup (musí projít od
+                    začátku).</p>
+                <pre class="language-cpp"><code>#include &lt;list&gt;
+
+list&lt;string&gt; jmena;
+jmena.push_back("Jan");     // Na konec
+jmena.push_front("Eva");    // Na začátek
+jmena.pop_back();           // Odebere z konce
+jmena.pop_front();          // Odebere ze začátku
+
+// Vložení doprostřed
+auto it = jmena.begin();
+advance(it, 1);             // Posun iterátoru
+jmena.insert(it, "Petr");   // Vloží před pozici iterátoru</code></pre>
+
+                <h3>map – Slovník (klíč → hodnota)</h3>
+                <p>Asociativní kontejner. <strong>Rychlé vyhledávání podle klíče</strong>. Klíče jsou unikátní a
+                    seřazené.</p>
+                <pre class="language-cpp"><code>#include &lt;map&gt;
+
+map&lt;string, int&gt; vek;       // klíč: string, hodnota: int
+
+// Vkládání
+vek["Jan"] = 25;
+vek["Eva"] = 30;
+vek.insert({"Petr", 28});
+
+// Přístup
+cout << vek["Jan"];         // 25
+
+// Kontrola existence
+if (vek.count("Jan") > 0) {
+    cout << "Jan existuje";
+}
+
+// Procházení
+for (auto& [klic, hodnota] : vek) {  // C++17
+    cout << klic << ": " << hodnota << endl;
+}</code></pre>
+
+                <h3>stack a queue – Zásobník a fronta</h3>
+                <pre class="language-cpp"><code>#include &lt;stack&gt;
+#include &lt;queue&gt;
+
+// STACK (zásobník) - LIFO: Last In, First Out
+stack&lt;int&gt; zasobnik;
+zasobnik.push(1);           // Vloží na vrchol
+zasobnik.push(2);
+cout << zasobnik.top();     // 2 - vrchol (neodebírá)
+zasobnik.pop();             // Odebere z vrcholu
+cout << zasobnik.top();     // 1
+
+// QUEUE (fronta) - FIFO: First In, First Out
+queue&lt;string&gt; fronta;
+fronta.push("První");       // Na konec fronty
+fronta.push("Druhý");
+cout << fronta.front();     // "První" - začátek
+fronta.pop();               // Odebere ze začátku
+cout << fronta.front();     // "Druhý"</code></pre>
+
+                <h2>Kontejnery v C#</h2>
+                <p>Namespace: <code>System.Collections.Generic</code></p>
+
+                <h3>List&lt;T&gt; – Dynamický seznam</h3>
+                <pre class="language-csharp"><code>using System.Collections.Generic;
+
+List&lt;int&gt; cisla = new List&lt;int&gt;();
+List&lt;int&gt; cisla = new List&lt;int&gt; { 1, 2, 3 };
+
+// Přidávání
+cisla.Add(10);              // Na konec
+cisla.Insert(0, 99);        // Na pozici 0
+
+// Přístup
+int prvni = cisla[0];       // Indexování
+int posledni = cisla[^1];   // C# 8: od konce
+
+// Vyhledávání
+bool obsahuje = cisla.Contains(10);      // true
+int index = cisla.IndexOf(10);           // Pozice prvku
+
+// Odebírání
+cisla.Remove(10);           // Odebere první výskyt hodnoty 10
+cisla.RemoveAt(0);          // Odebere na pozici 0
+cisla.Clear();              // Smaže vše
+
+// Řazení a transformace
+cisla.Sort();               // Seřadí
+cisla.Reverse();            // Otočí pořadí</code></pre>
+
+                <h3>Dictionary&lt;TKey, TValue&gt; – Slovník</h3>
+                <pre class="language-csharp"><code>Dictionary&lt;string, int&gt; vek = new Dictionary&lt;string, int&gt;();
+
+// Přidání
+vek["Jan"] = 25;
+vek.Add("Eva", 30);         // Vyhodí výjimku pokud klíč existuje
+
+// Přístup
+int janVek = vek["Jan"];    // 25
+// POZOR: pokud klíč neexistuje → KeyNotFoundException
+
+// Bezpečný přístup
+if (vek.TryGetValue("Petr", out int petrVek)) {
+    Console.WriteLine(petrVek);
+} else {
+    Console.WriteLine("Petr neexistuje");
+}
+
+// Kontrola existence
+bool existuje = vek.ContainsKey("Jan");      // true
+
+// Procházení
+foreach (var kv in vek) {
+    Console.WriteLine($"{kv.Key}: {kv.Value}");
+}</code></pre>
+
+                <h3>Queue&lt;T&gt; a Stack&lt;T&gt;</h3>
+                <pre class="language-plaintext"><code>// QUEUE - Fronta (FIFO)
+Queue&lt;string&gt; fronta = new Queue&lt;string&gt;();
+fronta.Enqueue("První");    // Přidá na konec
+fronta.Enqueue("Druhý");
+string prvni = fronta.Dequeue();  // Odebere a vrátí první
+string nahledy = fronta.Peek();   // Pouze nahlédne (neodebírá)
+
+// STACK - Zásobník (LIFO)
+Stack&lt;int&gt; zasobnik = new Stack&lt;int&gt;();
+zasobnik.Push(1);           // Vloží na vrchol
+zasobnik.Push(2);
+int vrchol = zasobnik.Pop();      // Odebere a vrátí vrchol (2)
+int nahledy = zasobnik.Peek();    // Nahlédne na vrchol</code></pre>
+
+                <h3>HashSet&lt;T&gt; – Množina unikátních hodnot</h3>
+                <pre class="language-css"><code>HashSet&lt;string&gt; mesta = new HashSet&lt;string&gt;();
+
+mesta.Add("Praha");         // true - přidáno
+mesta.Add("Brno");          // true
+mesta.Add("Praha");         // false - už existuje, ignoruje se
+
+bool obsahuje = mesta.Contains("Praha");  // Velmi rychlé!
+
+// Množinové operace
+HashSet&lt;int&gt; a = new HashSet&lt;int&gt; { 1, 2, 3 };
+HashSet&lt;int&gt; b = new HashSet&lt;int&gt; { 2, 3, 4 };
+
+a.IntersectWith(b);         // Průnik: {2, 3}
+a.UnionWith(b);             // Sjednocení: {1, 2, 3, 4}
+a.ExceptWith(b);            // Rozdíl: {1}</code></pre>
+
+                <h2>Porovnání výkonu operací</h2>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Kontejner</th>
+                        <th style="padding: 0.5rem;">Přístup [i]</th>
+                        <th style="padding: 0.5rem;">Přidání na konec</th>
+                        <th style="padding: 0.5rem;">Vložení doprostřed</th>
+                        <th style="padding: 0.5rem;">Vyhledání</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>vector/List</strong></td>
+                        <td style="padding: 0.5rem; color: #4ade80;">O(1) ✓</td>
+                        <td style="padding: 0.5rem; color: #4ade80;">O(1)</td>
+                        <td style="padding: 0.5rem; color: #f87171;">O(n)</td>
+                        <td style="padding: 0.5rem; color: #f87171;">O(n)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>list</strong></td>
+                        <td style="padding: 0.5rem; color: #f87171;">O(n)</td>
+                        <td style="padding: 0.5rem; color: #4ade80;">O(1)</td>
+                        <td style="padding: 0.5rem; color: #4ade80;">O(1) ✓</td>
+                        <td style="padding: 0.5rem; color: #f87171;">O(n)</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>map/Dictionary</strong></td>
+                        <td style="padding: 0.5rem; color: #fbbf24;">O(log n)</td>
+                        <td style="padding: 0.5rem; color: #fbbf24;">O(log n)</td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem; color: #4ade80;">O(1) ✓</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>HashSet</strong></td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem; color: #4ade80;">O(1)</td>
+                        <td style="padding: 0.5rem;">-</td>
+                        <td style="padding: 0.5rem; color: #4ade80;">O(1) ✓</td>
+                    </tr>
+                </table>
+                <p><em>O(1) = konstantní čas, O(n) = lineární (roste s velikostí), O(log n) = logaritmický</em></p>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>vector/List:</strong> Dynamické pole – rychlý přístup [i], pomalé vkládání
+                            doprostřed</li>
+                        <li><strong>list:</strong> Spojovaný seznam – rychlé vkládání kdekoliv, pomalý náhodný přístup
+                        </li>
+                        <li><strong>map/Dictionary:</strong> Klíč → hodnota, rychlé vyhledávání podle klíče</li>
+                        <li><strong>stack:</strong> LIFO – poslední dovnitř, první ven (push/pop)</li>
+                        <li><strong>queue:</strong> FIFO – první dovnitř, první ven (enqueue/dequeue)</li>
+                        <li><strong>HashSet:</strong> Množina unikátních hodnot, velmi rychlé Contains</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

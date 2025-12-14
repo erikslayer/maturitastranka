@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proměnné a datové typy v programování.">
+    <title>2. Proměnné a datové typy - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Proměnné a datové typy</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>📊 Proměnné a datové typy</h1>
+                <p class="author">Téma 2 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je proměnná?</h2>
+                <p>Proměnná je <strong>pojmenované místo v paměti</strong>, kde program ukládá data. Představ si ji jako
+                    krabici s nálepkou – krabice má jméno (název proměnné), typ (jakou velikost má krabice) a obsah
+                    (hodnota).</p>
+
+                <p>Každá proměnná má tři základní vlastnosti:</p>
+                <ul>
+                    <li><strong>Název (identifikátor):</strong> Jak proměnnou v kódu oslovujeme</li>
+                    <li><strong>Datový typ:</strong> Určuje, jaká data může proměnná obsahovat a kolik paměti zabírá
+                    </li>
+                    <li><strong>Hodnota:</strong> Aktuální obsah proměnné</li>
+                </ul>
+
+                <h2>Deklarace a inicializace</h2>
+                <p>Než můžeme proměnnou použít, musíme ji <strong>deklarovat</strong> (oznámit kompilátoru, že existuje)
+                    a typicky také <strong>inicializovat</strong> (přiřadit jí počáteční hodnotu).</p>
+
+                <pre class="language-plaintext"><code>// Deklarace - vytvoření proměnné bez hodnoty
+int cislo;
+
+// Inicializace - přiřazení hodnoty
+cislo = 5;
+
+// Deklarace s inicializací (nejčastější způsob)
+int vek = 25;
+string jmeno = "Jan";
+double pi = 3.14159;</code></pre>
+
+                <p><strong>⚠️ Pozor:</strong> V C++ neinicializovaná proměnná obsahuje „odpadky" – náhodná data, která
+                    tam zůstala v paměti. V C# kompilátor použití neinicializované proměnné nedovolí.</p>
+
+                <h3>Pravidla pojmenování proměnných</h3>
+                <ul>
+                    <li>Název <strong>musí začínat</strong> písmenem nebo podtržítkem (_)</li>
+                    <li>Může obsahovat písmena, číslice a podtržítka</li>
+                    <li><strong>Nesmí</strong> být klíčové slovo jazyka (int, if, while, class...)</li>
+                    <li>Rozlišují se velká a malá písmena (<code>cislo</code> ≠ <code>Cislo</code> ≠ <code>CISLO</code>)
+                    </li>
+                </ul>
+
+                <p><strong>💡 Konvence pojmenování:</strong></p>
+                <ul>
+                    <li><strong>camelCase:</strong> první písmeno malé, další slova velká (<code>pocetStudentu</code>) –
+                        C#, Java pro proměnné</li>
+                    <li><strong>PascalCase:</strong> všechna slova začínají velkým (<code>PocetStudentu</code>) – C# pro
+                        třídy a metody</li>
+                    <li><strong>snake_case:</strong> slova oddělená podtržítkem (<code>pocet_studentu</code>) – Python,
+                        C</li>
+                </ul>
+
+                <h2>Primitivní datové typy</h2>
+                <p>Primitivní typy jsou základní stavební bloky – ukládají jednoduchou hodnotu přímo v paměti.</p>
+
+                <h3>Celočíselné typy</h3>
+                <p>Pro ukládání celých čísel (bez desetinné čárky). Liší se velikostí a rozsahem hodnot:</p>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem; text-align: left;">Typ</th>
+                        <th style="padding: 0.5rem; text-align: left;">Velikost</th>
+                        <th style="padding: 0.5rem; text-align: left;">Rozsah</th>
+                        <th style="padding: 0.5rem; text-align: left;">Použití</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>byte</code></td>
+                        <td style="padding: 0.5rem;">1 bajt</td>
+                        <td style="padding: 0.5rem;">0 až 255</td>
+                        <td style="padding: 0.5rem;">Malá kladná čísla, bajty dat</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>short</code></td>
+                        <td style="padding: 0.5rem;">2 bajty</td>
+                        <td style="padding: 0.5rem;">-32 768 až 32 767</td>
+                        <td style="padding: 0.5rem;">Menší čísla, úspora paměti</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>int</code></td>
+                        <td style="padding: 0.5rem;">4 bajty</td>
+                        <td style="padding: 0.5rem;">±2,1 miliardy</td>
+                        <td style="padding: 0.5rem;"><strong>Nejčastější</strong> – věk, počty</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>long</code></td>
+                        <td style="padding: 0.5rem;">8 bajtů</td>
+                        <td style="padding: 0.5rem;">±9 trilionů</td>
+                        <td style="padding: 0.5rem;">Velká čísla, ID, časová razítka</td>
+                    </tr>
+                </table>
+
+                <h3>Desetinné typy (s plovoucí řádovou čárkou)</h3>
+                <p>Pro čísla s desetinnou částí. Pozor na nepřesnost při výpočtech!</p>
+                <ul>
+                    <li><strong>float:</strong> 4 bajty, přesnost ~7 číslic – používá se zřídka</li>
+                    <li><strong>double:</strong> 8 bajtů, přesnost ~15 číslic – <strong>nejčastější pro desetinná
+                            čísla</strong></li>
+                    <li><strong>decimal (C#):</strong> 16 bajtů, vysoká přesnost – <strong>pro finance a peníze</strong>
+                    </li>
+                </ul>
+
+                <pre class="language-plaintext"><code>float teplota = 36.6f;      // 'f' suffix pro float
+double pi = 3.141592653589;
+decimal cena = 199.99m;     // 'm' suffix pro decimal v C#</code></pre>
+
+                <p><strong>⚠️ Proč decimal pro peníze?</strong> Protože float a double mají zaokrouhlovací chyby:</p>
+                <pre class="language-csharp"><code>double a = 0.1 + 0.2;  
+Console.WriteLine(a);  // Vypíše 0.30000000000000004 !</code></pre>
+
+                <h3>Další základní typy</h3>
+                <ul>
+                    <li><strong>char:</strong> Jeden znak v apostrofech – <code>'A'</code>, <code>'5'</code>,
+                        <code>'ř'</code></li>
+                    <li><strong>bool:</strong> Logická hodnota – pouze <code>true</code> nebo <code>false</code></li>
+                    <li><strong>string:</strong> Řetězec znaků v uvozovkách – <code>"Ahoj světe"</code></li>
+                </ul>
+
+                <pre class="language-plaintext"><code>char pismeno = 'A';
+char cisloJakoZnak = '5';   // pozor: '5' ≠ 5
+
+bool jeStudent = true;
+bool maRidicskyPrukaz = false;
+
+string pozdrav = "Ahoj!";
+string prazdny = "";        // prázdný řetězec
+string s = null;            // žádný řetězec (reference)</code></pre>
+
+                <h2>Typová konverze</h2>
+                <p>Někdy potřebujeme převést hodnotu z jednoho typu na jiný. Existují dva způsoby:</p>
+
+                <h3>Implicitní konverze (automatická)</h3>
+                <p>Probíhá automaticky, když nehrozí ztráta dat – z menšího typu do většího:</p>
+                <pre class="language-plaintext"><code>int cislo = 100;
+long velkeCislo = cislo;    // OK: int → long automaticky
+double des = cislo;         // OK: int → double automaticky</code></pre>
+
+                <h3>Explicitní konverze (casting)</h3>
+                <p>Musíme ji napsat ručně, protože může dojít ke ztrátě dat:</p>
+                <pre class="language-plaintext"><code>double pi = 3.14159;
+int cele = (int)pi;         // cele = 3 (ztráta desetinné části!)
+
+long velke = 5000000000;
+int male = (int)velke;      // POZOR: přetečení, špatný výsledek!</code></pre>
+
+                <h3>Konverze řetězců</h3>
+                <pre class="language-csharp"><code>// Číslo → String
+int cislo = 42;
+string text = cislo.ToString();  // "42"
+
+// String → Číslo (C#)
+string vstup = "123";
+int hodnota = int.Parse(vstup);           // Vyhodí výjimku při chybě
+int hodnota2 = Convert.ToInt32(vstup);    // Alternativa
+
+// Bezpečná konverze s TryParse
+if (int.TryParse(vstup, out int vysledek)) {
+    Console.WriteLine("Číslo: " + vysledek);
+} else {
+    Console.WriteLine("Neplatný vstup!");
+}</code></pre>
+
+                <h2>Konstanty</h2>
+                <p>Hodnota, která se nemění po celou dobu běhu programu:</p>
+                <pre class="language-plaintext"><code>const double PI = 3.14159;
+const int MAX_POKUSU = 3;
+
+PI = 3.14;  // CHYBA! Konstanta nelze změnit</code></pre>
+
+                <p><strong>💡 Kdy použít konstantu?</strong> Pro hodnoty, které mají význam a nemění se: matematické
+                    konstanty, limity, konfigurace.</p>
+
+                <h2>Příklady v C++ vs C#</h2>
+                <pre class="language-cpp"><code>// C++
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+int vek = 25;
+double vyska = 180.5;
+char znamka = 'A';
+bool absolvent = false;
+string jmeno = "Petr";
+
+cout &lt;&lt; jmeno &lt;&lt; " má " &lt;&lt; vek &lt;&lt; " let" &lt;&lt; endl;</code></pre>
+
+                <pre class="language-csharp"><code>// C#
+int vek = 25;
+double vyska = 180.5;
+char znamka = 'A';
+bool absolvent = false;
+string jmeno = "Petr";
+
+Console.WriteLine($"{jmeno} má {vek} let");</code></pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Proměnná</strong> = pojmenované místo v paměti (název + typ + hodnota)</li>
+                        <li><strong>Deklarace</strong> = vytvoření, <strong>inicializace</strong> = přiřazení hodnoty
+                        </li>
+                        <li>Pro celá čísla nejčastěji <code>int</code>, pro desetinná <code>double</code></li>
+                        <li><strong>Pro peníze vždy decimal!</strong> (kvůli přesnosti)</li>
+                        <li>Implicitní konverze = automatická, explicitní = ruční s rizikem ztráty dat</li>
+                        <li><code>const</code> = neměnná hodnota</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

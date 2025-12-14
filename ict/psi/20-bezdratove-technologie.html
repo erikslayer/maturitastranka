@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bezdrátové síťové technologie - Wi-Fi, Bluetooth, elektromagnetické spektrum.">
+    <title>20. Bezdrátové síťové technologie - PSI | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../psi.html">Počítačové sítě</a><span class="separator">›</span>
+                <span class="current">Bezdrátové technologie</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>📶 Bezdrátové síťové technologie</h1>
+                <p class="author">Téma 20 - PSI</p>
+                <div class="meta">
+                    <span class="meta-item">📡 Počítačové sítě</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <p>Bezdrátové technologie umožňují přenos dat bez fyzických kabelů - pro mobilitu a flexibilitu.</p>
+                <h2>Elektromagnetická vlna a spektrum</h2>
+                <h3>Elektromagnetická vlna</h3>
+                <p>Oscilující elektrická a magnetická pole šířící se prostorem. V bezdrátových sítích přenášejí data.
+                </p>
+                <h3>Spektrum</h3>
+                <ul>
+                    <li><strong>Nízké frekvence (30-300 Hz):</strong> Dlouhé vzdálenosti (AM rádio)</li>
+                    <li><strong>VHF/UHF (30 MHz - 3 GHz):</strong> TV, mobily, Wi-Fi</li>
+                    <li><strong>Mikrovlny (1-300 GHz):</strong> Wi-Fi, Bluetooth, satelity, radary</li>
+                </ul>
+                <h2>Datové přenosy a metody</h2>
+                <ul>
+                    <li><strong>FM (Frekvenční modulace):</strong> Změna frekvence nosné vlny</li>
+                    <li><strong>AM (Amplitudová modulace):</strong> Změna amplitudy</li>
+                    <li><strong>PM (Fázová modulace):</strong> Změna fáze</li>
+                    <li><strong>QAM:</strong> Kombinace amplitudy a fáze, vyšší rychlosti</li>
+                </ul>
+                <h2>Bluetooth</h2>
+                <h3>Účel</h3>
+                <p>Krátké vzdálenosti (do 100 m) pro PAN - telefony, sluchátka, tiskárny.</p>
+                <h3>Parametry</h3>
+                <ul>
+                    <li><strong>Frekvence:</strong> 2.4 GHz (ISM pásmo)</li>
+                    <li><strong>Rychlost:</strong> Až 3 Mbps (Bluetooth 5)</li>
+                    <li><strong>Rozsah:</strong> Centimetry až 100 m</li>
+                </ul>
+                <h3>Princip činnosti</h3>
+                <ul>
+                    <li><strong>FHSS:</strong> Frequency Hopping Spread Spectrum - minimalizace rušení</li>
+                    <li>Přenos dat v malých blocích (pakety)</li>
+                </ul>
+                <h3>Topologie</h3>
+                <ul>
+                    <li><strong>Piconet:</strong> 1 master + několik slave zařízení</li>
+                    <li><strong>Scatternet:</strong> Propojené piconety</li>
+                </ul>
+                <h2>Wi-Fi</h2>
+                <h3>Účel</h3>
+                <p>Standard pro WLAN - připojení k internetu bez kabelů v domácnostech, kancelářích, na veřejnosti.</p>
+                <h3>Parametry</h3>
+                <ul>
+                    <li><strong>Frekvence:</strong> 2.4 GHz, 5 GHz, 6 GHz (Wi-Fi 6)</li>
+                    <li><strong>Rychlost:</strong> Až 9.6 Gbps (Wi-Fi 6)</li>
+                    <li><strong>Rozsah:</strong> ~100 m (2.4 GHz), ~50 m (5 GHz)</li>
+                </ul>
+                <h3>Princip činnosti</h3>
+                <ul>
+                    <li><strong>OFDM:</strong> Rozdělení signálu na více nosných frekvencí</li>
+                    <li><strong>Standardy:</strong> 802.11a/b/g/n/ac/ax</li>
+                    <li><strong>MIMO:</strong> Více antén pro vyšší rychlost</li>
+                </ul>
+                <h3>Topologie</h3>
+                <p>Hvězdicová - klienti komunikují přes Access Point (AP).</p>
+                <h3>Anténní systémy</h3>
+                <ul>
+                    <li><strong>Omnidirekcionální:</strong> Rovnoměrně ve všech směrech</li>
+                    <li><strong>Direktionální:</strong> Soustředěný signál, větší dosah</li>
+                </ul>
+                <h2>Další technologie</h2>
+                <ul>
+                    <li><strong>ZigBee:</strong> Nízká spotřeba, IoT, chytré domácnosti</li>
+                    <li><strong>Z-Wave:</strong> Chytré domácnosti, nízkonákladová komunikace</li>
+                    <li><strong>NFC:</strong> Krátká vzdálenost (do 10 cm), bezkontaktní platby</li>
+                    <li><strong>LoRa:</strong> Velmi dlouhé vzdálenosti, nízká spotřeba, IoT senzory</li>
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

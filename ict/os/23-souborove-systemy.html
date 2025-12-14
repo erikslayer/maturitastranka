@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Souborové systémy a správa souborů v operačních systémech.">
+    <title>23. Souborové systémy - OS | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../os.html">Operační systémy</a><span class="separator">›</span>
+                <span class="current">Souborové systémy</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>📁 Souborové systémy a správa souborů</h1>
+                <p class="author">Téma 23 - Operační systémy</p>
+                <div class="meta">
+                    <span class="meta-item">⚙️ Operační systémy</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je souborový systém?</h2>
+                <p>Souborový systém (file system) je způsob, jakým operační systém <strong>organizuje a ukládá
+                        data</strong> na úložné médium (HDD, SSD, USB). Definuje:</p>
+                <ul>
+                    <li>Jak jsou data fyzicky uložena na disku</li>
+                    <li>Jak jsou soubory pojmenovány a organizovány do složek</li>
+                    <li>Kdo má k souborům jaká oprávnění</li>
+                    <li>Metadata souborů (velikost, datum vytvoření, vlastník...)</li>
+                </ul>
+
+                <h2>Typy souborových systémů</h2>
+
+                <h3>FAT32 (File Allocation Table)</h3>
+                <ul>
+                    <li><strong>Kompatibilita:</strong> Funguje na všech OS (Windows, Mac, Linux)</li>
+                    <li><strong>Omezení:</strong> Max velikost souboru <strong>4 GB</strong>, max velikost oddílu 2 TB
+                    </li>
+                    <li><strong>Použití:</strong> USB flash disky, SD karty, starší zařízení</li>
+                    <li><strong>Nevýhody:</strong> Žádná oprávnění, žádná šifrování, fragmentace</li>
+                </ul>
+
+                <h3>NTFS (New Technology File System)</h3>
+                <ul>
+                    <li><strong>Výchozí pro Windows</strong> (od Windows NT/2000)</li>
+                    <li><strong>Max soubor:</strong> 16 EB (prakticky neomezeno)</li>
+                    <li><strong>Funkce:</strong>
+                        <ul>
+                            <li>Žurnálování (journal) – obnova po pádu</li>
+                            <li>Oprávnění a šifrování (EFS)</li>
+                            <li>Komprese souborů</li>
+                            <li>Kvóty – limit místa pro uživatele</li>
+                        </ul>
+                    </li>
+                    <li><strong>Nevýhoda:</strong> Linux čte nativně, zápis přes driver (ntfs-3g)</li>
+                </ul>
+
+                <h3>ext4 (Fourth Extended File System)</h3>
+                <ul>
+                    <li><strong>Výchozí pro Linux</strong> (Ubuntu, Debian...)</li>
+                    <li><strong>Max soubor:</strong> 16 TB, max oddíl: 1 EB</li>
+                    <li><strong>Funkce:</strong> Žurnálování, rychlé, spolehlivé</li>
+                    <li><strong>Nevýhoda:</strong> Windows ho nativně nepodporuje</li>
+                </ul>
+
+                <h3>APFS (Apple File System)</h3>
+                <ul>
+                    <li><strong>Výchozí pro macOS</strong> (od High Sierra) a iOS</li>
+                    <li>Optimalizován pro SSD</li>
+                    <li>Šifrování, snapshotování, klonování souborů</li>
+                </ul>
+
+                <h3>Porovnání souborových systémů</h3>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Vlastnost</th>
+                        <th style="padding: 0.5rem;">FAT32</th>
+                        <th style="padding: 0.5rem;">NTFS</th>
+                        <th style="padding: 0.5rem;">ext4</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Max velikost souboru</td>
+                        <td style="padding: 0.5rem;">4 GB</td>
+                        <td style="padding: 0.5rem;">16 EB</td>
+                        <td style="padding: 0.5rem;">16 TB</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Oprávnění</td>
+                        <td style="padding: 0.5rem;">❌</td>
+                        <td style="padding: 0.5rem;">✓</td>
+                        <td style="padding: 0.5rem;">✓</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Žurnálování</td>
+                        <td style="padding: 0.5rem;">❌</td>
+                        <td style="padding: 0.5rem;">✓</td>
+                        <td style="padding: 0.5rem;">✓</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Kompatibilita</td>
+                        <td style="padding: 0.5rem;">Všechny OS</td>
+                        <td style="padding: 0.5rem;">Windows, Linux (čtení)</td>
+                        <td style="padding: 0.5rem;">Linux</td>
+                    </tr>
+                </table>
+
+                <h2>Adresářová struktura</h2>
+
+                <h3>Windows</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+C:\                          # Kořen systémového disku
+├── Windows\                 # Systémové soubory OS
+│   ├── System32\           # Jádro systému, DLL knihovny
+│   └── Fonts\              # Nainstalovaná písma
+├── Program Files\           # 64-bit aplikace
+├── Program Files (x86)\     # 32-bit aplikace
+├── Users\                   # Uživatelské profily
+│   ├── Jan\
+│   │   ├── Desktop\        # Plocha uživatele
+│   │   ├── Documents\      # Dokumenty
+│   │   ├── Downloads\      # Stažené soubory
+│   │   └── AppData\        # Nastavení aplikací (skrytá)
+│   └── Public\             # Sdílené mezi uživateli
+└── ProgramData\            # Data aplikací pro všechny uživatele</pre>
+
+                <h3>Linux (Filesystem Hierarchy Standard)</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+/                           # Kořen (root) - vše začíná zde
+├── bin/                    # Základní příkazy (ls, cp, cat)
+├── boot/                   # Bootloader, jádro
+├── dev/                    # Zařízení jako soubory (sda, tty)
+├── etc/                    # Konfigurační soubory
+├── home/                   # Domovské adresáře uživatelů
+│   └── jan/               # /home/jan je domov uživatele jan
+│       ├── Documents/
+│       └── .bashrc        # Skrytý konfigurační soubor
+├── lib/                    # Systémové knihovny
+├── media/                  # Automaticky připojená média (USB)
+├── mnt/                    # Ručně připojená úložiště
+├── opt/                    # Volitelný software třetích stran
+├── proc/                   # Virtuální – info o procesech
+├── root/                   # Domov uživatele root
+├── tmp/                    # Dočasné soubory
+├── usr/                    # Uživatelské programy
+│   ├── bin/               # Běžné příkazy
+│   └── share/             # Sdílená data (dokumentace)
+└── var/                    # Proměnná data (logy, cache)
+    └── log/               # Systémové logy</pre>
+
+                <p><strong>💡 V Linuxu je vše soubor:</strong> I zařízení (disk, klávesnice) jsou reprezentována jako
+                    soubory v <code>/dev/</code>.</p>
+
+                <h2>Příkazy pro správu souborů</h2>
+
+                <h3>Windows (CMD / PowerShell)</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+# Navigace
+cd C:\Users\Jan\Documents   # Změna adresáře
+cd ..                       # O úroveň výš
+dir                        # Výpis obsahu (ls v PowerShell)
+
+# Práce se soubory
+copy soubor.txt kopie.txt   # Kopírování
+move soubor.txt ../         # Přesun
+del soubor.txt              # Smazání souboru
+rename stary.txt novy.txt   # Přejmenování
+
+# Práce s adresáři
+mkdir NovaSlozka            # Vytvoření složky
+rmdir SlozKa                # Smazání prázdné složky
+rmdir /S SlozKa             # Smazání i s obsahem
+
+# Zobrazení obsahu
+type soubor.txt             # Zobrazí obsah souboru
+
+# Hledání
+dir /S *.txt                # Hledá .txt rekurzivně
+findstr "hledany_text" soubor.txt</pre>
+
+                <h3>Linux (Bash)</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+# Navigace
+cd /home/jan/Documents      # Absolutní cesta
+cd ~/Documents              # ~ = domovský adresář
+cd ..                       # O úroveň výš
+pwd                        # Zobrazí aktuální adresář
+
+# Výpis
+ls                         # Základní výpis
+ls -l                      # Detailní (oprávnění, velikost, datum)
+ls -la                     # Včetně skrytých souborů (tečka na začátku)
+ls -lh                     # S čitelnými velikostmi (KB, MB)
+
+# Práce se soubory
+cp soubor.txt kopie.txt    # Kopírování
+cp -r slozka/ nova_slozka/ # Rekurzivní kopírování složky
+mv soubor.txt ../          # Přesun
+mv stary.txt novy.txt      # Přejmenování (= přesun na stejné místo)
+rm soubor.txt              # Smazání
+rm -r slozka/              # Smazání složky s obsahem
+rm -rf slozka/             # Force bez potvrzení (POZOR!)
+
+# Práce s adresáři
+mkdir nova_slozka          # Vytvoření
+mkdir -p a/b/c             # Vytvoří i nadřazené
+
+# Zobrazení obsahu
+cat soubor.txt             # Celý soubor
+head -n 10 soubor.txt      # Prvních 10 řádků
+tail -n 10 soubor.txt      # Posledních 10 řádků
+less soubor.txt            # Interaktivní prohlížení
+
+# Hledání
+find /home -name "*.txt"   # Hledá podle jména
+grep "text" soubor.txt     # Hledá v obsahu souboru
+grep -r "text" ./          # Rekurzivně v aktuálním adresáři</pre>
+
+                <h2>Oprávnění souborů</h2>
+
+                <h3>Linux (chmod)</h3>
+                <p>Každý soubor má oprávnění pro <strong>vlastníka (owner)</strong>, <strong>skupinu (group)</strong> a
+                    <strong>ostatní (others)</strong>.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+ls -l soubor.txt
+# -rw-r--r-- 1 jan users 1024 Dec 13 20:00 soubor.txt
+#  ↑↑↑↑↑↑↑↑↑
+#  │├─┤├─┤├─┤
+#  │ │  │  └── others (ostatní): r-- = jen čtení
+#  │ │  └───── group (skupina): r-- = jen čtení  
+#  │ └──────── owner (vlastník): rw- = čtení + zápis
+#  └────────── typ: - = soubor, d = adresář
+
+# Oprávnění:
+# r (read)    = čtení        = 4
+# w (write)   = zápis        = 2
+# x (execute) = spouštění    = 1
+
+# Změna oprávnění
+chmod 755 skript.sh        # rwxr-xr-x (7=rwx, 5=r-x)
+chmod u+x skript.sh        # Přidá execute pro vlastníka
+chmod go-w soubor.txt      # Odebere zápis pro group a others
+
+# Změna vlastníka
+chown jan soubor.txt       # Změna vlastníka
+chown jan:users soubor.txt # Změna vlastníka i skupiny</pre>
+
+                <h3>Windows (NTFS ACL)</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+# Zobrazení oprávnění
+icacls soubor.txt
+
+# Přidání oprávnění
+icacls soubor.txt /grant Jan:F      # F = Full control
+icacls soubor.txt /grant Users:R    # R = Read only
+
+# GUI: Pravý klik → Vlastnosti → Zabezpečení</pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>FAT32:</strong> Univerzální kompatibilita, max 4 GB soubor</li>
+                        <li><strong>NTFS:</strong> Windows výchozí, oprávnění, žurnálování</li>
+                        <li><strong>ext4:</strong> Linux výchozí, spolehlivý</li>
+                        <li><strong>Windows:</strong> Vše pod C:\, složky Users, Program Files</li>
+                        <li><strong>Linux:</strong> Vše pod /, domov v /home/username</li>
+                        <li><strong>Oprávnění Linux:</strong> rwx pro owner/group/others (chmod 755)</li>
+                        <li><strong>Základní příkazy:</strong> cd, ls/dir, cp/copy, mv/move, rm/del, mkdir</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

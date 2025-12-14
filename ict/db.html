@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Maturitní témata z databázových systémů - SQL, MySQL, relační databáze.">
+    <title>Databáze - ICT - Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Domů</a></li>
+                    <li><a href="../literatura/index.html">Literatura</a></li>
+                    <li><a href="index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <nav class="breadcrumb">
+                <a href="../index.html">Domů</a>
+                <span class="separator">›</span>
+                <a href="index.html">ICT</a>
+                <span class="separator">›</span>
+                <span class="current">Databáze</span>
+            </nav>
+
+            <section class="section-header animate-fade-in">
+                <h1>🗄️ <span class="text-gradient-ict">Databázové systémy (DB)</span></h1>
+                <p class="subtitle">
+                    Relační databáze, SQL dotazy, MySQL funkce, indexy a spojování tabulek
+                </p>
+            </section>
+
+            <div class="topic-grid">
+                <a href="db/18-databazovy-system.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">🗄️</span>
+                    <h3>18. Databázový systém, typy databází</h3>
+                    <p>DBMS, relační vs NoSQL, normalizace</p>
+                </a>
+
+                <a href="db/19-databaze-tabulky.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">📊</span>
+                    <h3>19. Databáze a tabulky</h3>
+                    <p>CREATE DATABASE/TABLE, datové typy, klíče</p>
+                </a>
+
+                <a href="db/20-sql-dotazy.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">🔍</span>
+                    <h3>20. SQL dotazy</h3>
+                    <p>SELECT, INSERT, UPDATE, DELETE, WHERE</p>
+                </a>
+
+                <a href="db/21-vestavene-funkce.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">⚡</span>
+                    <h3>21. Vestavěné funkce MySQL</h3>
+                    <p>COUNT, SUM, AVG, CONCAT, DATE funkce</p>
+                </a>
+
+                <a href="db/22-indexy-omezeni.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">🔐</span>
+                    <h3>22. Indexy a omezení</h3>
+                    <p>PRIMARY, UNIQUE, FOREIGN KEY, CHECK</p>
+                </a>
+
+                <a href="db/23-spojovani-tabulek.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">🔗</span>
+                    <h3>23. Spojování tabulek</h3>
+                    <p>INNER, LEFT, RIGHT JOIN, poddotazy</p>
+                </a>
+            </div>
+
+            <div class="glass-panel animate-fade-in" style="margin-top: 2rem;">
+                <h2>📚 O sekci Databáze</h2>
+                <p style="margin-top: 1rem; color: var(--text-secondary);">
+                    Tato sekce obsahuje 6 maturitních témat z oblasti databázových systémů. Zaměřuje se na
+                    relační databáze a jazyk SQL s důrazem na MySQL.
+                </p>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--accent-ict);">SQL příkazy</h4>
+                        <p style="font-size: 0.9rem;">DDL: CREATE, ALTER, DROP<br>DML: SELECT, INSERT, UPDATE, DELETE
+                        </p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-ict);">Funkce</h4>
+                        <p style="font-size: 0.9rem;">Agregační, řetězcové, datumové, podmínkové</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-ict);">Vztahy</h4>
+                        <p style="font-size: 0.9rem;">1:1, 1:N, M:N, JOIN, cizí klíče</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="../../privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

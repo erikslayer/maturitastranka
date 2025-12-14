@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Datové proudy v C++ a C# - vstup, výstup, soubory.">
+    <title>8. Datové proudy C++ a C# - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Datové proudy</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>📤 Datové proudy C++ a C#</h1>
+                <p class="author">Téma 8 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co jsou datové proudy?</h2>
+                <p>Datové proudy (streams) jsou <strong>abstrakce pro vstup a výstup dat</strong>. Představ si je jako
+                    „potrubí", kterým tečou data – ať už z klávesnice, na obrazovku, nebo do/ze souboru.</p>
+
+                <p><strong>💡 Klíčová vlastnost:</strong> Stejný způsob práce pro různé zdroje/cíle dat. Jednou se
+                    naučíš pracovat s proudem a použiješ to pro konzoli i soubory.</p>
+
+                <h2>Proudy v C++</h2>
+                <p>Hlavičkový soubor <code>&lt;iostream&gt;</code> pro konzoli, <code>&lt;fstream&gt;</code> pro
+                    soubory.</p>
+
+                <h3>Standardní proudy (konzole)</h3>
+                <pre class="language-cpp"><code>#include &lt;iostream&gt;
+using namespace std;
+
+// VÝSTUP - cout (console output)
+cout << "Ahoj světe!" << endl;          // Textový výstup
+cout << "Věk: " << 25 << endl;          // Kombinace textu a čísel
+cout << "A" << " " << "B" << endl;      // Řetězení operátoru <<
+
+// VSTUP - cin (console input)
+int vek;
+cout << "Zadej věk: ";
+cin >> vek;                              // Načte číslo ze vstupu
+
+string jmeno;
+cout << "Zadej jméno: ";
+cin >> jmeno;                            // POZOR: čte jen po první mezeru!
+
+// Celý řádek včetně mezer
+string radek;
+getline(cin, radek);                     // Načte celý řádek
+
+// CHYBY - cerr (console error)
+cerr << "Chyba: soubor nenalezen" << endl;</code></pre>
+
+                <p><strong>⚠️ Častý problém:</strong> Mixování <code>cin >></code> a <code>getline</code>:</p>
+                <pre class="language-cpp"><code>int cislo;
+cin >> cislo;            // Přečte číslo, nechá '\n' ve vstupním bufferu
+
+string text;
+getline(cin, text);      // Okamžitě přečte prázdný řádek (ten '\n')!
+
+// Řešení: vyprázdnit buffer
+cin >> cislo;
+cin.ignore();            // Přeskočí zbývající '\n'
+getline(cin, text);      // Teď funguje správně</code></pre>
+
+                <h3>Práce se soubory v C++</h3>
+                <pre class="language-cpp"><code>#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+// ZÁPIS DO SOUBORU
+ofstream vystup("data.txt");       // Otevře pro zápis (vytvoří/přepíše)
+// ofstream vystup("data.txt", ios::app);  // Připojí na konec
+
+if (vystup.is_open()) {
+    vystup << "První řádek" << endl;
+    vystup << "Číslo: " << 42 << endl;
+    vystup.close();                // Důležité: zavřít soubor!
+} else {
+    cerr << "Nelze otevřít soubor!" << endl;
+}
+
+// ČTENÍ ZE SOUBORU
+ifstream vstup("data.txt");
+
+if (vstup.is_open()) {
+    string radek;
+    while (getline(vstup, radek)) {    // Čte řádek po řádku
+        cout << radek << endl;
+    }
+    vstup.close();
+}
+
+// Čtení jednotlivých hodnot
+ifstream cisla("cisla.txt");
+int cislo;
+while (cisla >> cislo) {               // Čte čísla oddělená mezerou/řádkem
+    cout << cislo << endl;
+}</code></pre>
+
+                <h3>Formátování výstupu v C++</h3>
+                <pre class="language-cpp"><code>#include &lt;iomanip&gt;
+
+double pi = 3.14159265358979;
+
+// Počet desetinných míst
+cout << fixed << setprecision(2) << pi << endl;  // 3.14
+
+// Šířka pole
+cout << setw(10) << 42 << endl;     // "        42" (odsazeno doprava)
+cout << left << setw(10) << 42;     // "42        " (odsazeno doleva)
+
+// Výplň
+cout << setfill('0') << setw(5) << 42;  // "00042"</code></pre>
+
+                <h2>Proudy v C#</h2>
+
+                <h3>Konzolový vstup/výstup</h3>
+                <pre class="language-csharp"><code>using System;
+
+// VÝSTUP
+Console.WriteLine("Ahoj světe!");           // S novým řádkem
+Console.Write("Bez nového řádku");          // Bez nového řádku
+
+int vek = 25;
+Console.WriteLine("Věk: " + vek);           // Spojení řetězců
+Console.WriteLine($"Věk: {vek}");           // Interpolace (preferovaná)
+Console.WriteLine("Věk: {0}, Rok: {1}", vek, 2025);  // Formátovací string
+
+// VSTUP
+Console.Write("Zadej jméno: ");
+string jmeno = Console.ReadLine();          // Vždy vrací string!
+
+Console.Write("Zadej věk: ");
+int vek = int.Parse(Console.ReadLine());    // Konverze na int
+
+// Bezpečnější konverze
+if (int.TryParse(Console.ReadLine(), out int cislo)) {
+    Console.WriteLine($"Zadal jsi: {cislo}");
+} else {
+    Console.WriteLine("Neplatné číslo!");
+}
+
+// Jeden znak
+ConsoleKeyInfo klavesa = Console.ReadKey();
+char znak = klavesa.KeyChar;</code></pre>
+
+                <h3>Formátování v C#</h3>
+                <pre class="language-csharp"><code>double pi = 3.14159265;
+decimal cena = 1234.5m;
+
+// Formátovací specifikátory
+Console.WriteLine($"{pi:F2}");           // 3.14 (fixed, 2 desetinná)
+Console.WriteLine($"{cena:C}");          // 1 234,50 Kč (měna)
+Console.WriteLine($"{42:D5}");           // 00042 (decimální, 5 číslic)
+Console.WriteLine($"{0.856:P1}");        // 85.6 % (procenta)
+
+// Zarovnání
+Console.WriteLine($"{jmeno,-20}");      // Doleva, šířka 20
+Console.WriteLine($"{cislo,10}");        // Doprava, šířka 10</code></pre>
+
+                <h3>Práce se soubory v C#</h3>
+                <pre class="language-csharp"><code>using System.IO;
+
+// JEDNODUCHÝ ZÁPIS/ČTENÍ (celý soubor najednou)
+File.WriteAllText("data.txt", "Obsah souboru");
+string obsah = File.ReadAllText("data.txt");
+
+// Pole řádků
+string[] radky = { "Řádek 1", "Řádek 2", "Řádek 3" };
+File.WriteAllLines("data.txt", radky);
+string[] nacteneRadky = File.ReadAllLines("data.txt");
+
+// Připojení na konec
+File.AppendAllText("log.txt", "Nový záznam\n");
+
+// STREAMWRITER - pro větší soubory nebo postupný zápis
+using (StreamWriter writer = new StreamWriter("data.txt")) {
+    writer.WriteLine("První řádek");
+    writer.WriteLine("Druhý řádek");
+}   // Automaticky zavře soubor díky 'using'
+
+// STREAMREADER - pro větší soubory
+using (StreamReader reader = new StreamReader("data.txt")) {
+    string radek;
+    while ((radek = reader.ReadLine()) != null) {
+        Console.WriteLine(radek);
+    }
+}
+
+// Kontrola existence
+if (File.Exists("data.txt")) {
+    // Soubor existuje
+}</code></pre>
+
+                <p><strong>💡 <code>using</code> statement:</strong> Automaticky zavře soubor i při výjimce. Vždy
+                    používej pro práci se soubory!</p>
+
+                <h3>Práce s adresáři</h3>
+                <pre class="language-csharp"><code>using System.IO;
+
+// Adresáře
+Directory.CreateDirectory("nova_slozka");
+bool existuje = Directory.Exists("nova_slozka");
+
+// Výpis souborů
+string[] soubory = Directory.GetFiles(".", "*.txt");
+foreach (string soubor in soubory) {
+    Console.WriteLine(soubor);
+}
+
+// Informace o souboru
+FileInfo info = new FileInfo("data.txt");
+Console.WriteLine($"Velikost: {info.Length} bajtů");
+Console.WriteLine($"Vytvořen: {info.CreationTime}");
+Console.WriteLine($"Upraven: {info.LastWriteTime}");</code></pre>
+
+                <h2>Binární soubory</h2>
+                <p>Pro ukládání dat v kompaktní binární podobě (ne jako text).</p>
+
+                <pre class="language-css"><code>// C#
+using (BinaryWriter writer = new BinaryWriter(File.Open("data.bin", FileMode.Create))) {
+    writer.Write(42);           // int
+    writer.Write(3.14);         // double
+    writer.Write("text");       // string
+}
+
+using (BinaryReader reader = new BinaryReader(File.Open("data.bin", FileMode.Open))) {
+    int cislo = reader.ReadInt32();
+    double des = reader.ReadDouble();
+    string text = reader.ReadString();
+}</code></pre>
+
+                <h2>⚠️ Ošetření chyb</h2>
+                <pre class="language-csharp"><code>// C#
+try {
+    string obsah = File.ReadAllText("neexistuje.txt");
+} catch (FileNotFoundException) {
+    Console.WriteLine("Soubor nenalezen!");
+} catch (IOException ex) {
+    Console.WriteLine($"Chyba I/O: {ex.Message}");
+}</code></pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>C++ konzole:</strong> <code>cout &lt;&lt;</code> výstup, <code>cin &gt;&gt;</code>
+                            vstup, <code>getline()</code> celý řádek</li>
+                        <li><strong>C++ soubory:</strong> <code>ofstream</code> zápis, <code>ifstream</code> čtení</li>
+                        <li><strong>C# konzole:</strong> <code>Console.WriteLine()</code>,
+                            <code>Console.ReadLine()</code></li>
+                        <li><strong>C# soubory:</strong> <code>File.ReadAllText/WriteAllText</code> nebo
+                            <code>StreamReader/Writer</code></li>
+                        <li><strong>using statement:</strong> Automaticky zavře soubor</li>
+                        <li>Vždy kontroluj, zda soubor existuje a ošetři výjimky</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

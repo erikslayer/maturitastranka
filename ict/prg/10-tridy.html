@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Třídy v C++ a C# - konstruktory, destruktory, modifikátory přístupu.">
+    <title>10. Třídy C++ a C# - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Třídy C++ a C#</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🎯 Třídy C++ a C#</h1>
+                <p class="author">Téma 10 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je třída a proč ji používáme?</h2>
+                <p>Třída je <strong>šablona (blueprint)</strong> pro vytváření objektů. Je základem <strong>objektově
+                        orientovaného programování (OOP)</strong>. Třída definuje:</p>
+                <ul>
+                    <li><strong>Atributy (data):</strong> Vlastnosti, které objekt má (jméno, věk, barva...)</li>
+                    <li><strong>Metody (chování):</strong> Co objekt umí dělat (chodit, mluvit, počítat...)</li>
+                </ul>
+
+                <p><strong>💡 Analogie ze života:</strong></p>
+                <ul>
+                    <li><strong>Třída</strong> = Architektonický plán domu</li>
+                    <li><strong>Objekt</strong> = Konkrétní postavený dům podle plánu</li>
+                    <li>Z jednoho plánu můžeš postavit mnoho domů, každý s jiným číslem popisným</li>
+                </ul>
+
+                <h2>Třída v C++</h2>
+                <pre class="language-cpp"><code>class Osoba {
+private:                          // Soukromé členy - nelze přistoupit zvenčí
+    string jmeno;
+    int vek;
+
+public:                           // Veřejné členy - přístupné odkudkoli
+    // Konstruktor - volá se při vytvoření objektu
+    Osoba(string j, int v) {
+        jmeno = j;
+        vek = v;
+        cout << "Osoba " << jmeno << " vytvořena!" << endl;
+    }
+    
+    // Destruktor - volá se při zániku objektu
+    ~Osoba() {
+        cout << "Osoba " << jmeno << " zaniká!" << endl;
+    }
+    
+    // Metody (členské funkce)
+    void pozdrav() {
+        cout << "Ahoj, jsem " << jmeno << " a mám " << vek << " let." << endl;
+    }
+    
+    // Getter - vrací hodnotu privátní proměnné
+    int getVek() {
+        return vek;
+    }
+    
+    // Setter - nastavuje hodnotu s kontrolou
+    void setVek(int novy_vek) {
+        if (novy_vek > 0 && novy_vek < 150) {
+            vek = novy_vek;
+        }
+    }
+}; // Nezapomeň na středník!</code></pre>
+
+                <h2>Třída v C#</h2>
+                <pre class="language-csharp"><code>class Osoba {
+    // Privátní pole (backing fields)
+    private string jmeno;
+    private int vek;
+    
+    // Konstruktor
+    public Osoba(string j, int v) {
+        jmeno = j;
+        vek = v;
+        Console.WriteLine($"Osoba {jmeno} vytvořena!");
+    }
+    
+    // Property (vlastnost) - C# elegantní způsob getterů/setterů
+    public int Vek {
+        get { return vek; }
+        set { 
+            if (value > 0 && value < 150)
+                vek = value; 
+        }
+    }
+    
+    // Auto-property (zkrácená syntaxe)
+    public string Email { get; set; }
+    
+    // Read-only property
+    public string Info => $"{jmeno}, {vek} let";
+    
+    // Metoda
+    public void Pozdrav() {
+        Console.WriteLine($"Ahoj, jsem {jmeno}!");
+    }
+}</code></pre>
+
+                <h2>Přístupové modifikátory</h2>
+                <p>Určují, odkud lze k členům třídy přistupovat. <strong>Základní princip zapouzdření.</strong></p>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Modifikátor</th>
+                        <th style="padding: 0.5rem;">Přístup</th>
+                        <th style="padding: 0.5rem;">Použití</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>public</code></td>
+                        <td style="padding: 0.5rem;">Odkudkoli</td>
+                        <td style="padding: 0.5rem;">Metody, veřejné API</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>private</code></td>
+                        <td style="padding: 0.5rem;">Jen v dané třídě</td>
+                        <td style="padding: 0.5rem;">Interní data, pomocné metody</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>protected</code></td>
+                        <td style="padding: 0.5rem;">V třídě a potomcích</td>
+                        <td style="padding: 0.5rem;">Sdílená data pro dědičnost</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><code>internal</code> (C#)</td>
+                        <td style="padding: 0.5rem;">V rámci assembly</td>
+                        <td style="padding: 0.5rem;">Mezi třídami v projektu</td>
+                    </tr>
+                </table>
+
+                <p><strong>💡 Pravidlo palce:</strong> Data (proměnné) dělej <code>private</code>, metody podle potřeby
+                    <code>public</code> nebo <code>private</code>.</p>
+
+                <h2>Konstruktory</h2>
+                <p>Speciální metoda volaná <strong>automaticky při vytvoření objektu</strong>. Slouží k inicializaci.
+                </p>
+
+                <pre class="language-css"><code>class Auto {
+    string znacka;
+    int rokVyroby;
+    
+public:
+    // Výchozí konstruktor (bez parametrů)
+    Auto() {
+        znacka = "Neznámá";
+        rokVyroby = 2020;
+    }
+    
+    // Parametrický konstruktor
+    Auto(string z, int r) {
+        znacka = z;
+        rokVyroby = r;
+    }
+    
+    // C++: Konstruktor s inicializačním seznamem (preferovaný)
+    Auto(string z, int r) : znacka(z), rokVyroby(r) { }
+};
+
+// Vytvoření objektů
+Auto auto1;                    // Volá výchozí konstruktor
+Auto auto2("Škoda", 2022);    // Volá parametrický konstruktor</code></pre>
+
+                <h3>Přetěžování konstruktorů</h3>
+                <p>Třída může mít více konstruktorů s různými parametry:</p>
+                <pre class="language-css"><code>// C#
+class Osoba {
+    public string Jmeno { get; set; }
+    public int Vek { get; set; }
+    
+    public Osoba() {                           // Výchozí
+        Jmeno = "Anonym";
+        Vek = 0;
+    }
+    
+    public Osoba(string jmeno) {               // S jedním parametrem
+        Jmeno = jmeno;
+        Vek = 0;
+    }
+    
+    public Osoba(string jmeno, int vek) {      // Se dvěma parametry
+        Jmeno = jmeno;
+        Vek = vek;
+    }
+}</code></pre>
+
+                <h2>Destruktory</h2>
+                <p>Metoda volaná <strong>při zániku objektu</strong>. Slouží k úklidu (uvolnění paměti, zavření
+                    souborů).</p>
+
+                <pre class="language-csharp"><code>// C++ - Destruktor je DŮLEŽITÝ pro správu paměti!
+class Soubor {
+    FILE* file;
+public:
+    Soubor(const char* nazev) {
+        file = fopen(nazev, "r");
+    }
+    
+    ~Soubor() {                    // Destruktor: ~NázevTřídy()
+        if (file) fclose(file);    // Uvolníme prostředky
+        cout << "Soubor zavřen" << endl;
+    }
+};
+// Destruktor se volá automaticky při opuštění scope nebo delete
+
+// C# - Garbage Collector se stará o paměť automaticky
+// Destruktor (finalizér) se používá zřídka
+~Osoba() {
+    Console.WriteLine("Finalizace");
+}
+// Preferuj IDisposable a using pro deterministické uvolňování</code></pre>
+
+                <h2>Vytvoření instance (objektu)</h2>
+                <pre class="language-plaintext"><code>// C++ - dvě možnosti
+Osoba jan("Jan", 25);              // Na zásobníku (stack) - automatický destruktor
+Osoba* eva = new Osoba("Eva", 30); // Na haldě (heap) - musíš smazat ručně!
+delete eva;                         // Uvolnění paměti
+
+// C# - vždy new (objekty jsou na haldě, GC uklízí)
+Osoba jan = new Osoba("Jan", 25);
+// Nepotřebuješ delete, Garbage Collector se postará</code></pre>
+
+                <h2>Zapouzdření (Encapsulation)</h2>
+                <p>Jeden z pilířů OOP. <strong>Skrytí vnitřní implementace</strong> a přístup přes veřejné rozhraní.</p>
+
+                <pre class="language-css"><code>class BankovniUcet {
+private:
+    double zustatek;        // Skryto - nelze přímo měnit
+    
+public:
+    BankovniUcet(double pocatecni) {
+        if (pocatecni >= 0) zustatek = pocatecni;
+    }
+    
+    // Veřejné rozhraní s kontrolou
+    void vloz(double castka) {
+        if (castka > 0) {
+            zustatek += castka;
+        }
+    }
+    
+    bool vyber(double castka) {
+        if (castka > 0 && castka <= zustatek) {
+            zustatek -= castka;
+            return true;
+        }
+        return false;  // Nedostatek prostředků
+    }
+    
+    double getZustatek() {
+        return zustatek;
+    }
+};
+
+// Použití:
+BankovniUcet ucet(1000);
+ucet.vloz(500);              // OK
+ucet.vyber(200);             // OK
+ucet.zustatek = 1000000;     // CHYBA! Private člen</code></pre>
+
+                <p><strong>💡 Proč zapouzdření?</strong></p>
+                <ul>
+                    <li>Ochrana dat před neplatnými hodnotami</li>
+                    <li>Můžeš změnit implementaci bez změny rozhraní</li>
+                    <li>Snazší testování a ladění</li>
+                </ul>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Třída</strong> = šablona pro objekty (atributy + metody)</li>
+                        <li><strong>Objekt/Instance</strong> = konkrétní výtvor podle třídy</li>
+                        <li><strong>Konstruktor</strong> = inicializace při vytváření (stejný název jako třída)</li>
+                        <li><strong>Destruktor (C++)</strong> = úklid při zániku (~NázevTřídy)</li>
+                        <li><strong>public/private/protected</strong> = řízení přístupu</li>
+                        <li><strong>Zapouzdření</strong> = private data + public metody</li>
+                        <li>C++: <code>Osoba jan("Jan", 25);</code> nebo <code>new/delete</code></li>
+                        <li>C#: <code>Osoba jan = new Osoba("Jan", 25);</code> + Properties</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

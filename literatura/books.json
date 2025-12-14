@@ -1,0 +1,162 @@
+[
+  {
+    "filename": "saturnin.html",
+    "title": "Saturnin",
+    "author": "Zdeněk Jirotka",
+    "icon": "📖",
+    "description": "Humoristický román o sluhovi Saturninovi, který svému pánovi obrátí život naruby. Klasika české literatury plná anglického humoru.",
+    "tag": "Humoristický román"
+  },
+  {
+    "filename": "rur.html",
+    "title": "R.U.R.",
+    "author": "Karel Čapek",
+    "icon": "🤖",
+    "description": "Vědecko-fantastické drama o umělých lidech – robotech. Dílo, které dalo světu slovo \"robot\".",
+    "tag": "Sci-fi drama"
+  },
+  {
+    "filename": "bila-nemoc.html",
+    "title": "Bílá nemoc",
+    "author": "Karel Čapek",
+    "icon": "😷",
+    "description": "Protiválečné drama varující před fanatismem a totalitou. Doktor Galén léčí smrtelnou nemoc jen výměnou za mír.",
+    "tag": "Drama"
+  },
+  {
+    "filename": "451-fahrenheita.html",
+    "title": "451° Fahrenheita",
+    "author": "Ray Bradbury",
+    "icon": "🔥",
+    "description": "Dystopický román o budoucnosti, kde se pálí knihy. Varování před konzumní společností a cenzurou.",
+    "tag": "Sci-fi román"
+  },
+  {
+    "filename": "alchymista.html",
+    "title": "Alchymista",
+    "author": "Paulo Coelho",
+    "icon": "🏜️",
+    "description": "Filozofický příběh o pastýři, který jde za svým snem až k egyptským pyramidám. Klasika motivační literatury.",
+    "tag": "Filozofický román"
+  },
+  {
+    "filename": "alenka-v-risi-divu.html",
+    "title": "Alenka v říši divů",
+    "author": "Lewis Carroll",
+    "icon": "🐇",
+    "description": "Nonsensová pohádka plná fantazie, logických hříček a podivných postav. Cesta do světa fantazie.",
+    "tag": "Pohádka"
+  },
+  {
+    "filename": "borovsky-tyrolske-elegie.html",
+    "title": "Tyrolské elegie",
+    "author": "Karel Havlíček Borovský",
+    "icon": "🏔️",
+    "description": "Satirická báseň o nuceném odjezdu do Brixenu. Výsměch rakouské policii a vládě.",
+    "tag": "Satira"
+  },
+  {
+    "filename": "arthur-hailey-let-do-nebezpeci.html",
+    "title": "Let do nebezpečí",
+    "author": "Arthur Hailey",
+    "icon": "✈️",
+    "description": "Napínavý profesní román o letu, kde se otráví piloti a řízení musí převzít pasažér.",
+    "tag": "Profesní román"
+  },
+  {
+    "filename": "bez-peri.html",
+    "title": "Bez peří",
+    "author": "Woody Allen",
+    "icon": "🎭",
+    "description": "Sbírka humorných povídek a esejí plná intelektuálního humoru a parodie.",
+    "tag": "Povídky"
+  },
+  {
+    "filename": "biliar-o-pul-desate.html",
+    "title": "Biliár o půl desáté",
+    "author": "Heinrich Böll",
+    "icon": "🎱",
+    "description": "Román o třech generacích rodiny Fähmelů a jejich postojích k válce a nacismu.",
+    "tag": "Román"
+  },
+  {
+    "filename": "cekani-na-godota.html",
+    "title": "Čekání na Godota",
+    "author": "Samuel Beckett",
+    "icon": "🌳",
+    "description": "Absurdní drama o nekonečném čekání na někoho, kdo nikdy nepřijde.",
+    "tag": "Absurdní drama"
+  },
+  {
+    "filename": "cizinec.html",
+    "title": "Cizinec",
+    "author": "Albert Camus",
+    "icon": "☀️",
+    "description": "Příběh člověka, který je cizincem ve společnosti, protože odmítá lhát o svých pocitech.",
+    "tag": "Existenciální román"
+  },
+  {
+    "filename": "cervantes-dumyslny-rytir-don-quijote.html",
+    "title": "Don Quijote",
+    "author": "Miguel de Cervantes",
+    "icon": "🤺",
+    "description": "Slavný příběh o důmyslném rytíři, který bojuje s větrnými mlýny.",
+    "tag": "Román"
+  },
+  {
+    "filename": "cechov-visnovy-sad.html",
+    "title": "Višňový sad",
+    "author": "Anton Pavlovič Čechov",
+    "icon": "🍒",
+    "description": "Lyrická komedie o zániku starých časů a neschopnosti přizpůsobit se změně.",
+    "tag": "Drama"
+  },
+  {
+    "filename": "ceske-nebe.html",
+    "title": "České nebe",
+    "author": "Jára Cimrman",
+    "icon": "☁️",
+    "description": "Cimrmanovská hra o tom, jak nebeská komise rozhoduje o osudech Čechů.",
+    "tag": "Komedie"
+  },
+  {
+    "filename": "gatsby.html",
+    "title": "Velký Gatsby",
+    "author": "Francis Scott Fitzgerald",
+    "icon": "🥂",
+    "description": "Příběh záhadného milionáře Gatsbyho a jeho nenaplněné lásky. Kritika amerického snu 20. let.",
+    "tag": "Román"
+  },
+  {
+    "filename": "lakomec.html",
+    "title": "Lakomec",
+    "author": "Molière",
+    "icon": "💰",
+    "description": "Klasická komedie o Harpagonovi, jehož láska k penězům převyšuje vše ostatní včetně vlastních dětí.",
+    "tag": "Komedie"
+  },
+  {
+    "filename": "na-zapadni-fronte-klid.html",
+    "title": "Na západní frontě klid",
+    "author": "Erich Maria Remarque",
+    "icon": "⚔️",
+    "description": "Strhující protiválečný román zachycující hrůzy první světové války očima mladého německého vojáka.",
+    "tag": "Válečný román"
+  },
+  {
+    "filename": "o-mysich-a-lidech.html",
+    "title": "O myších a lidech",
+    "author": "John Steinbeck",
+    "icon": "🐭",
+    "description": "Tragický příběh dvou přátel – George a Lennieho – hledajících práci v době Velké hospodářské krize.",
+    "tag": "Novela"
+  },
+  {
+    "filename": "maly-princ.html",
+    "title": "Malý princ",
+    "author": "Antoine de Saint-Exupéry",
+    "icon": "🌹",
+    "description": "Filozofická pohádka o malém princi z asteroidu B-612 a jeho cestě po vesmíru i lidských srdcích.",
+    "tag": "Filozofická pohádka"
+  }
+]

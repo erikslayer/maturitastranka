@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cykly v programování - for, while, do-while.">
+    <title>4. Cykly - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Cykly</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔄 Cykly</h1>
+                <p class="author">Téma 4 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je cyklus?</h2>
+                <p>Cyklus (smyčka, loop) je konstrukce, která umožňuje <strong>opakovaně vykonávat blok kódu</strong>,
+                    dokud je splněna určitá podmínka. Bez cyklů bychom museli opakující se kód psát mnohokrát.</p>
+
+                <p><strong>💡 Příklad z praxe:</strong> Chceš vypsat čísla 1 až 100. Bez cyklu bys musel napsat 100
+                    příkazů <code>cout</code>. S cyklem to zvládneš na 3 řádky.</p>
+
+                <h2>Cyklus for</h2>
+                <p>Nejčastěji používaný cyklus, když <strong>víme předem, kolikrát</strong> chceme kód opakovat. Má tři
+                    části v hlavičce:</p>
+
+                <pre class="language-cpp"><code>//     inicializace;  podmínka;   iterace
+for (int i = 0;      i < 10;     i++) {
+    cout << i << " ";
+}
+// Výstup: 0 1 2 3 4 5 6 7 8 9</code></pre>
+
+                <p><strong>Jak to funguje krok za krokem:</strong></p>
+                <ol>
+                    <li><strong>Inicializace</strong> (<code>int i = 0</code>) – provede se jednou na začátku</li>
+                    <li><strong>Test podmínky</strong> (<code>i < 10</code>) – před každou iterací se ověří</li>
+                    <li><strong>Tělo cyklu</strong> – vykoná se, pokud podmínka platí</li>
+                    <li><strong>Iterace</strong> (<code>i++</code>) – po každém průchodu tělem</li>
+                    <li>Zpět na bod 2</li>
+                </ol>
+
+                <h3>Příklady použití for</h3>
+                <pre class="language-cpp"><code>// Součet čísel 1 až 100
+int soucet = 0;
+for (int i = 1; i <= 100; i++) {
+    soucet += i;  // soucet = soucet + i
+}
+cout << "Součet: " << soucet;  // 5050
+
+// Countdown (pozpátku)
+for (int i = 10; i >= 1; i--) {
+    cout << i << "... ";
+}
+cout << "Start!";
+// Výstup: 10... 9... 8... 7... 6... 5... 4... 3... 2... 1... Start!</code></pre>
+
+                <h3>Foreach (C# a C++11)</h3>
+                <p>Speciální verze for pro <strong>procházení kolekcí</strong> (polí, seznamů). Nemusíš se starat o
+                    indexy:</p>
+                <pre class="language-csharp"><code>// C#
+int[] cisla = {10, 20, 30, 40, 50};
+
+foreach (int cislo in cisla) {
+    Console.WriteLine(cislo);
+}
+// Výstup: 10, 20, 30, 40, 50 (každé na novém řádku)
+
+// C++11 (range-based for)
+for (int cislo : cisla) {
+    cout << cislo << endl;
+}</code></pre>
+
+                <h2>Cyklus while</h2>
+                <p>Opakuje kód, <strong>dokud je podmínka pravdivá</strong>. Vhodný, když nevíme předem počet opakování.
+                    Podmínka se testuje <strong>na začátku</strong> – tělo se nemusí vykonat ani jednou!</p>
+
+                <pre class="language-cpp"><code>int i = 0;
+
+while (i < 5) {
+    cout << i << " ";
+    i++;
+}
+// Výstup: 0 1 2 3 4</code></pre>
+
+                <h3>Příklad: Čtení vstupu do zadání konce</h3>
+                <pre class="language-cpp"><code>string vstup;
+
+cout << "Zadej slova (konec = 'stop'):" << endl;
+cin >> vstup;
+
+while (vstup != "stop") {
+    cout << "Zadal jsi: " << vstup << endl;
+    cin >> vstup;
+}
+cout << "Konec programu";</code></pre>
+
+                <p><strong>⚠️ Pozor na nekonečný cyklus!</strong> Pokud podmínka nikdy nemůže být false, cyklus nikdy
+                    neskončí:</p>
+                <pre class="language-cpp"><code>// ŠPATNĚ - nekonečný cyklus!
+int i = 0;
+while (i < 10) {
+    cout << i;
+    // Chybí i++ - proměnná se nemění, podmínka je stále true
+}</code></pre>
+
+                <h2>Cyklus do-while</h2>
+                <p>Podobný jako while, ale podmínka se testuje <strong>na konci</strong>. To znamená, že tělo se
+                    <strong>vykoná vždy alespoň jednou</strong>.</p>
+
+                <pre class="language-cpp"><code>int cislo;
+
+do {
+    cout << "Zadej kladné číslo: ";
+    cin >> cislo;
+} while (cislo <= 0);
+// Nepustí uživatele dál, dokud nezadá kladné číslo
+
+cout << "Zadal jsi: " << cislo;</code></pre>
+
+                <p><strong>💡 Kdy použít do-while?</strong> Validace vstupu, menu s opakovanou volbou – situace, kdy
+                    chceme akci provést a pak se teprve ptát, jestli pokračovat.</p>
+
+                <h2>Řídící příkazy cyklu</h2>
+
+                <h3>break – okamžité ukončení</h3>
+                <p>Ihned ukončí cyklus a pokračuje za ním:</p>
+                <pre class="language-cpp"><code>// Hledání prvního dělitelného 7
+for (int i = 1; i <= 100; i++) {
+    if (i % 7 == 0) {
+        cout << "První dělitelné 7: " << i;
+        break;  // Najde 7 a skončí, neprochází zbytečně zbytek
+    }
+}
+// Výstup: První dělitelné 7: 7</code></pre>
+
+                <h3>continue – přeskočení iterace</h3>
+                <p>Přeskočí zbytek aktuální iterace a pokračuje další:</p>
+                <pre class="language-cpp"><code>// Vypiš jen lichá čísla
+for (int i = 1; i <= 10; i++) {
+    if (i % 2 == 0) {
+        continue;  // Sudá čísla přeskoč
+    }
+    cout << i << " ";
+}
+// Výstup: 1 3 5 7 9</code></pre>
+
+                <h2>Vnořené cykly</h2>
+                <p>Cyklus uvnitř jiného cyklu. Vnitřní cyklus proběhne celý pro každou iteraci vnějšího.</p>
+
+                <pre class="language-cpp"><code>// Malá násobilka
+for (int i = 1; i <= 10; i++) {         // řádky
+    for (int j = 1; j <= 10; j++) {     // sloupce
+        cout << i * j << "\t";
+    }
+    cout << endl;  // nový řádek po každém řádku tabulky
+}</code></pre>
+
+                <p><strong>Výstup:</strong> Tabulka 10×10 s násobky</p>
+                <pre class="language-plaintext"><code>1   2   3   4   5   6   7   8   9   10
+2   4   6   8   10  12  14  16  18  20
+3   6   9   12  15  18  21  24  27  30
+...</code></pre>
+
+                <h2>Kdy použít který cyklus?</h2>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem; text-align: left;">Cyklus</th>
+                        <th style="padding: 0.5rem; text-align: left;">Kdy použít</th>
+                        <th style="padding: 0.5rem; text-align: left;">Příklad</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>for</strong></td>
+                        <td style="padding: 0.5rem;">Známý počet opakování</td>
+                        <td style="padding: 0.5rem;">Procházení pole, odpočet</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>foreach</strong></td>
+                        <td style="padding: 0.5rem;">Procházení kolekcí</td>
+                        <td style="padding: 0.5rem;">Výpis všech prvků seznamu</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>while</strong></td>
+                        <td style="padding: 0.5rem;">Neznámý počet, podmínka na začátku</td>
+                        <td style="padding: 0.5rem;">Čtení souboru do konce</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>do-while</strong></td>
+                        <td style="padding: 0.5rem;">Alespoň jedno provedení</td>
+                        <td style="padding: 0.5rem;">Validace vstupu, menu</td>
+                    </tr>
+                </table>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>for:</strong> Známý počet iterací – <code>for (init; podmínka; iterace)</code></li>
+                        <li><strong>while:</strong> Podmínka na začátku – nemusí proběhnout ani jednou</li>
+                        <li><strong>do-while:</strong> Podmínka na konci – proběhne <u>vždy alespoň jednou</u></li>
+                        <li><strong>foreach:</strong> Pro procházení kolekcí bez indexů</li>
+                        <li><strong>break</strong> = ukončí cyklus, <strong>continue</strong> = přeskočí iteraci</li>
+                        <li><strong>Pozor na nekonečné cykly!</strong> Podmínka se musí někdy stát false</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

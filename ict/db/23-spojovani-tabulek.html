@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spojování tabulek v relačních databázích - INNER, LEFT, RIGHT JOIN.">
+    <title>23. Spojování tabulek - DB | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../db.html">Databáze</a><span class="separator">›</span>
+                <span class="current">Spojování tabulek</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔗 Spojování tabulek v relačních databázích</h1>
+                <p class="author">Téma 23 - Databáze</p>
+                <div class="meta">
+                    <span class="meta-item">💾 Databáze</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Proč spojovat tabulky?</h2>
+                <p>V relačních databázích jsou data <strong>normalizována</strong> – rozdělena do více tabulek, aby se
+                    eliminovaly duplicity. JOIN umožňuje <strong>spojit data z více tabulek</strong> do jednoho výsledku
+                    na základě společného klíče.</p>
+
+                <p><strong>💡 Příklad:</strong> E-shop má tabulku <code>uzivatele</code> a tabulku
+                    <code>objednavky</code>. Chceme-li vypsat jména zákazníků s jejich objednávkami, musíme tabulky
+                    spojit.</p>
+
+                <h3>Ukázkové tabulky pro příklady</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+TABULKA: uzivatele                    TABULKA: objednavky
++----+---------------+               +----+-------------+------------+--------+
+| id | jmeno         |               | id | uzivatel_id | datum      | castka |
++----+---------------+               +----+-------------+------------+--------+
+| 1  | Jan Novák     |               | 1  | 1           | 2025-01-15 | 500    |
+| 2  | Eva Svobodová |               | 2  | 1           | 2025-02-20 | 800    |
+| 3  | Petr Černý    |               | 3  | 2           | 2025-03-10 | 1200   |
++----+---------------+               +----+-------------+------------+--------+
+                                      ↑ uzivatel_id je CIZÍ KLÍČ → uzivatele.id</pre>
+                <p>Všimni si: Jan má 2 objednávky, Eva má 1 objednávku, Petr nemá žádnou.</p>
+
+                <h2>INNER JOIN</h2>
+                <p>Vrátí pouze záznamy, které mají <strong>shodu v obou tabulkách</strong>. Záznamy bez protějšku jsou
+                    vynechány.</p>
+
+                <div
+                    style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center;">
+                    <pre style="font-family: monospace;">
+    Uživatelé      Objednávky
+    ┌─────┐        ┌─────┐
+    │     │        │     │
+    │  █  │ INNER  │  █  │  → Pouze průnik (█)
+    │     │  JOIN  │     │
+    └─────┘        └─────┘</pre>
+                </div>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+SELECT uzivatele.jmeno, objednavky.datum, objednavky.castka
+FROM uzivatele
+INNER JOIN objednavky ON uzivatele.id = objednavky.uzivatel_id;
+
+-- Výsledek: Jen uživatelé, kteří mají objednávku
+-- +---------------+------------+--------+
+-- | jmeno         | datum      | castka |
+-- +---------------+------------+--------+
+-- | Jan Novák     | 2025-01-15 | 500    |
+-- | Jan Novák     | 2025-02-20 | 800    |
+-- | Eva Svobodová | 2025-03-10 | 1200   |
+-- +---------------+------------+--------+
+-- Petr Černý CHYBÍ – nemá žádnou objednávku!</pre>
+
+                <h3>Aliasy pro přehlednost</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Kratší zápis s aliasy (u = uzivatele, o = objednavky)
+SELECT u.jmeno, o.datum, o.castka
+FROM uzivatele u
+INNER JOIN objednavky o ON u.id = o.uzivatel_id;</pre>
+
+                <h2>LEFT JOIN (LEFT OUTER JOIN)</h2>
+                <p>Vrátí <strong>všechny záznamy z levé tabulky</strong> + odpovídající z pravé. Pokud není shoda, pravé
+                    hodnoty jsou <strong>NULL</strong>.</p>
+
+                <div
+                    style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0; text-align: center;">
+                    <pre style="font-family: monospace;">
+    Uživatelé      Objednávky
+    ┌─────┐        ┌─────┐
+    │█████│  LEFT  │     │
+    │█████│  JOIN  │  █  │  → Celá levá + průnik
+    │█████│        │     │
+    └─────┘        └─────┘</pre>
+                </div>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Všichni uživatelé včetně těch bez objednávek
+SELECT u.jmeno, o.datum, o.castka
+FROM uzivatele u
+LEFT JOIN objednavky o ON u.id = o.uzivatel_id;
+
+-- Výsledek:
+-- +---------------+------------+--------+
+-- | jmeno         | datum      | castka |
+-- +---------------+------------+--------+
+-- | Jan Novák     | 2025-01-15 | 500    |
+-- | Jan Novák     | 2025-02-20 | 800    |
+-- | Eva Svobodová | 2025-03-10 | 1200   |
+-- | Petr Černý    | NULL       | NULL   |  ← Petr je zde s NULL hodnotami!
+-- +---------------+------------+--------+</pre>
+
+                <h3>Hledání záznamů BEZ protějšku</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Uživatelé, kteří NEMAJÍ žádnou objednávku
+SELECT u.jmeno
+FROM uzivatele u
+LEFT JOIN objednavky o ON u.id = o.uzivatel_id
+WHERE o.id IS NULL;
+
+-- Výsledek: Petr Černý</pre>
+
+                <h2>RIGHT JOIN (RIGHT OUTER JOIN)</h2>
+                <p>Opak LEFT JOIN – vrátí <strong>všechny záznamy z pravé tabulky</strong> + odpovídající z levé.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+SELECT u.jmeno, o.datum, o.castka
+FROM uzivatele u
+RIGHT JOIN objednavky o ON u.id = o.uzivatel_id;
+
+-- V praxi se používá méně – lze přepsat jako LEFT JOIN s obráceným pořadím tabulek</pre>
+
+                <h2>CROSS JOIN (Kartézský součin)</h2>
+                <p>Spojí <strong>každý záznam z první tabulky s každým ze druhé</strong>. Pozor – výsledek může být
+                    obrovský!</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Příklad: Kombinace barev a velikostí
+SELECT barvy.nazev, velikosti.nazev
+FROM barvy
+CROSS JOIN velikosti;
+
+-- barvy: červená, modrá
+-- velikosti: S, M, L
+-- Výsledek: 2 × 3 = 6 kombinací
+-- červená-S, červená-M, červená-L, modrá-S, modrá-M, modrá-L</pre>
+
+                <h2>SELF JOIN</h2>
+                <p>Spojení tabulky <strong>se sebou samou</strong>. Užitečné pro hierarchické struktury
+                    (zaměstnanec-nadřízený).</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Tabulka: zamestnanci (id, jmeno, manazer_id)
+-- manazer_id odkazuje na id jiného zaměstnance
+
+SELECT e.jmeno AS zamestnanec, m.jmeno AS manazer
+FROM zamestnanci e
+LEFT JOIN zamestnanci m ON e.manazer_id = m.id;
+
+-- Výsledek:
+-- +-------------+----------+
+-- | zamestnanec | manazer  |
+-- +-------------+----------+
+-- | Jan         | NULL     |  ← Jan nemá manažera (je šéf)
+-- | Eva         | Jan      |
+-- | Petr        | Jan      |
+-- | Marie       | Eva      |
+-- +-------------+----------+</pre>
+
+                <h2>Spojení více tabulek</h2>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- E-shop: Uživatel → Objednávka → Položky → Produkt
+SELECT 
+    u.jmeno AS zakaznik,
+    o.datum,
+    p.nazev AS produkt,
+    po.mnozstvi
+FROM uzivatele u
+INNER JOIN objednavky o ON u.id = o.uzivatel_id
+INNER JOIN polozky_objednavky po ON o.id = po.objednavka_id
+INNER JOIN produkty p ON po.produkt_id = p.id
+WHERE o.datum >= '2025-01-01'
+ORDER BY o.datum;</pre>
+
+                <h2>Poddotazy (Subqueries)</h2>
+                <p>Dotaz vnořený v jiném dotazu. Alternativa k JOINu v některých případech.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- V podmínce WHERE
+SELECT * FROM uzivatele 
+WHERE id IN (SELECT DISTINCT uzivatel_id FROM objednavky);
+-- Uživatelé, kteří mají alespoň jednu objednávku
+
+-- Jako dočasná tabulka (derived table)
+SELECT * FROM (
+    SELECT mesto, COUNT(*) AS pocet 
+    FROM uzivatele 
+    GROUP BY mesto
+) AS statistika
+WHERE pocet > 5;
+
+-- V SELECT (korelovaný poddotaz)
+SELECT 
+    jmeno, 
+    (SELECT COUNT(*) FROM objednavky WHERE uzivatel_id = u.id) AS pocet_objednavek
+FROM uzivatele u;
+-- Pro každého uživatele spočítá počet objednávek</pre>
+
+                <h2>Kdy použít JOIN vs Subquery?</h2>
+                <ul>
+                    <li><strong>JOIN:</strong> Když potřebuješ sloupce z obou tabulek ve výsledku</li>
+                    <li><strong>Subquery:</strong> Když kontroluješ existenci nebo počítáš agregace</li>
+                    <li>JOINy jsou obvykle <strong>rychlejší</strong> – databáze je lépe optimalizuje</li>
+                </ul>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>INNER JOIN:</strong> Pouze kde je shoda v obou tabulkách</li>
+                        <li><strong>LEFT JOIN:</strong> Všechno z levé + shody z pravé (NULL když není shoda)</li>
+                        <li><strong>RIGHT JOIN:</strong> Opak LEFT JOIN (méně používaný)</li>
+                        <li><strong>CROSS JOIN:</strong> Kartézský součin – každý s každým</li>
+                        <li><strong>SELF JOIN:</strong> Tabulka spojená sama se sebou</li>
+                        <li><strong>Aliasy</strong> (u, o) zpřehledňují dlouhé dotazy</li>
+                        <li>Podmínka spojení: <code>ON tabulka1.klíč = tabulka2.cizí_klíč</code></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

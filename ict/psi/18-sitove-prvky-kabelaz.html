@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Síťové prvky modelu ISO/OSI a strukturovaná kabeláž - switch, router, firewall, rack.">
+    <title>18. Síťové prvky a strukturovaná kabeláž - PSI | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../psi.html">Počítačové sítě</a><span class="separator">›</span>
+                <span class="current">Síťové prvky a kabeláž</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔌 Síťové prvky a strukturovaná kabeláž</h1>
+                <p class="author">Téma 18 - PSI</p>
+                <div class="meta">
+                    <span class="meta-item">📡 Počítačové sítě</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>Síťové prvky: dělení, konstrukce, funkce</h2>
+                <h3>Hub (rozdělovač)</h3>
+                <ul>
+                    <li>Jednoduchý centrální rozbočovač</li>
+                    <li>Data z jednoho portu posílá na všechny ostatní</li>
+                    <li>Pro menší, nezabezpečené sítě</li>
+                </ul>
+                <h3>Switch (přepínač)</h3>
+                <ul>
+                    <li>Přeposílá data na základě MAC adres</li>
+                    <li>Operuje na 2. vrstvě (linková)</li>
+                    <li>Pro větší sítě, minimalizuje kolize</li>
+                </ul>
+                <h3>Router (směrovač)</h3>
+                <ul>
+                    <li>Směruje pakety mezi sítěmi na základě IP adres</li>
+                    <li>Operuje na 3. vrstvě (síťová)</li>
+                    <li>Propojuje LAN s internetem</li>
+                </ul>
+                <h3>Firewall</h3>
+                <ul>
+                    <li>Software nebo hardware filtrující síťovou komunikaci</li>
+                    <li>Ochrana sítě před neoprávněným přístupem</li>
+                </ul>
+                <h3>Bridge (most)</h3>
+                <ul>
+                    <li>Propojuje síťové segmenty na 2. vrstvě</li>
+                    <li>Segmentace sítě a snížení kolizí</li>
+                </ul>
+                <h3>Modem</h3>
+                <ul>
+                    <li>Převádí digitální signály na analogové a naopak</li>
+                    <li>Připojení k internetu přes telefonní linku</li>
+                </ul>
+                <h2>Schematické značky CISCO</h2>
+                <ul>
+                    <li><strong>Switch:</strong> Čtvercová ikona s porty</li>
+                    <li><strong>Router:</strong> Čtverec s ikonou směrování</li>
+                    <li><strong>Hub:</strong> Malé zařízení s porty</li>
+                    <li><strong>Firewall:</strong> Ikona se zámkem</li>
+                    <li><strong>Modem:</strong> Zařízení se dvěma připojeními</li>
+                </ul>
+                <h2>Strukturovaná kabeláž</h2>
+                <h3>Komponenty</h3>
+                <ul>
+                    <li><strong>Kabely:</strong> UTP, optické vlákno</li>
+                    <li><strong>Racks a panely:</strong> Pro uložení zařízení a organizaci</li>
+                    <li><strong>Jacks a zásuvky:</strong> Připojení zařízení k síti</li>
+                    <li><strong>Patch kabely:</strong> Propojení mezi zařízeními a panely</li>
+                </ul>
+                <h3>Topologie</h3>
+                <ul>
+                    <li><strong>Hvězdicová:</strong> Zařízení připojena k centrálnímu prvku (nejběžnější)</li>
+                    <li><strong>Sběrnicová:</strong> Všechna zařízení na jednom kabelu</li>
+                    <li><strong>Kruhová:</strong> Uzavřený kruh, data putují jedním směrem</li>
+                </ul>
+                <h3>Kategorie kabeláže</h3>
+                <ul>
+                    <li><strong>Cat 5e:</strong> Až 1000 Mbps</li>
+                    <li><strong>Cat 6:</strong> Až 10 Gbps na krátké vzdálenosti</li>
+                    <li><strong>Cat 6a/Cat 7:</strong> Vyšší rychlosti pro datacentra</li>
+                </ul>
+                <h3>Rack</h3>
+                <ul>
+                    <li><strong>19" rack:</strong> Nejběžnější standard</li>
+                    <li>Umožňuje montáž až 42U zařízení</li>
+                    <li>Správa chlazení a kabeláže</li>
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Funkce a metody v programování - parametry, návratové hodnoty.">
+    <title>7. Funkce a metody - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Funkce a metody</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>⚙️ Funkce a metody</h1>
+                <p class="author">Téma 7 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je funkce a proč ji používáme?</h2>
+                <p>Funkce je <strong>pojmenovaný blok kódu</strong>, který provádí určitou úlohu. Může přijímat vstupní
+                    hodnoty (parametry) a vracet výsledek.</p>
+
+                <p><strong>💡 Proč používat funkce?</strong></p>
+                <ul>
+                    <li><strong>Znovupoužitelnost:</strong> Napíšeš jednou, voláš opakovaně</li>
+                    <li><strong>Přehlednost:</strong> Dlouhý kód rozdělíš na menší, pojmenované části</li>
+                    <li><strong>Údržba:</strong> Opravu uděláš na jednom místě</li>
+                    <li><strong>Testovatelnost:</strong> Snazší testování izolovaných částí</li>
+                </ul>
+
+                <p><strong>Terminologie:</strong></p>
+                <ul>
+                    <li><strong>Funkce:</strong> Obecný pojem (v C, C++, samostatná)</li>
+                    <li><strong>Metoda:</strong> Funkce, která patří do třídy/objektu (OOP)</li>
+                    <li><strong>Procedura:</strong> Funkce, která nic nevrací (void)</li>
+                </ul>
+
+                <h2>Definice a volání funkce</h2>
+                <pre class="language-cpp"><code>// Syntaxe definice:
+// návratový_typ název_funkce(parametry) {
+//     tělo funkce
+//     return hodnota;  // pokud není void
+// }
+
+// Funkce s návratovou hodnotou
+int secti(int a, int b) {
+    return a + b;
+}
+
+// Funkce bez návratové hodnoty (procedura)
+void pozdrav() {
+    cout << "Ahoj!" << endl;
+    // není return (nebo prázdný return;)
+}
+
+// Volání funkcí
+int vysledek = secti(5, 3);  // vysledek = 8
+pozdrav();                    // Vypíše: Ahoj!</code></pre>
+
+                <h3>Průběh volání funkce</h3>
+                <ol>
+                    <li>Program narazí na volání funkce <code>secti(5, 3)</code></li>
+                    <li>Argumenty 5 a 3 se předají do parametrů <code>a</code> a <code>b</code></li>
+                    <li>Vykoná se tělo funkce</li>
+                    <li><code>return</code> vrátí hodnotu 8 na místo volání</li>
+                    <li>Program pokračuje za voláním</li>
+                </ol>
+
+                <h2>Předávání parametrů</h2>
+                <p>Způsob, jakým se hodnoty „přenesou" do funkce. Klíčový koncept s různým chováním.</p>
+
+                <h3>Předání hodnotou (by value)</h3>
+                <p>Funkce dostane <strong>kopii</strong> hodnoty. Originál zůstane nezměněn.</p>
+                <pre class="language-cpp"><code>void zdvojnasob(int x) {
+    x = x * 2;      // Mění jen lokální kopii!
+    cout << "Uvnitř: " << x << endl;  // 10
+}
+
+int cislo = 5;
+zdvojnasob(cislo);
+cout << "Venku: " << cislo << endl;   // 5 - nezměněno!</code></pre>
+
+                <h3>Předání odkazem (by reference)</h3>
+                <p>Funkce pracuje <strong>přímo s originální proměnnou</strong>. Změny se projeví i vně.</p>
+                <pre class="language-csharp"><code>// C++ - reference (&)
+void zdvojnasob(int& x) {    // & = reference
+    x = x * 2;               // Mění originál!
+}
+
+int cislo = 5;
+zdvojnasob(cislo);
+cout << cislo;               // 10 - změněno!
+
+// C# - ref keyword
+void Zdvojnasob(ref int x) {
+    x = x * 2;
+}
+
+int cislo = 5;
+Zdvojnasob(ref cislo);       // Musíš napsat ref i při volání
+Console.WriteLine(cislo);    // 10</code></pre>
+
+                <h3>Výstupní parametry (C# out)</h3>
+                <p>Pro funkce, které potřebují vrátit více hodnot:</p>
+                <pre class="language-csharp"><code>void Rozdel(int cislo, out int podil, out int zbytek) {
+    podil = cislo / 10;
+    zbytek = cislo % 10;
+}
+
+// Použití:
+int p, z;
+Rozdel(42, out p, out z);
+Console.WriteLine($"Podíl: {p}, Zbytek: {z}");  // Podíl: 4, Zbytek: 2
+
+// Rozdíl ref vs out:
+// ref - musí být inicializovaná PŘED voláním
+// out - musí být přiřazena UVNITŘ funkce</code></pre>
+
+                <h2>Návratové hodnoty</h2>
+                <pre class="language-csharp"><code>// void - funkce nic nevrací
+void Vypis(string text) {
+    Console.WriteLine(text);
+    // return;  // volitelný prázdný return
+}
+
+// Návratová hodnota - musí odpovídat typu
+int Mocnina(int zaklad, int exponent) {
+    int vysledek = 1;
+    for (int i = 0; i < exponent; i++) {
+        vysledek *= zaklad;
+    }
+    return vysledek;  // MUSÍ být return s hodnotou
+}
+
+// return také ukončuje funkci
+int Prvni Kladny(int[] cisla) {
+    foreach (int c in cisla) {
+        if (c > 0) return c;  // Okamžitě ukončí a vrátí
+    }
+    return -1;  // Kdyby žádné kladné nebylo
+}</code></pre>
+
+                <h2>Přetěžování funkcí (Function Overloading)</h2>
+                <p>Více funkcí se <strong>stejným názvem</strong>, ale <strong>různými parametry</strong>. Kompilátor
+                    vybere správnou verzi podle argumentů.</p>
+
+                <pre class="language-css"><code>// Stejný název, různé typy parametrů
+int Secti(int a, int b) {
+    return a + b;
+}
+
+double Secti(double a, double b) {
+    return a + b;
+}
+
+// Různý počet parametrů
+int Secti(int a, int b, int c) {
+    return a + b + c;
+}
+
+// Volání - kompilátor vybere správnou verzi
+Secti(5, 3);        // Volá int verzi → 8
+Secti(2.5, 1.5);    // Volá double verzi → 4.0
+Secti(1, 2, 3);     // Volá tříparametrovou → 6</code></pre>
+
+                <p><strong>⚠️ Pozor:</strong> Nelze přetížit jen změnou návratového typu!</p>
+
+                <h2>Výchozí hodnoty parametrů</h2>
+                <p>Parametr může mít výchozí hodnotu – pak ho nemusíš při volání uvádět.</p>
+
+                <pre class="language-cpp"><code>void Pozdrav(string jmeno = "uživateli", int kolik = 1) {
+    for (int i = 0; i < kolik; i++) {
+        cout << "Ahoj, " << jmeno << "!" << endl;
+    }
+}
+
+// Různé způsoby volání:
+Pozdrav();                    // "Ahoj, uživateli!" (1x)
+Pozdrav("Jane");              // "Ahoj, Jane!" (1x)
+Pozdrav("Jane", 3);           // "Ahoj, Jane!" (3x)</code></pre>
+
+                <p><strong>⚠️ Pravidlo:</strong> Parametry s výchozími hodnotami musí být na konci seznamu!</p>
+
+                <h2>Rekurze</h2>
+                <p>Funkce, která <strong>volá samu sebe</strong>. Musí mít ukončovací podmínku, jinak vznikne nekonečná
+                    smyčka.</p>
+
+                <pre class="language-css"><code>// Výpočet faktoriálu: n! = n × (n-1) × ... × 1
+int Faktorial(int n) {
+    // Ukončovací podmínka (base case)
+    if (n <= 1) return 1;
+    
+    // Rekurzivní volání
+    return n * Faktorial(n - 1);
+}
+
+// Jak to funguje:
+// Faktorial(5)
+// = 5 * Faktorial(4)
+// = 5 * 4 * Faktorial(3)
+// = 5 * 4 * 3 * Faktorial(2)
+// = 5 * 4 * 3 * 2 * Faktorial(1)
+// = 5 * 4 * 3 * 2 * 1
+// = 120
+
+// Fibonacci - každé číslo je součtem dvou předchozích
+int Fibonacci(int n) {
+    if (n <= 1) return n;
+    return Fibonacci(n - 1) + Fibonacci(n - 2);
+}</code></pre>
+
+                <p><strong>⚠️ Pozor na rekurzi:</strong></p>
+                <ul>
+                    <li>Bez ukončovací podmínky → Stack Overflow</li>
+                    <li>Může být pomalejší než iterace</li>
+                    <li>Pro velká čísla může vyčerpat paměť zásobníku</li>
+                </ul>
+
+                <h2>Lokální vs globální proměnné</h2>
+                <pre class="language-cpp"><code>int globalni = 100;       // Globální - viditelná všude
+
+void MojeFunkce() {
+    int lokalni = 50;     // Lokální - jen uvnitř funkce
+    
+    cout << globalni;     // OK - vidí globální
+    cout << lokalni;      // OK - vidí lokální
+}
+
+void JinaFunkce() {
+    cout << globalni;     // OK
+    cout << lokalni;      // CHYBA! Nevidí lokální z jiné funkce
+}</code></pre>
+
+                <p><strong>💡 Dobré praktiky:</strong> Používej lokální proměnné, globálním se vyhýbej. Předávej data
+                    jako parametry.</p>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Funkce</strong> = pojmenovaný blok kódu, lze opakovaně volat</li>
+                        <li><strong>Syntaxe:</strong> <code>typ název(parametry) { tělo; return; }</code></li>
+                        <li><strong>Předání hodnotou:</strong> Kopie – originál nezměněn</li>
+                        <li><strong>Předání odkazem:</strong> Reference (&, ref) – mění originál</li>
+                        <li><strong>void:</strong> Funkce bez návratové hodnoty</li>
+                        <li><strong>Přetěžování:</strong> Stejné jméno + různé parametry</li>
+                        <li><strong>Rekurze:</strong> Funkce volá samu sebe (MUSÍ mít ukončení)</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

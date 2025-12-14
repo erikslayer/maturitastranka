@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Síťová vrstva modelu ISO/OSI - IP adresy, směrování, IPv4 a IPv6.">
+    <title>14. Síťová vrstva modelu ISO/OSI - PSI | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../psi.html">Počítačové sítě</a><span class="separator">›</span>
+                <span class="current">Síťová vrstva</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🌍 Síťová vrstva modelu ISO/OSI</h1>
+                <p class="author">Téma 14 - PSI</p>
+                <div class="meta">
+                    <span class="meta-item">📡 Počítačové sítě</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <p>Síťová vrstva je <strong>třetí vrstva modelu ISO/OSI</strong>. Zajišťuje směrování a přenos paketů
+                    mezi zdrojem a cílem přes více sítí.</p>
+                <h2>1. Pozice vrstvy v modelech, funkce</h2>
+                <h3>Pozice</h3>
+                <ul>
+                    <li>Třetí vrstva modelu ISO/OSI, nad linkovou a pod transportní vrstvou</li>
+                    <li>Zabývá se komunikací mezi různými sítěmi</li>
+                </ul>
+                <h3>Funkce</h3>
+                <ul>
+                    <li><strong>Směrování (Routing):</strong> Určuje nejvhodnější cestu pro data</li>
+                    <li><strong>Logická adresace:</strong> Přiděluje IP adresy (IPv4, IPv6)</li>
+                    <li><strong>Fragmentace a sestavení paketů:</strong> Rozděluje velké bloky na menší části (MTU)</li>
+                    <li><strong>Detekce a řízení přetížení:</strong> Minimalizuje přetížení sítě</li>
+                </ul>
+                <h2>2. Adresní prostory IPv4 adres, typy, maska</h2>
+                <p>IPv4 používá <strong>32bitové adresy</strong> (~4,3 miliardy adres). Formát: 192.168.1.1</p>
+                <h3>Třídy IPv4 adres</h3>
+                <ul>
+                    <li><strong>Třída A:</strong> 0.0.0.0 – 127.255.255.255 | Maska: 255.0.0.0 (/8)</li>
+                    <li><strong>Třída B:</strong> 128.0.0.0 – 191.255.255.255 | Maska: 255.255.0.0 (/16)</li>
+                    <li><strong>Třída C:</strong> 192.0.0.0 – 223.255.255.255 | Maska: 255.255.255.0 (/24)</li>
+                    <li><strong>Třída D:</strong> 224.0.0.0 – 239.255.255.255 | Multicast</li>
+                    <li><strong>Třída E:</strong> 240.0.0.0 – 255.255.255.255 | Experimentální</li>
+                </ul>
+                <h3>Typy IPv4 adres</h3>
+                <ul>
+                    <li><strong>Veřejné:</strong> Globálně unikátní, směrovatelné na internetu</li>
+                    <li><strong>Soukromé:</strong> 10.x.x.x, 172.16-31.x.x, 192.168.x.x</li>
+                    <li><strong>Broadcast:</strong> Adresuje všechna zařízení v síti</li>
+                    <li><strong>Loopback:</strong> 127.0.0.1 (testovací)</li>
+                </ul>
+                <h2>3. Adresní prostory IPv6</h2>
+                <p>IPv6 používá <strong>128bitové adresy</strong>. Formát: 2001:0db8:85a3:0000:0000:8a2e:0370:7334</p>
+                <ul>
+                    <li><strong>Unicast:</strong> Jediné zařízení (2001::/16)</li>
+                    <li><strong>Multicast:</strong> Skupina zařízení (FF00::/8)</li>
+                    <li><strong>Anycast:</strong> Nejbližší zařízení ve skupině</li>
+                    <li><strong>Link-local:</strong> FE80::/10</li>
+                </ul>
+                <h2>4. Protokoly</h2>
+                <ul>
+                    <li><strong>IP:</strong> Směrování a doručení paketů</li>
+                    <li><strong>ICMP:</strong> Diagnostika a hlášení chyb (ping)</li>
+                    <li><strong>ARP:</strong> Převod IP adres na MAC adresy</li>
+                    <li><strong>NAT:</strong> Převádí privátní IP na veřejné</li>
+                </ul>
+                <h2>5. Síťové prvky</h2>
+                <ul>
+                    <li><strong>Router:</strong> Směruje pakety mezi sítěmi</li>
+                    <li><strong>Firewall:</strong> Chrání síť před útoky</li>
+                    <li><strong>Gateway:</strong> Překládá protokoly mezi sítěmi</li>
+                    <li><strong>Layer 3 Switch:</strong> Kombinace switch a routeru</li>
+                </ul>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

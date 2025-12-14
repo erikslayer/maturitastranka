@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Maturitní témata z operačních systémů - historie, správa, souborové systémy, síťové prostředí.">
+    <title>Operační systémy - ICT - Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Domů</a></li>
+                    <li><a href="../literatura/index.html">Literatura</a></li>
+                    <li><a href="index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <nav class="breadcrumb">
+                <a href="../index.html">Domů</a>
+                <span class="separator">›</span>
+                <a href="index.html">ICT</a>
+                <span class="separator">›</span>
+                <span class="current">Operační systémy</span>
+            </nav>
+
+            <section class="section-header animate-fade-in">
+                <h1>⚙️ <span class="text-gradient-ict">Operační systémy (OS)</span></h1>
+                <p class="subtitle">
+                    Historie, architektura, správa uživatelů, procesů, souborových systémů a síťového prostředí
+                </p>
+            </section>
+
+            <div class="topic-grid">
+                <a href="os/21-historie-os.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">📜</span>
+                    <h3>21. Historie operačních systémů</h3>
+                    <p>Vývoj OS, architektura jádra, dělení podle kritérií</p>
+                </a>
+
+                <a href="os/22-sprava-uzivatelu-procesu.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">👥</span>
+                    <h3>22. Správa uživatelů, procesů a služeb</h3>
+                    <p>Uživatelské účty, stavy procesů, plánovač, démoni</p>
+                </a>
+
+                <a href="os/23-souborove-systemy.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">📁</span>
+                    <h3>23. Souborové systémy</h3>
+                    <p>FAT, NTFS, ext4, správa souborů, oprávnění, ACL</p>
+                </a>
+
+                <a href="os/24-diagnostika-site.html" class="topic-card animate-fade-in">
+                    <span class="topic-icon">🔧</span>
+                    <h3>24. Diagnostika síťového prostředí</h3>
+                    <p>Konfigurace IP, DHCP, DNS, ping, tracert, netstat</p>
+                </a>
+            </div>
+
+            <div class="glass-panel animate-fade-in" style="margin-top: 2rem;">
+                <h2>📚 O sekci Operační systémy</h2>
+                <p style="margin-top: 1rem; color: var(--text-secondary);">
+                    Tato sekce obsahuje 4 maturitní témata z oblasti operačních systémů. Každé téma pokrývá
+                    základní koncepty správy systému Windows i Linux, včetně příkazů příkazového řádku.
+                </p>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <div>
+                        <h4 style="color: var(--accent-ict);">Windows</h4>
+                        <p style="font-size: 0.9rem;">CMD, PowerShell, NTFS, services.msc</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-ict);">Linux</h4>
+                        <p style="font-size: 0.9rem;">Bash, ext4, systemctl, chmod, chown</p>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-ict);">Koncepty</h4>
+                        <p style="font-size: 0.9rem;">Jádro, procesy, vlákna, souborové systémy</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="../../privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+
+</html>

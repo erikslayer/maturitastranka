@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Python jako backend - Flask a Django frameworky.">
+    <title>17. Python jako backend - PRG | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../prg.html">Programování</a><span class="separator">›</span>
+                <span class="current">Python jako backend</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🐍 Python jako backend</h1>
+                <p class="author">Téma 17 - Programování</p>
+                <div class="meta">
+                    <span class="meta-item">💻 Programování</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je backend?</h2>
+                <p><strong>Backend</strong> je serverová část webové aplikace. Zpracovává požadavky od uživatele,
+                    komunikuje s databází a vrací odpovědi (HTML, JSON...).</p>
+
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <pre class="language-plaintext"><code>┌───────────┐     HTTP požadavek     ┌───────────┐     SQL      ┌──────────┐
+│  KLIENT   │ ──────────────────────→│  BACKEND  │←────────────→│ DATABÁZE │
+│ (prohlížeč)│←────────────────────── │ (Python)  │              │          │
+└───────────┘     HTTP odpověď       └───────────┘              └──────────┘
+   Frontend                              Server</code></pre>
+                </div>
+
+                <p><strong>Python frameworky pro backend:</strong></p>
+                <ul>
+                    <li><strong>Flask:</strong> Mikro-framework, jednoduchý, flexibilní</li>
+                    <li><strong>Django:</strong> Full-stack framework, „batteries included"</li>
+                    <li><strong>FastAPI:</strong> Moderní, rychlý, pro API</li>
+                </ul>
+
+                <h2>Flask – mikro-framework</h2>
+                <p>Minimalistický, snadný na naučení. Ideální pro menší projekty a API.</p>
+
+                <h3>Instalace a Hello World</h3>
+                <pre class="language-python"><code># Instalace
+pip install flask
+
+# app.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')              # Dekorátor definuje URL cestu
+def index():
+    return '&lt;h1&gt;Ahoj světe!&lt;/h1&gt;'
+
+@app.route('/about')
+def about():
+    return '&lt;h1&gt;O nás&lt;/h1&gt;'
+
+if __name__ == '__main__':
+    app.run(debug=True)       # Spustí vývojový server</code></pre>
+
+                <pre class="language-plaintext"><code># Spuštění
+python app.py
+# Server běží na http://127.0.0.1:5000</code></pre>
+
+                <h3>Dynamické URL (parametry)</h3>
+                <pre class="language-python"><code>@app.route('/user/&lt;username&gt;')
+def user_profile(username):
+    return f'&lt;h1&gt;Profil: {username}&lt;/h1&gt;'
+
+# /user/jan → Profil: jan
+
+@app.route('/post/&lt;int:post_id&gt;')
+def show_post(post_id):
+    return f'Příspěvek číslo {post_id}'
+
+# /post/42 → Příspěvek číslo 42</code></pre>
+
+                <h3>Šablony (Templates) – Jinja2</h3>
+                <pre class="language-python"><code># Struktura projektu:
+# project/
+# ├── app.py
+# └── templates/
+#     └── index.html
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    uzivatele = ['Jan', 'Eva', 'Petr']
+    return render_template('index.html', title='Domů', users=uzivatele)</code></pre>
+
+                <pre class="language-css"><code>&lt;!-- templates/index.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;{{ title }}&lt;/title&gt;           &lt;!-- Vložení proměnné --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Seznam uživatelů&lt;/h1&gt;
+    
+    &lt;ul&gt;
+    {% for user in users %}               &lt;!-- Cyklus --&gt;
+        &lt;li&gt;{{ user }}&lt;/li&gt;
+    {% endfor %}
+    &lt;/ul&gt;
+    
+    {% if users %}                         &lt;!-- Podmínka --&gt;
+        &lt;p&gt;Celkem: {{ users|length }}&lt;/p&gt; &lt;!-- Filtr --&gt;
+    {% else %}
+        &lt;p&gt;Žádní uživatelé&lt;/p&gt;
+    {% endif %}
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h3>Formuláře a metody</h3>
+                <pre class="language-python"><code>from flask import Flask, request, redirect, url_for
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        
+        # Ověření uživatele...
+        if username == 'admin' and password == 'heslo':
+            return redirect(url_for('index'))
+        else:
+            return 'Špatné přihlašovací údaje'
+    
+    # GET - zobrazí formulář
+    return '''
+        &lt;form method="POST"&gt;
+            &lt;input name="username" placeholder="Uživatel"&gt;
+            &lt;input name="password" type="password" placeholder="Heslo"&gt;
+            &lt;button type="submit"&gt;Přihlásit&lt;/button&gt;
+        &lt;/form&gt;
+    '''</code></pre>
+
+                <h2>Django – full-stack framework</h2>
+                <p>Kompletní řešení s ORM, admin panelem, autentizací atd. Pro větší projekty.</p>
+
+                <h3>Vytvoření projektu</h3>
+                <pre class="language-plaintext"><code># Instalace
+pip install django
+
+# Vytvoření projektu
+django-admin startproject myproject
+cd myproject
+
+# Vytvoření aplikace
+python manage.py startapp myapp
+
+# Spuštění serveru
+python manage.py runserver
+# Server na http://127.0.0.1:8000</code></pre>
+
+                <h3>Struktura Django projektu</h3>
+                <pre class="language-plaintext"><code>myproject/
+├── manage.py              # Příkazy pro správu
+├── myproject/
+│   ├── settings.py        # Konfigurace projektu
+│   ├── urls.py            # Hlavní URL routing
+│   └── wsgi.py            # Pro nasazení
+└── myapp/
+    ├── models.py          # Databázové modely
+    ├── views.py           # Logika (controller)
+    ├── urls.py            # URL routing aplikace
+    └── templates/         # HTML šablony</code></pre>
+
+                <h3>Views (pohledy)</h3>
+                <pre class="language-python"><code># myapp/views.py
+from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse('&lt;h1&gt;Ahoj z Django!&lt;/h1&gt;')
+
+def user_list(request):
+    users = ['Jan', 'Eva', 'Petr']
+    return render(request, 'users.html', {'users': users})</code></pre>
+
+                <h3>URL Routing</h3>
+                <pre class="language-python"><code># myproject/urls.py
+from django.urls import path, include
+
+urlpatterns = [
+    path('', include('myapp.urls')),  # Přesměruje na urls aplikace
+]
+
+# myapp/urls.py
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('users/', views.user_list, name='users'),
+    path('user/&lt;int:user_id&gt;/', views.user_detail, name='user_detail'),
+]</code></pre>
+
+                <h3>Modely (ORM)</h3>
+                <pre class="language-python"><code># myapp/models.py
+from django.db import models
+
+class User(models.Model):
+    username = models.CharField(max_length=50)
+    email = models.EmailField(unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.username
+
+# Migrace (vytvoření tabulek)
+python manage.py makemigrations
+python manage.py migrate</code></pre>
+
+                <pre class="language-python"><code># Práce s modely (Django ORM)
+from myapp.models import User
+
+# Vytvoření záznamu
+user = User.objects.create(username='Jan', email='jan@email.cz')
+
+# Načtení všech
+users = User.objects.all()
+
+# Filtrování
+admins = User.objects.filter(username='admin')
+
+# Jeden záznam
+user = User.objects.get(id=1)
+
+# Aktualizace
+user.email = 'novy@email.cz'
+user.save()
+
+# Smazání
+user.delete()</code></pre>
+
+                <h2>Flask vs Django – porovnání</h2>
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem;">Vlastnost</th>
+                        <th style="padding: 0.5rem;">Flask</th>
+                        <th style="padding: 0.5rem;">Django</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Typ</td>
+                        <td style="padding: 0.5rem;">Mikro-framework</td>
+                        <td style="padding: 0.5rem;">Full-stack</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Velikost</td>
+                        <td style="padding: 0.5rem;">Malé projekty, API</td>
+                        <td style="padding: 0.5rem;">Větší aplikace</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Databáze</td>
+                        <td style="padding: 0.5rem;">Musíš vybrat (SQLAlchemy)</td>
+                        <td style="padding: 0.5rem;">Vestavěné ORM</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Admin panel</td>
+                        <td style="padding: 0.5rem;">Není</td>
+                        <td style="padding: 0.5rem;">Vestavěný</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;">Flexibilita</td>
+                        <td style="padding: 0.5rem;">Vysoká</td>
+                        <td style="padding: 0.5rem;">Více opinionated</td>
+                    </tr>
+                </table>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Backend</strong> = serverová část aplikace (zpracování dat, DB)</li>
+                        <li><strong>Flask:</strong> Jednoduchý, @app.route() pro URL, Jinja2 šablony</li>
+                        <li><strong>Django:</strong> Komplexní, urls.py + views.py + models.py</li>
+                        <li><strong>GET</strong> = čtení dat, <strong>POST</strong> = odesílání dat</li>
+                        <li><strong>request.form</strong> (Flask) / <strong>request.POST</strong> (Django) pro
+                            formulářová data</li>
+                        <li><strong>render_template / render</strong> = vykreslení HTML šablony</li>
+                        <li><strong>ORM</strong> = objektové mapování databáze (místo SQL)</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

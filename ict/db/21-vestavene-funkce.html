@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Vestavěné funkce MySQL - agregační, řetězcové, datumové.">
+    <title>21. Vestavěné funkce MySQL - DB | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../db.html">Databáze</a><span class="separator">›</span>
+                <span class="current">Vestavěné funkce</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>⚡ Vestavěné funkce MySQL</h1>
+                <p class="author">Téma 21 - Databáze</p>
+                <div class="meta">
+                    <span class="meta-item">💾 Databáze</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co jsou vestavěné funkce?</h2>
+                <p>Vestavěné funkce jsou <strong>předdefinované procedury</strong> v SQL, které provádějí výpočty nebo
+                    manipulace s daty. Dělí se na dvě hlavní kategorie:</p>
+                <ul>
+                    <li><strong>Skalární funkce:</strong> Pracují s jednotlivými hodnotami (UPPER, ROUND, NOW)</li>
+                    <li><strong>Agregační funkce:</strong> Pracují se skupinami hodnot (COUNT, SUM, AVG)</li>
+                </ul>
+
+                <h2>📊 Agregační funkce</h2>
+                <p>Zpracovávají <strong>množinu hodnot</strong> a vrací <strong>jednu výslednou hodnotu</strong>.
+                    Obvykle se používají s GROUP BY.</p>
+
+                <h3>COUNT – počet záznamů</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Počet všech řádků
+SELECT COUNT(*) FROM uzivatele;
+-- Výsledek: 150
+
+-- Počet neprázdných hodnot (ignoruje NULL)
+SELECT COUNT(email) FROM uzivatele;
+-- Pokud má 10 uživatelů NULL email → vrátí 140
+
+-- Počet unikátních hodnot
+SELECT COUNT(DISTINCT mesto) FROM uzivatele;
+-- Kolik různých měst je v tabulce</pre>
+
+                <h3>SUM – součet</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Celková suma
+SELECT SUM(cena) FROM objednavky;
+-- Výsledek: 125000.00
+
+-- Suma za určité období
+SELECT SUM(castka) FROM platby WHERE rok = 2025;
+
+-- Suma se GROUP BY
+SELECT produkt_id, SUM(mnozstvi) AS celkem_prodano
+FROM polozky_objednavky
+GROUP BY produkt_id;</pre>
+
+                <h3>AVG – průměr</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Průměrný věk
+SELECT AVG(vek) FROM uzivatele;
+-- Výsledek: 28.5
+
+-- Průměr zaokrouhlený
+SELECT ROUND(AVG(vek), 1) AS prumerny_vek FROM uzivatele;
+-- Výsledek: 28.5
+
+-- Průměr s podmínkou
+SELECT AVG(hodnoceni) FROM recenze WHERE produkt_id = 42;</pre>
+
+                <h3>MIN a MAX</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Nejnižší a nejvyšší cena
+SELECT MIN(cena) AS nejlevnejsi, MAX(cena) AS nejdrazsi FROM produkty;
+-- Výsledek: nejlevnejsi = 19.90, nejdrazsi = 999.00
+
+-- Nejstarší a nejmladší uživatel
+SELECT MIN(vek), MAX(vek) FROM uzivatele;
+
+-- Funkce pro datum
+SELECT MIN(datum_registrace) AS prvni, MAX(datum_registrace) AS posledni
+FROM uzivatele;</pre>
+
+                <h3>Agregace s GROUP BY a HAVING</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Počet uživatelů v každém městě
+SELECT mesto, COUNT(*) AS pocet
+FROM uzivatele
+GROUP BY mesto
+ORDER BY pocet DESC;
+
+-- Výsledek:
+-- +--------+-------+
+-- | mesto  | pocet |
+-- +--------+-------+
+-- | Praha  | 45    |
+-- | Brno   | 28    |
+-- | ...    | ...   |
+
+-- Jen města s více než 10 uživateli
+SELECT mesto, COUNT(*) AS pocet
+FROM uzivatele
+GROUP BY mesto
+HAVING COUNT(*) > 10;</pre>
+
+                <h2>📝 Řetězcové funkce</h2>
+
+                <h3>Spojení řetězců</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- CONCAT - spojení
+SELECT CONCAT(jmeno, ' ', prijmeni) AS cele_jmeno FROM uzivatele;
+-- "Jan" + " " + "Novák" → "Jan Novák"
+
+-- CONCAT_WS - s oddělovačem (With Separator)
+SELECT CONCAT_WS(', ', mesto, ulice, psc) AS adresa FROM adresy;
+-- "Praha, Hlavní 1, 11000"
+-- Automaticky vynechá NULL hodnoty!</pre>
+
+                <h3>Délka a podřetězec</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- LENGTH - délka v bajtech
+SELECT LENGTH('Ahoj');     -- 4
+
+-- CHAR_LENGTH - délka ve znacích (důležité pro UTF-8!)
+SELECT CHAR_LENGTH('Ř');   -- 1 (ale LENGTH vrátí 2)
+
+-- SUBSTRING (nebo SUBSTR) - výřez
+SELECT SUBSTRING('Ahoj světe', 1, 4);    -- "Ahoj" (od pozice 1, délka 4)
+SELECT SUBSTRING('Ahoj světe', 6);        -- "světe" (od pozice 6 do konce)
+SELECT SUBSTRING(email, 1, LOCATE('@', email) - 1) AS username FROM uzivatele;
+-- Z "jan@email.cz" → "jan"</pre>
+
+                <h3>Změna velikosti písmen</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+SELECT UPPER('ahoj');      -- "AHOJ"
+SELECT LOWER('AHOJ');      -- "ahoj"
+
+-- Praktické použití - hledání bez ohledu na velikost
+SELECT * FROM uzivatele WHERE LOWER(email) = LOWER('Jan@Email.CZ');</pre>
+
+                <h3>Nahrazení a oříznutí</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- REPLACE - nahradí všechny výskyty
+SELECT REPLACE('Hello World', 'World', 'SQL');  -- "Hello SQL"
+SELECT REPLACE(email, '@', ' [at] ') FROM uzivatele;
+
+-- TRIM - ořízne mezery
+SELECT TRIM('   ahoj   ');     -- "ahoj"
+SELECT LTRIM('   ahoj');       -- "ahoj" (zleva)
+SELECT RTRIM('ahoj   ');       -- "ahoj" (zprava)
+
+-- TRIM s konkrétním znakem
+SELECT TRIM(BOTH '-' FROM '---ahoj---');  -- "ahoj"</pre>
+
+                <h3>Pozice a vyhledávání</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- LOCATE - najde pozici (vrací 0 pokud nenajde)
+SELECT LOCATE('@', 'jan@email.cz');     -- 4
+SELECT LOCATE('x', 'ahoj');             -- 0 (nenalezeno)
+
+-- INSTR - alias
+SELECT INSTR('jan@email.cz', '@');      -- 4
+
+-- LEFT / RIGHT - znaky zleva/zprava
+SELECT LEFT('Ahoj', 2);     -- "Ah"
+SELECT RIGHT('Ahoj', 2);    -- "oj"</pre>
+
+                <h2>📅 Datumové a časové funkce</h2>
+
+                <h3>Aktuální datum a čas</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+SELECT NOW();           -- 2025-12-13 22:15:30 (datum + čas)
+SELECT CURDATE();       -- 2025-12-13 (jen datum)
+SELECT CURTIME();       -- 22:15:30 (jen čas)
+SELECT UNIX_TIMESTAMP();-- 1734127530 (sekundy od 1.1.1970)</pre>
+
+                <h3>Extrakce částí data</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+SELECT YEAR('2025-12-13');     -- 2025
+SELECT MONTH('2025-12-13');    -- 12
+SELECT DAY('2025-12-13');      -- 13
+SELECT DAYOFWEEK('2025-12-13');-- 7 (1=neděle, 7=sobota)
+SELECT DAYNAME('2025-12-13');  -- Saturday
+
+SELECT HOUR('22:15:30');       -- 22
+SELECT MINUTE('22:15:30');     -- 15
+SELECT SECOND('22:15:30');     -- 30</pre>
+
+                <h3>Formátování data</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- DATE_FORMAT - vlastní formát
+SELECT DATE_FORMAT(NOW(), '%d.%m.%Y');           -- 13.12.2025
+SELECT DATE_FORMAT(NOW(), '%d. %M %Y');          -- 13. December 2025
+SELECT DATE_FORMAT(NOW(), '%H:%i');              -- 22:15
+
+-- Formátovací značky:
+-- %Y = rok 4 číslice (2025)
+-- %m = měsíc (01-12)
+-- %d = den (01-31)
+-- %H = hodina 24h (00-23)
+-- %i = minuty (00-59)
+-- %M = název měsíce (December)</pre>
+
+                <h3>Výpočty s daty</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- DATEDIFF - rozdíl ve dnech
+SELECT DATEDIFF(NOW(), datum_registrace) AS dnu_od_registrace FROM uzivatele;
+-- Kolik dní je uživatel registrován
+
+-- DATE_ADD / DATE_SUB - přidání/odebrání
+SELECT DATE_ADD(NOW(), INTERVAL 7 DAY);     -- Za týden
+SELECT DATE_ADD(NOW(), INTERVAL 1 MONTH);   -- Za měsíc
+SELECT DATE_SUB(NOW(), INTERVAL 1 YEAR);    -- Před rokem
+
+-- Praktické použití
+SELECT * FROM platby 
+WHERE datum BETWEEN DATE_SUB(CURDATE(), INTERVAL 30 DAY) AND CURDATE();
+-- Platby za posledních 30 dní</pre>
+
+                <h2>🔢 Numerické funkce</h2>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Zaokrouhlování
+SELECT ROUND(3.14159, 2);    -- 3.14 (na 2 desetinná místa)
+SELECT CEIL(3.1);            -- 4 (nahoru)
+SELECT FLOOR(3.9);           -- 3 (dolů)
+SELECT TRUNCATE(3.14159, 2); -- 3.14 (usekne bez zaokrouhlení)
+
+-- Absolutní hodnota
+SELECT ABS(-5);              -- 5
+
+-- Zbytek po dělení
+SELECT MOD(10, 3);           -- 1 (10 děleno 3 = 3, zbytek 1)
+
+-- Náhodné číslo
+SELECT RAND();               -- Náhodné desetinné 0-1
+SELECT FLOOR(RAND() * 100);  -- Náhodné celé 0-99</pre>
+
+                <h2>❓ Podmínkové funkce</h2>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- IF (podmínka, hodnota_pravda, hodnota_nepravda)
+SELECT IF(vek >= 18, 'dospělý', 'nezletilý') AS status FROM uzivatele;
+
+-- IFNULL - náhrada za NULL
+SELECT IFNULL(telefon, 'neuvedeno') FROM uzivatele;
+-- Pokud je telefon NULL, vrátí 'neuvedeno'
+
+-- NULLIF - vrátí NULL pokud jsou hodnoty stejné
+SELECT NULLIF(hodnota, 0);
+-- Pokud hodnota = 0, vrátí NULL (užitečné pro dělení)
+
+-- CASE - víceslovná podmínka
+SELECT jmeno,
+    CASE 
+        WHEN vek < 18 THEN 'nezletilý'
+        WHEN vek < 65 THEN 'dospělý'
+        ELSE 'senior'
+    END AS kategorie
+FROM uzivatele;</pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Agregační:</strong> COUNT, SUM, AVG, MIN, MAX – pracují se skupinami</li>
+                        <li><strong>Řetězcové:</strong> CONCAT, LENGTH, UPPER/LOWER, SUBSTRING, REPLACE, TRIM</li>
+                        <li><strong>Datumové:</strong> NOW, CURDATE, YEAR/MONTH/DAY, DATE_FORMAT, DATEDIFF</li>
+                        <li><strong>Numerické:</strong> ROUND, CEIL, FLOOR, ABS, MOD, RAND</li>
+                        <li><strong>Podmínkové:</strong> IF, IFNULL, CASE</li>
+                        <li>COUNT(*) počítá vše, COUNT(sloupec) ignoruje NULL</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

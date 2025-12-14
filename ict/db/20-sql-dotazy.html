@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SQL dotazy - SELECT, INSERT, UPDATE, DELETE, WHERE, ORDER BY.">
+    <title>20. SQL dotazy - DB | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../db.html">Databáze</a><span class="separator">›</span>
+                <span class="current">SQL dotazy</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🔍 SQL dotazy</h1>
+                <p class="author">Téma 20 - Databáze</p>
+                <div class="meta">
+                    <span class="meta-item">💾 Databáze</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je SQL?</h2>
+                <p><strong>SQL (Structured Query Language)</strong> je standardní jazyk pro práci s relačními
+                    databázemi. Umožňuje data vybírat, vkládat, měnit a mazat. SQL příkazy se dělí na:</p>
+                <ul>
+                    <li><strong>DQL (Data Query Language):</strong> SELECT – výběr dat</li>
+                    <li><strong>DML (Data Manipulation Language):</strong> INSERT, UPDATE, DELETE – manipulace s daty
+                    </li>
+                    <li><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP – struktura databáze</li>
+                </ul>
+
+                <p><strong>💡 Pro příklady použijeme tabulku:</strong></p>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
++----+---------------+-------------------+------+----------+
+| id | jmeno         | email             | vek  | mesto    |
++----+---------------+-------------------+------+----------+
+| 1  | Jan Novák     | jan@email.cz      | 25   | Praha    |
+| 2  | Eva Svobodová | eva@email.cz      | 30   | Brno     |
+| 3  | Petr Černý    | petr@email.cz     | 22   | Praha    |
+| 4  | Marie Bílá    | NULL              | 45   | Ostrava  |
++----+---------------+-------------------+------+----------+</pre>
+
+                <h2>SELECT – Výběr dat</h2>
+                <p>Nejpoužívanější příkaz SQL. Vybírá data z tabulky podle zadaných kritérií.</p>
+
+                <h3>Základní syntaxe</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Všechny sloupce a všechny řádky
+SELECT * FROM uzivatele;
+
+-- Jen vybrané sloupce
+SELECT jmeno, email FROM uzivatele;
+
+-- Výsledek:
+-- +---------------+-------------------+
+-- | jmeno         | email             |
+-- +---------------+-------------------+
+-- | Jan Novák     | jan@email.cz      |
+-- | Eva Svobodová | eva@email.cz      |
+-- | ...           | ...               |</pre>
+
+                <h3>Alias (přejmenování sloupce)</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+SELECT jmeno AS 'Jméno uživatele', vek AS 'Věk' FROM uzivatele;
+
+-- Výsledek má přejmenované záhlaví sloupců</pre>
+
+                <h3>DISTINCT – unikátní hodnoty</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Jaká města máme v databázi? (bez duplicit)
+SELECT DISTINCT mesto FROM uzivatele;
+
+-- Výsledek: Praha, Brno, Ostrava (každé jen jednou)</pre>
+
+                <h2>WHERE – Filtrování</h2>
+                <p>Klauzule WHERE omezuje výsledky na řádky splňující podmínku. Bez WHERE dostaneme všechny řádky.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Uživatelé starší 18 let
+SELECT * FROM uzivatele WHERE vek > 18;
+
+-- Uživatelé z Prahy
+SELECT * FROM uzivatele WHERE mesto = 'Praha';
+-- Výsledek: Jan Novák a Petr Černý
+
+-- Rozsah hodnot
+SELECT * FROM uzivatele WHERE vek BETWEEN 18 AND 30;
+-- BETWEEN je inkluzivní (včetně 18 i 30)
+
+-- Vyhledávání v textu (LIKE)
+SELECT * FROM uzivatele WHERE jmeno LIKE 'J%';
+-- % = libovolný počet znaků → najde "Jan Novák"
+
+SELECT * FROM uzivatele WHERE jmeno LIKE '%ová';
+-- Najde všechny končící na "ová" → "Eva Svobodová"
+
+-- Více možností (IN)
+SELECT * FROM uzivatele WHERE mesto IN ('Praha', 'Brno');
+
+-- Kontrola NULL hodnot
+SELECT * FROM uzivatele WHERE email IS NULL;
+-- Najde Marie Bílá (nemá email)
+
+SELECT * FROM uzivatele WHERE email IS NOT NULL;
+-- Najde všechny s emailem</pre>
+
+                <p><strong>⚠️ Pozor:</strong> Pro NULL nepoužíváme <code>= NULL</code>, ale <code>IS NULL</code>!</p>
+
+                <h3>Logické operátory</h3>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- AND – obě podmínky musí platit
+SELECT * FROM uzivatele WHERE vek > 18 AND mesto = 'Praha';
+
+-- OR – alespoň jedna podmínka
+SELECT * FROM uzivatele WHERE vek < 18 OR vek > 65;
+
+-- NOT – negace
+SELECT * FROM uzivatele WHERE NOT mesto = 'Praha';
+-- Nebo: WHERE mesto != 'Praha' (ekvivalent)</pre>
+
+                <h2>ORDER BY – Řazení</h2>
+                <p>Určuje pořadí výsledků. Výchozí je vzestupně (ASC).</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Vzestupně podle jména (A-Z)
+SELECT * FROM uzivatele ORDER BY jmeno;
+-- Nebo explicitně: ORDER BY jmeno ASC;
+
+-- Sestupně podle věku (od nejstarších)
+SELECT * FROM uzivatele ORDER BY vek DESC;
+
+-- Kombinované řazení
+SELECT * FROM uzivatele ORDER BY mesto, jmeno;
+-- Nejprve seřadí podle města, pak v každém městě podle jména</pre>
+
+                <h2>LIMIT – Omezení výsledků</h2>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Prvních 10 záznamů
+SELECT * FROM uzivatele LIMIT 10;
+
+-- 10 záznamů od pozice 5 (pro stránkování)
+SELECT * FROM uzivatele LIMIT 5, 10;
+-- Přeskočí prvních 5, vrátí dalších 10
+
+-- Praktický příklad: Top 3 nejstarší
+SELECT * FROM uzivatele ORDER BY vek DESC LIMIT 3;</pre>
+
+                <h2>GROUP BY a HAVING</h2>
+                <p><strong>GROUP BY</strong> seskupí řádky podle hodnoty a umožní použít agregační funkce (COUNT, SUM,
+                    AVG...).</p>
+                <p><strong>HAVING</strong> filtruje skupiny (jako WHERE, ale po seskupení).</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Kolik uživatelů je v každém městě?
+SELECT mesto, COUNT(*) AS pocet 
+FROM uzivatele 
+GROUP BY mesto;
+
+-- Výsledek:
+-- +----------+-------+
+-- | mesto    | pocet |
+-- +----------+-------+
+-- | Praha    | 2     |
+-- | Brno     | 1     |
+-- | Ostrava  | 1     |
+-- +----------+-------+
+
+-- Jen města s více než 1 uživatelem (HAVING)
+SELECT mesto, COUNT(*) AS pocet 
+FROM uzivatele 
+GROUP BY mesto 
+HAVING COUNT(*) > 1;
+
+-- Výsledek: jen Praha (2)</pre>
+
+                <p><strong>💡 Rozdíl WHERE vs HAVING:</strong></p>
+                <ul>
+                    <li><strong>WHERE:</strong> Filtruje před seskupením (jednotlivé řádky)</li>
+                    <li><strong>HAVING:</strong> Filtruje po seskupení (celé skupiny)</li>
+                </ul>
+
+                <h2>INSERT – Vkládání dat</h2>
+                <p>Přidává nové záznamy do tabulky.</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Vložení jednoho záznamu (všechny sloupce)
+INSERT INTO uzivatele (jmeno, email, vek, mesto) 
+VALUES ('Jan Novák', 'jan@email.cz', 25, 'Praha');
+
+-- Vložení více záznamů najednou
+INSERT INTO uzivatele (jmeno, email, vek, mesto) VALUES 
+('Eva Svobodová', 'eva@email.cz', 30, 'Brno'),
+('Petr Černý', 'petr@email.cz', 28, 'Praha');
+
+-- Pokud má sloupec AUTO_INCREMENT (id), nemusíme ho uvádět</pre>
+
+                <h2>UPDATE – Aktualizace dat</h2>
+                <p>Mění existující záznamy. <strong>Vždy používej WHERE</strong>, jinak změníš všechny řádky!</p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Změna věku konkrétního uživatele
+UPDATE uzivatele SET vek = 26 WHERE id = 1;
+
+-- Změna více hodnot
+UPDATE uzivatele 
+SET mesto = 'Praha', vek = vek + 1 
+WHERE jmeno = 'Jan Novák';
+
+-- ⚠️ POZOR - toto změní VŠECHNY záznamy!
+UPDATE uzivatele SET mesto = 'Praha';
+-- Bez WHERE = aktualizace celé tabulky!</pre>
+
+                <h2>DELETE – Mazání dat</h2>
+                <p>Odstraňuje záznamy. <strong>Vždy používej WHERE!</strong></p>
+
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+-- Smazání konkrétního záznamu
+DELETE FROM uzivatele WHERE id = 1;
+
+-- Smazání podle podmínky
+DELETE FROM uzivatele WHERE vek < 18;
+
+-- ⚠️ POZOR - toto smaže VŠECHNY záznamy!
+DELETE FROM uzivatele;
+-- Bez WHERE = prázdná tabulka!</pre>
+
+                <h2>Pořadí klauzulí v SELECT</h2>
+                <p>Klauzule musí být ve správném pořadí:</p>
+                <pre style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; overflow-x: auto;">
+SELECT sloupce
+FROM tabulka
+WHERE podmínka
+GROUP BY sloupce
+HAVING podmínka_skupiny
+ORDER BY sloupce
+LIMIT pocet;</pre>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>SELECT:</strong> Výběr dat – <code>SELECT sloupce FROM tabulka</code></li>
+                        <li><strong>WHERE:</strong> Filtrování – podmínky, LIKE, IN, BETWEEN, IS NULL</li>
+                        <li><strong>ORDER BY:</strong> Řazení – ASC (vzestupně) / DESC (sestupně)</li>
+                        <li><strong>GROUP BY + HAVING:</strong> Seskupení a filtrování skupin</li>
+                        <li><strong>INSERT:</strong> Vkládání – <code>INSERT INTO ... VALUES</code></li>
+                        <li><strong>UPDATE:</strong> Změna – <u>vždy s WHERE!</u></li>
+                        <li><strong>DELETE:</strong> Mazání – <u>vždy s WHERE!</u></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>

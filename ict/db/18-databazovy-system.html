@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Databázový systém, typy databází, relační databáze.">
+    <title>18. Databázový systém - DB | Maturita Portál</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <a href="../../index.html" class="logo">MaturitaPortál</a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html">Domů</a></li>
+                    <li><a href="../../literatura/index.html">Literatura</a></li>
+                    <li><a href="../index.html" class="active">ICT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <nav class="breadcrumb">
+                <a href="../../index.html">Domů</a><span class="separator">›</span>
+                <a href="../index.html">ICT</a><span class="separator">›</span>
+                <a href="../db.html">Databáze</a><span class="separator">›</span>
+                <span class="current">Databázový systém</span>
+            </nav>
+            <div class="book-header animate-fade-in">
+                <h1>🗄️ Databázový systém, typy databází</h1>
+                <p class="author">Téma 18 - Databáze</p>
+                <div class="meta">
+                    <span class="meta-item">💾 Databáze</span>
+                    <span class="meta-item">📚 Maturitní okruh</span>
+                </div>
+            </div>
+            <div class="glass-panel animate-fade-in book-content">
+                <h2>📖 Co je databáze?</h2>
+                <p>Databáze je <strong>organizovaná kolekce strukturovaných dat</strong> uložených elektronicky.
+                    Umožňuje efektivní ukládání, vyhledávání, aktualizaci a správu velkého množství dat.</p>
+
+                <p><strong>💡 Proč ne Excel?</strong> Pro malá data stačí tabulka, ale databáze řeší:</p>
+                <ul>
+                    <li><strong>Velké množství dat:</strong> Miliony záznamů bez zpomalení</li>
+                    <li><strong>Víceuživatelský přístup:</strong> Více lidí může pracovat současně</li>
+                    <li><strong>Konzistence dat:</strong> Pravidla zajistí, že data jsou správná</li>
+                    <li><strong>Bezpečnost:</strong> Oprávnění, šifrování, zálohy</li>
+                    <li><strong>Vztahy mezi daty:</strong> Propojení tabulek, eliminace duplicit</li>
+                </ul>
+
+                <h2>DBMS – Systém řízení báze dat</h2>
+                <p><strong>DBMS (Database Management System)</strong> je software, který spravuje databázi. Funguje jako
+                    prostředník mezi uživatelem/aplikací a samotnými daty.</p>
+
+                <h3>Příklady DBMS</h3>
+                <ul>
+                    <li><strong>MySQL:</strong> Open-source, nejrozšířenější pro webové aplikace (WordPress, Joomla)
+                    </li>
+                    <li><strong>PostgreSQL:</strong> Open-source, pokročilé funkce, dodržuje standardy</li>
+                    <li><strong>Oracle Database:</strong> Enterprise řešení, velmi drahé, robustní</li>
+                    <li><strong>Microsoft SQL Server:</strong> Pro Microsoft prostředí, integrace s .NET</li>
+                    <li><strong>SQLite:</strong> Lehká databáze v jednom souboru, pro mobilní/embedded aplikace</li>
+                    <li><strong>MongoDB:</strong> NoSQL dokumentová databáze</li>
+                </ul>
+
+                <h3>Funkce DBMS</h3>
+                <ul>
+                    <li><strong>Definice dat (DDL):</strong> CREATE, ALTER, DROP – vytváření struktury</li>
+                    <li><strong>Manipulace s daty (DML):</strong> SELECT, INSERT, UPDATE, DELETE</li>
+                    <li><strong>Řízení přístupu:</strong> Kdo má jaká oprávnění</li>
+                    <li><strong>Zálohování a obnova:</strong> Pravidelné zálohy, recovery po havárii</li>
+                    <li><strong>Transakce:</strong> Zajištění konzistence dat (viz ACID níže)</li>
+                </ul>
+
+                <h2>Typy databází</h2>
+
+                <h3>Relační databáze (SQL)</h3>
+                <p>Nejrozšířenější typ. Data jsou uložena v <strong>tabulkách</strong> (relacích), které jsou propojeny
+                    pomocí klíčů.</p>
+                <ul>
+                    <li>Data v řádcích (záznamy) a sloupcích (atributy)</li>
+                    <li>Definované vztahy mezi tabulkami (1:1, 1:N, M:N)</li>
+                    <li>Dotazování pomocí SQL</li>
+                    <li><strong>Příklady:</strong> MySQL, PostgreSQL, Oracle, SQL Server</li>
+                </ul>
+
+                <p><strong>💡 Příklad:</strong> E-shop má tabulky <code>uzivatele</code>, <code>produkty</code>,
+                    <code>objednavky</code>, které jsou propojené.</p>
+
+                <h3>NoSQL databáze</h3>
+                <p>Alternativa k relačním databázím pro specifické případy použití.</p>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <tr style="background: rgba(255,255,255,0.1);">
+                        <th style="padding: 0.5rem; text-align: left;">Typ</th>
+                        <th style="padding: 0.5rem; text-align: left;">Popis</th>
+                        <th style="padding: 0.5rem; text-align: left;">Příklady</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Dokumentové</strong></td>
+                        <td style="padding: 0.5rem;">Data jako JSON dokumenty, flexibilní schéma</td>
+                        <td style="padding: 0.5rem;">MongoDB, CouchDB</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Klíč-hodnota</strong></td>
+                        <td style="padding: 0.5rem;">Jednoduchý slovník, velmi rychlé</td>
+                        <td style="padding: 0.5rem;">Redis, Memcached</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Grafové</strong></td>
+                        <td style="padding: 0.5rem;">Pro složité vztahy (sociální sítě)</td>
+                        <td style="padding: 0.5rem;">Neo4j, Amazon Neptune</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem;"><strong>Sloupcové</strong></td>
+                        <td style="padding: 0.5rem;">Pro analytiku velkých dat</td>
+                        <td style="padding: 0.5rem;">Cassandra, HBase</td>
+                    </tr>
+                </table>
+
+                <h3>Kdy použít SQL vs NoSQL?</h3>
+                <ul>
+                    <li><strong>SQL (relační):</strong> Strukturovaná data, nutnost transakcí, konzistence je prioritou,
+                        složité dotazy mezi tabulkami</li>
+                    <li><strong>NoSQL:</strong> Nestrukturovaná data, horizontální škálování, flexibilní schéma,
+                        extrémní rychlost</li>
+                </ul>
+
+                <h2>Relační model</h2>
+
+                <h3>Základní pojmy</h3>
+                <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                    <pre style="font-family: monospace; font-size: 0.9rem;">
+TABULKA (relace): uzivatele
++----+---------------+-------------------+------+
+| id | jmeno         | email             | vek  |  ← SLOUPCE (atributy)
++----+---------------+-------------------+------+
+| 1  | Jan Novák     | jan@email.cz      | 25   |  ← ŘÁDEK (záznam/tuple)
+| 2  | Eva Svobodová | eva@email.cz      | 30   |
++----+---------------+-------------------+------+
+  ↑
+PRIMÁRNÍ KLÍČ (unikátní identifikátor)</pre>
+                </div>
+
+                <ul>
+                    <li><strong>Tabulka (relace):</strong> Kolekce souvisejících dat – základ relační DB</li>
+                    <li><strong>Řádek (záznam, tuple):</strong> Jeden konkrétní datový záznam</li>
+                    <li><strong>Sloupec (atribut):</strong> Vlastnost entity (jméno, věk, email...)</li>
+                    <li><strong>Primární klíč (PK):</strong> Unikátní identifikátor záznamu – musí být jedinečný v celé
+                        tabulce</li>
+                    <li><strong>Cizí klíč (FK):</strong> Odkaz na primární klíč jiné tabulky – vytváří vztahy</li>
+                </ul>
+
+                <h3>Vztahy mezi tabulkami</h3>
+                <ul>
+                    <li><strong>1:1 (Jeden k jednomu):</strong> Každý záznam A má právě jeden záznam B
+                        <br><em>Příklad: Uživatel – Profil (každý uživatel má jeden profil)</em>
+                    </li>
+                    <li><strong>1:N (Jeden k mnoha):</strong> Jeden záznam A může mít více záznamů B
+                        <br><em>Příklad: Uživatel – Objednávky (jeden uživatel má více objednávek)</em>
+                    </li>
+                    <li><strong>M:N (Mnoho k mnoha):</strong> Více A k více B – vyžaduje pomocnou tabulku
+                        <br><em>Příklad: Studenti – Kurzy (student může navštěvovat více kurzů, kurz má více
+                            studentů)</em>
+                    </li>
+                </ul>
+
+                <h2>ACID vlastnosti transakcí</h2>
+                <p>Transakce je skupina operací, které se musí provést buď všechny, nebo žádná. ACID zajišťuje
+                    spolehlivost:</p>
+
+                <ul>
+                    <li><strong>A – Atomicity (Atomičnost):</strong> Transakce je nedělitelná – buď proběhne celá, nebo
+                        vůbec
+                        <br><em>Příklad: Převod peněz = odečtení z účtu A + přičtení na účet B – obojí nebo nic</em>
+                    </li>
+                    <li><strong>C – Consistency (Konzistence):</strong> Databáze přejde z jednoho validního stavu do
+                        jiného
+                        <br><em>Příklad: Součet peněz v bance zůstane stejný před i po transakci</em>
+                    </li>
+                    <li><strong>I – Isolation (Izolace):</strong> Souběžné transakce se navzájem neovlivňují
+                        <br><em>Příklad: Dva lidé kupují poslední lístek – jen jeden uspěje</em>
+                    </li>
+                    <li><strong>D – Durability (Trvanlivost):</strong> Potvrzená transakce zůstane uložena i při výpadku
+                        <br><em>Příklad: Po potvrzení platby data přežijí i pád serveru</em>
+                    </li>
+                </ul>
+
+                <h2>Normalizace</h2>
+                <p>Proces organizace dat do tabulek tak, aby se minimalizovala <strong>redundance</strong> (duplicity) a
+                    zlepšila <strong>integrita</strong> dat.</p>
+
+                <ul>
+                    <li><strong>1NF (První normální forma):</strong>
+                        <ul>
+                            <li>Každá buňka obsahuje pouze jednu (atomickou) hodnotu</li>
+                            <li>Žádné opakující se skupiny</li>
+                            <li><em>Špatně: telefon = "123456, 789012"</em></li>
+                            <li><em>Správně: samostatný řádek pro každé číslo</em></li>
+                        </ul>
+                    </li>
+                    <li><strong>2NF (Druhá normální forma):</strong>
+                        <ul>
+                            <li>Je v 1NF + každý neklíčový atribut závisí na celém primárním klíči</li>
+                            <li>Relevantní hlavně pro složené klíče</li>
+                        </ul>
+                    </li>
+                    <li><strong>3NF (Třetí normální forma):</strong>
+                        <ul>
+                            <li>Je v 2NF + žádné tranzitivní závislosti</li>
+                            <li>Neklíčové atributy nezávisí na jiných neklíčových</li>
+                            <li><em>Příklad: kraj závisí na městě, ne přímo na uživateli → oddělit do tabulky měst</em>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h2>🎓 Shrnutí pro maturitu</h2>
+                <div
+                    style="background: rgba(139, 92, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                    <ul>
+                        <li><strong>Databáze</strong> = organizovaná kolekce strukturovaných dat</li>
+                        <li><strong>DBMS</strong> = software pro správu databáze (MySQL, PostgreSQL...)</li>
+                        <li><strong>Relační DB:</strong> Tabulky + vztahy + SQL</li>
+                        <li><strong>NoSQL:</strong> Dokumentové, klíč-hodnota, grafové, sloupcové</li>
+                        <li><strong>PK</strong> = unikátní identifikátor, <strong>FK</strong> = odkaz na jinou tabulku
+                        </li>
+                        <li><strong>Vztahy:</strong> 1:1, 1:N, M:N (pomocná tabulka)</li>
+                        <li><strong>ACID:</strong> Atomičnost, Konzistence, Izolace, Trvanlivost</li>
+                        <li><strong>Normalizace:</strong> Eliminace duplicit (1NF, 2NF, 3NF)</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>© 2025 MaturitaPortál | Vytvořeno pro přípravu na maturitu</p>
+            <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+                <a href="privacy.html" style="color: var(--text-muted);">Zásady ochrany osobních údajů</a> | 
+                <a href="mailto:prasecibota@gmail.com" style="color: var(--text-muted);">Kontakt</a>
+            </p>
+        </footer>
+    </div>
+    <script src="../../script.js"></script>
+</body>
+
+</html>
