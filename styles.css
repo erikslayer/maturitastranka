@@ -11,6 +11,7 @@
     --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     --literatura-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
     --ict-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    --chemie-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
 
     /* Dark Theme Colors */
     --bg-dark: #0a0a0f;
@@ -28,6 +29,7 @@
     --accent-secondary: #764ba2;
     --accent-literatura: #fa709a;
     --accent-ict: #43e97b;
+    --accent-chemie: #a855f7;
 
     /* Shadows */
     --shadow-soft: 0 4px 30px rgba(0, 0, 0, 0.3);
@@ -450,6 +452,13 @@ main {
     background-clip: text;
 }
 
+.text-gradient-chemie {
+    background: var(--chemie-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .text-secondary {
     color: var(--text-secondary);
 }
@@ -530,6 +539,10 @@ main {
 
 .subject-card.ict {
     --card-gradient: var(--ict-gradient);
+}
+
+.subject-card.chemie {
+    --card-gradient: var(--chemie-gradient);
 }
 
 .subject-card .icon {
@@ -691,6 +704,68 @@ main {
     font-size: 0.9rem;
     color: var(--text-secondary);
     margin: 0;
+}
+
+/* Chemistry topic card variant */
+.topic-card.chemie::before {
+    background: var(--chemie-gradient);
+}
+
+.topic-card.chemie:hover {
+    border-color: rgba(168, 85, 247, 0.3);
+}
+
+/* Chemical equations and formulas */
+.chem-equation {
+    display: block;
+    background: rgba(168, 85, 247, 0.1);
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.chem-equation .arrow {
+    margin: 0 0.5rem;
+    color: var(--accent-chemie);
+}
+
+/* Subscript and superscript styling for chemistry */
+.chem-formula sub,
+.chem-equation sub {
+    font-size: 0.75em;
+    vertical-align: sub;
+}
+
+.chem-formula sup,
+.chem-equation sup {
+    font-size: 0.75em;
+    vertical-align: super;
+}
+
+/* Chemistry highlight box */
+.chem-highlight {
+    background: rgba(168, 85, 247, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-chemie);
+    margin: 1rem 0;
+}
+
+/* Chemistry definition list */
+.chem-definitions dt {
+    font-weight: 600;
+    color: var(--accent-chemie);
+    margin-top: 0.75rem;
+}
+
+.chem-definitions dd {
+    margin-left: 1rem;
+    color: var(--text-secondary);
 }
 
 /* Breadcrumb */
